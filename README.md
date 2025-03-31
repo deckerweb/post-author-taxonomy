@@ -11,7 +11,7 @@
 
 ---
 
-[Support Project](#support-the-project) | [Installation](#installation) | [Description](#description) | [Features](#features) | [Usage](#usage---examples) | [Shortcode Parameters](#shortcode-parameters) | [Widgets](#widget-usage) | [Templates](#template-usage-developers) | [Filters](#plugin-filters-developers) | [Changelog](#changelog--version-history) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
+[Support Project](#support-the-project) | [Installation](#installation) | [Description](#description) | [Features](#features) | [Usage](#usage---examples) | [Shortcode Parameters](#shortcode-parameters) | [Block Editor](#block-editor-usage--gutenberg) | [Widgets](#widget-usage) | [Templates](#template-usage-developers) | [Filters](#plugin-filters-developers) | [Changelog](#changelog--version-history) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
 
 ---
 
@@ -78,7 +78,36 @@ Very useful to add and display a list of authors to a blog post. If you don't wa
 
 ## Shortcode Parameters
 
-(content upcoming)
+#### Shortcode: `pat-authors`
+
+| Parameter | Description                                          | Default   | Usage                                                                      |
+| --------- | ---------------------------------------------------- | --------- | -------------------------------------------------------------------------- |
+| `before`  | label string before authors list                     | Authors:  | Normally the default should be just fine                                   |
+| `after`   | label string after authors list                      | „“ (none) | could be needed in edge cases                                              |
+| `sep`     | optional separator string                            | ?         | —                                                                          |
+| `class`   | additional custom class for the wrapper              | „“ (none) | if ever needed for your styling                                            |
+| `wrapper` | HTML wrapper element - any HTML5 wrapper is possible | `span`    | use default or your own tag, fitting your logical, semantic HTML structure |
+
+
+#### Shortcode: `pat-author-box`
+
+| Parameter      | Description                                                                           | Default                    | Usage                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------- | -------------------------- | ----------------------------------------------------------------------------------------- |
+| `title`        | The Authors name (aka: name of the taxonomy term, for example: John Doe)              | `yes` (displays term name) | In most cases you would use this default, I guess …                                       |
+| `headline`     | Your own „headline“ / title                                                           | „“ (none)                  | For edge cases … —\> if yiu set a value this WILL BE used instead of the default `title`! |
+| `title_tag_`   | HTML tag for the title/ headline, typically you would use something between h2 and h6 | `h4`                       | use default or your own tag, fitting your logical, semantic HTML structure                |
+| `id`           | ID of the taxonomy term (example: 21)                                                 | „“ (none)                  | set this                                                                                  |
+| `slug`         | Slug of the taxonomy term (example: john-doe)                                         | „“ (none)                  | or this                                                                                   |
+| `name`         | Name of the taxonomy term (example: John Doe)                                         | „“ (none)                  | or this                                                                                   |
+| `content_tag_` |                                                                                       | `p`                        | Normally the default will be just fine                                                    |
+| `class`        | additional custom class for the wrapper                                               | „“ (none)                  | if ever needed for your styling                                                           |
+| `wrapper`      | HTML wrapper element - any HTML5 wrapper is possible                                  | `div`                      | use default or your own tag, fitting your logical, semantic HTML structure                |
+
+---
+
+## Block Editor Usage (Gutenberg)
+
+Place the Shortcode into the default **Shortcode block** or a **regular paragraph block** (yes, that one works just fine, too!).
 
 ---
 
@@ -97,20 +126,28 @@ If using extended/ advanced text widget plugins, the Shortcode usage then is alr
 ## Template Usage (Developers)
 
 Use WordPress' global `do_shortcode()` function as a template function, like so:
+
+#### Authors List:
 ```
 <?php do_shortcode( '[pat-authors]' ); ?>
 ```
+
+#### Author Box:
+```
+<?php do_shortcode( '[pat-author-box]' ); ?>
+```
+
 --> parameters apply like for regular Shortcode usage (see above)!
 
 ---
 
 ## Plugin Filters (Developers)
 
-* `pat/filter/taxonomy/params` --> filter all Taxonomy parameters
-* `pat/filter/shortcode/authors_list_defaults` --> filter authors list Shortcode defaults
-* `pat/filter/shortcode/authors-list` --> filter authors list Shortcode output
-* `pat/filter/shortcode/author_box_defaults` --> filter author box Shortcode defaults
-* `pat/filter/shortcode/author-box` --> filter author box Shortcode output
+* `pat/taxonomy/params` --> filter all Taxonomy parameters
+* `pat/shortcode/authors-list-defaults` --> filter authors list Shortcode defaults
+* `pat/shortcode/authors-list` --> filter authors list Shortcode output
+* `pat/shortcode/author-box-defaults` --> filter author box Shortcode defaults
+* `pat/shortcode/author-box` --> filter author box Shortcode output
 
 ---
 

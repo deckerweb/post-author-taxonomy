@@ -112,27 +112,19 @@ class DDW_Post_Author_Taxonomy {
 			'pat-author',
 			array( 'post' ),
 			apply_filters(
-				'pat/filter/taxonomy/params',
+				'pat/taxonomy/params',
 				$args
 			)
 		);		
 	}
 	
 	/**
-	 * Produces the tag links list.
-	 *
-	 * Supported shortcode attributes are:
-	 *   after (output after link, default is empty string),
-	 *   before (output before link, default is 'Tagged With: '),
-	 *   sep (separator string between tags, default is ', ').
-	 *
-	 * Output passes through `genesis_post_tags_shortcode` filter before returning.
+	 * Output linked authors list.
 	 *
 	 * @since  1.1.0
 	 *
 	 * @param  array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Return empty string if the `post_tag` taxonomy is not associated with the current post type
-	 *                or if the post has no authors. Otherwise, output for `pat-authors` shortcode.
+	 * @return string List of authors.
 	 */
 	public function shortcode_authors_list( $atts ) {
 	
@@ -143,7 +135,7 @@ class DDW_Post_Author_Taxonomy {
 	
 		/** Setup the Shortcode defaults */
 		$defaults = apply_filters(
-			'pat/filter/shortcode/authors_list_defaults',
+			'pat/shortcode/authors-list-defaults',
 			array(
 				'before'  => __( 'Authors:', 'post-author-taxonomy' ),
 				'after'   => '',
@@ -192,7 +184,7 @@ class DDW_Post_Author_Taxonomy {
 	
 		/** Return output, filterable */
 		return apply_filters(
-			'pat/filter/shortcode/authors-list',
+			'pat/shortcode/authors-list',
 			$output,
 			$atts
 		);
@@ -202,6 +194,9 @@ class DDW_Post_Author_Taxonomy {
 	 * Shortcode for an "Author Box"
 	 *
 	 * @since 1.2.0
+	 *
+	 * @param  array|string $atts Shortcode attributes. Empty string if no attributes.
+	 * @return string List of authors.
 	 */
 	public function shortcode_author_box( $atts ) {
 		
@@ -212,7 +207,7 @@ class DDW_Post_Author_Taxonomy {
 		
 		/** Setup the Shortcode defaults */
 		$defaults = apply_filters(
-			'pat/filter/shortcode/author_box_defaults',
+			'pat/shortcode/author-box-defaults',
 			array(
 				'title'       => 'yes',
 				'headline'    => '',
@@ -277,7 +272,7 @@ class DDW_Post_Author_Taxonomy {
 		
 		/** Return output, filterable */
 		return apply_filters(
-			'pat/filter/shortcode/author-box',
+			'pat/shortcode/author-box',
 			$output,
 			$atts
 		);
@@ -322,7 +317,7 @@ endif;
 
 
 if ( ! function_exists( 'ddw_pat_custom_taxonomy_links' ) ) :
-	
+
 /**
  * Add "Custom Taxonomy" link to Plugins page.
  *
@@ -349,7 +344,7 @@ function ddw_pat_custom_taxonomy_links( $pat_links ) {
 
 	/** Display plugin settings links */
 	return apply_filters(
-		'pat/filter/plugins_page/tax_link',
+		'pat/plugins-page/tax-link',
 		$pat_links
 	);
 
@@ -377,26 +372,26 @@ function ddw_pat_pluginrow_meta( $ddwp_meta, $ddwp_file ) {
 	
 	/** Build Newsletter URL */
 	$url_nl = sprintf(
-	'https://deckerweb.us2.list-manage.com/subscribe?u=e09bef034abf80704e5ff9809&amp;id=380976af88&amp;MERGE0=%1$s&amp;MERGE1=%2$s',
-	esc_attr( $user->user_email ),
-	esc_attr( $user->user_firstname )
+		'https://deckerweb.us2.list-manage.com/subscribe?u=e09bef034abf80704e5ff9809&amp;id=380976af88&amp;MERGE0=%1$s&amp;MERGE1=%2$s',
+		esc_attr( $user->user_email ),
+		esc_attr( $user->user_firstname )
 	);
 	
 	/** List additional links only for this plugin */
 	if ( $ddwp_file === trailingslashit( dirname( plugin_basename( __FILE__ ) ) ) . basename( __FILE__ ) ) {
-	$ddwp_meta[] = sprintf(
-		'<a class="button button-inline" href="https://ko-fi.com/deckerweb" target="_blank" rel="nofollow noopener noreferrer" title="%1$s">❤ <b>%1$s</b></a>',
-		esc_html_x( 'Donate', 'Plugins page listing', 'post-author-taxonomy' )
-	);
-	
-	$ddwp_meta[] = sprintf(
-		'<a class="button-primary" href="%1$s" target="_blank" rel="nofollow noopener noreferrer" title="%2$s">⚡ <b>%2$s</b></a>',
-		$url_nl,
-		esc_html_x( 'Join our Newsletter', 'Plugins page listing', 'post-author-taxonomy' )
-	);
+		$ddwp_meta[] = sprintf(
+			'<a class="button button-inline" href="https://ko-fi.com/deckerweb" target="_blank" rel="nofollow noopener noreferrer" title="%1$s">❤ <b>%1$s</b></a>',
+			esc_html_x( 'Donate', 'Plugins page listing', 'post-author-taxonomy' )
+		);
+		
+		$ddwp_meta[] = sprintf(
+			'<a class="button-primary" href="%1$s" target="_blank" rel="nofollow noopener noreferrer" title="%2$s">⚡ <b>%2$s</b></a>',
+			$url_nl,
+			esc_html_x( 'Join our Newsletter', 'Plugins page listing', 'post-author-taxonomy' )
+		);
 	}  // end if
 	
-	return apply_filters( 'pat/filter/plugins_page/meta_links', $ddwp_meta );
+	return apply_filters( 'pat/plugins-page/meta-links', $ddwp_meta );
 
 }  // end function
 

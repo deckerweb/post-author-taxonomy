@@ -2,7 +2,7 @@
 
 **Simple & lightweight:** Registers a simple post authors taxonomy for the regular Posts post type. The taxonomy is not hierarchical, so it's similar to tags but for authors instead. Shortcodes for a list of authors and an Author Box are included.
 
-![Post Author Taxonomy plugin banner](https://repository-images.githubusercontent.com/36257371/b329de67-e904-47d5-998d-0031c49f59a1)
+![Post Author Taxonomy plugin banner](https://repository-images.githubusercontent.com/114375288/882286e7-ebfc-45da-b2a2-9aa0e3b0d758)
 
 ### Tested Compatibility
 - **WordPress**: 6.7.2 / 6.8 Beta

@@ -1,15 +1,15 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Post Author Taxonomy\n"
 "POT-Creation-Date: 2025-03-31 09:33+0200\n"
-"PO-Revision-Date: 2025-03-31 09:35+0200\n"
-"Last-Translator: David Decker DECKERWEB.de <David Decker DECKERWEB.de>\n"
+"PO-Revision-Date: 2018-09-18 21:24+0200\n"
+"Last-Translator: David Decker DECKERWEB.de\n"
 "Language-Team: David Decker DECKERWEB.de\n"
-"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -24,123 +24,121 @@ msgstr ""
 #: post-author-taxonomy.php:56
 msgctxt "Taxonomy General Name"
 msgid "Authors"
-msgstr "Autoren"
+msgstr ""
 
 #: post-author-taxonomy.php:57
 msgctxt "Taxonomy Singular Name"
 msgid "Author"
-msgstr "Autor"
+msgstr ""
 
 #: post-author-taxonomy.php:59
 msgid "All Authors"
-msgstr "Alle Autoren"
+msgstr ""
 
 #: post-author-taxonomy.php:60
 msgid "Parent Author"
-msgstr "Übergeordneter Autor"
+msgstr ""
 
 #: post-author-taxonomy.php:61
 msgid "Parent Author:"
-msgstr "Übergeordneter Autor:"
+msgstr ""
 
 #: post-author-taxonomy.php:62
 msgid "New Author Name"
-msgstr "Neuer Autorenname"
+msgstr ""
 
 #: post-author-taxonomy.php:63
 msgid "Add New Author"
-msgstr "Neuen Autor hinzufügen"
+msgstr ""
 
 #: post-author-taxonomy.php:64
 msgid "Edit Author"
-msgstr "Autor bearbeiten"
+msgstr ""
 
 #: post-author-taxonomy.php:65
 msgid "Update Author"
-msgstr "Autor aktualisieren"
+msgstr ""
 
 #: post-author-taxonomy.php:66
 msgid "View Author"
-msgstr "Autor ansehen"
+msgstr ""
 
 #: post-author-taxonomy.php:67
 msgid "Separate Authors with commas"
-msgstr "Autorennamen, kommagetrennt"
+msgstr ""
 
 #: post-author-taxonomy.php:68
 msgid "Add or remove Authors"
-msgstr "Autoren hinzufügen oder entfernen"
+msgstr ""
 
 #: post-author-taxonomy.php:69
 msgid "Choose from the most used"
-msgstr "Aus meistbenutzten Autorennamen wählen"
+msgstr ""
 
 #: post-author-taxonomy.php:70
 msgid "Popular Authors"
-msgstr "Beliebte Autoren"
+msgstr ""
 
 #: post-author-taxonomy.php:71
 msgid "Search Auhtors"
-msgstr "Autoren suchen"
+msgstr ""
 
 #: post-author-taxonomy.php:72
 msgid "Not Found"
-msgstr "Es wurden keine Autoren gefunden."
+msgstr ""
 
 #: post-author-taxonomy.php:73
 msgid "No Authors"
-msgstr "Keine Autoren"
+msgstr ""
 
 #: post-author-taxonomy.php:74
 msgid "Authors list"
-msgstr "Autorenliste"
+msgstr ""
 
 #: post-author-taxonomy.php:75
 msgid "Authors list navigation"
-msgstr "Autoren Listennavigation"
+msgstr ""
 
 #: post-author-taxonomy.php:83
 msgctxt "Translators: slug part for Post Author Taxonomy in the URLs"
 msgid "post-author"
-msgstr "beitragsautor"
+msgstr ""
 
 #: post-author-taxonomy.php:103
 msgid "A simple post authors taxonomy for the regular Posts post type."
 msgstr ""
-"Eine einfache Taxonomie für Autoren von Beiträgen für den regulären "
-"Beitragstyp „Posts“."
 
 #: post-author-taxonomy.php:144
 msgid "Authors:"
-msgstr "Autoren:"
+msgstr ""
 
 #. translators: Title attribute for Post Author Taxonomy tax link
 #: post-author-taxonomy.php:258
 msgid "Post Authors"
-msgstr "Beitragsautoren"
+msgstr ""
 
 #: post-author-taxonomy.php:259
 msgctxt "For Post Authors Taxonomy Plugin"
 msgid "Post Authors"
-msgstr "Beitragsautoren"
+msgstr ""
 
 #: post-author-taxonomy.php:306
 msgctxt "Plugins page listing"
 msgid "Donate"
-msgstr "Spenden"
+msgstr ""
 
 #: post-author-taxonomy.php:312
 msgctxt "Plugins page listing"
 msgid "Join our Newsletter"
-msgstr "Jetzt Newsletter"
+msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "Post Author Taxonomy"
-msgstr "Beitragsautoren-Taxonomie"
+msgstr ""
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/deckerweb/post-author-taxonomy"
-msgstr "https://github.com/deckerweb/post-author-taxonomy"
+msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
@@ -150,60 +148,11 @@ msgid ""
 "developers there a lot of filters to extend it for more post types, plus "
 "optionally customize stuff."
 msgstr ""
-"Registriert eine einfache Beitragsautor-Taxonomie für den regulären "
-"Beitragsinhaltstyp (post). Die Taxonomie ist nicht hierarchisch, sondern "
-"quasi wie Tags (Schlagwörter), eben nur für Autoren. Ein Shortcode und ein "
-"Widget für Beitragsautoren sind enthalten. Für Entwickler gibt es zahlreiche "
-"Filter, um das Plugin für weitere Inhaltstypen zu verwenden bzw. um es "
-"weiter anzupassen."
 
 #. Author of the plugin/theme
 msgid "David Decker - DECKERWEB"
-msgstr "David Decker - DECKERWEB.de"
+msgstr ""
 
 #. Author URI of the plugin/theme
 msgid "https://deckerweb.de/"
-msgstr "https://deckerweb.de/"
-
-#~ msgid "Authors"
-#~ msgstr "Autoren"
-
-#~ msgid "Label before"
-#~ msgstr "Bezeichnung davor"
-
-#~ msgctxt "Translators: HTML placeholder"
-#~ msgid "Authors:"
-#~ msgstr "Autoren:"
-
-#~ msgid "Optional label output at the beginning"
-#~ msgstr "Optionale Bezeichnung am Anfang"
-
-#~ msgid "Label after"
-#~ msgstr "Bezeichnung danach"
-
-#~ msgid "Optional label output at the end"
-#~ msgstr "Optionale Bezeichnung am Ende"
-
-#~ msgid "Separator string/ character"
-#~ msgstr "Trennzeichen"
-
-#~ msgctxt ""
-#~ "Translators: separator string between date and time values (comma plus "
-#~ "space)"
-#~ msgid ", "
-#~ msgstr ", "
-
-#~ msgid "What is output between each author string"
-#~ msgstr "Was wird zwischen den einzelnen Autorennamen ausgegeben?"
-
-#~ msgid "CSS class?"
-#~ msgstr "CSS-Klasse?"
-
-#~ msgid "Additional custom CSS class for the whole wrapper"
-#~ msgstr "Zusätzliche benutzerdefinierte CSS-Klasse für den gesamten Wrapper"
-
-#~ msgid "Wrapper tag?"
-#~ msgstr "Wrapper-Tag?"
-
-#~ msgid "HTML wrapper tag that is used"
-#~ msgstr "HTML-Wrapper-Tag, der verwendet wird"
+msgstr ""

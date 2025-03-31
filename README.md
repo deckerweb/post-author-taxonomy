@@ -11,7 +11,7 @@
 
 ---
 
-[Support Project](#support-the-project) | [Installation](#installation) | [Description](#description) | [Features](#features) | [Usage](#usage---examples) | [Shortcode Parameters](#shortcode-parameters) | [Block Editor](#block-editor-usage--gutenberg) | [Widgets](#widget-usage) | [Templates](#template-usage-developers) | [Filters](#plugin-filters-developers) | [Changelog](#changelog--version-history) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
+[Support Project](#support-the-project) | [Installation](#installation) | [Description](#description) | [Features](#features) | [Usage](#usage---examples) | [Shortcode Parameters](#shortcode-parameters) | [Block Editor](#block-editor-usage-gutenberg) | [Widgets](#widget-usage) | [Templates](#template-usage-developers) | [Filters](#plugin-filters-developers) | [Changelog](#changelog--version-history) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
 
 ---
 
@@ -94,12 +94,12 @@ Very useful to add and display a list of authors to a blog post. If you don't wa
 | Parameter      | Description                                                                           | Default                    | Usage                                                                                     |
 | -------------- | ------------------------------------------------------------------------------------- | -------------------------- | ----------------------------------------------------------------------------------------- |
 | `title`        | The Authors name (aka: name of the taxonomy term, for example: John Doe)              | `yes` (displays term name) | In most cases you would use this default, I guess …                                       |
-| `headline`     | Your own „headline“ / title                                                           | „“ (none)                  | For edge cases … —\> if yiu set a value this WILL BE used instead of the default `title`! |
-| `title_tag_`   | HTML tag for the title/ headline, typically you would use something between h2 and h6 | `h4`                       | use default or your own tag, fitting your logical, semantic HTML structure                |
+| `headline`     | Your own „headline“ / title                                                           | „“ (none)                  | For edge cases … –—\> if yiu set a value this WILL BE used instead of the default `title`! |
+| `title_tag`   | HTML tag for the title/ headline, typically you would use something between h2 and h6 | `h4`                       | use default or your own tag, fitting your logical, semantic HTML structure                |
 | `id`           | ID of the taxonomy term (example: 21)                                                 | „“ (none)                  | set this                                                                                  |
 | `slug`         | Slug of the taxonomy term (example: john-doe)                                         | „“ (none)                  | or this                                                                                   |
 | `name`         | Name of the taxonomy term (example: John Doe)                                         | „“ (none)                  | or this                                                                                   |
-| `content_tag_` |                                                                                       | `p`                        | Normally the default will be just fine                                                    |
+| `content_tag` |                                                                                       | `p`                        | Normally the default will be just fine                                                    |
 | `class`        | additional custom class for the wrapper                                               | „“ (none)                  | if ever needed for your styling                                                           |
 | `wrapper`      | HTML wrapper element - any HTML5 wrapper is possible                                  | `div`                      | use default or your own tag, fitting your logical, semantic HTML structure                |
 

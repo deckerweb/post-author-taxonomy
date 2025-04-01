@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Post Author Taxonomy\n"
-"POT-Creation-Date: 2025-03-31 09:34+0200\n"
-"PO-Revision-Date: 2025-03-31 09:35+0200\n"
+"POT-Creation-Date: 2025-04-01 06:43+0200\n"
+"PO-Revision-Date: 2025-04-01 06:44+0200\n"
 "Last-Translator: David Decker DECKERWEB.de <David Decker DECKERWEB.de>\n"
 "Language-Team: David Decker DECKERWEB.de\n"
 "Language: de_DE@formal\n"
@@ -21,115 +21,115 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: post-author-taxonomy.php:56
+#: post-author-taxonomy.php:60
 msgctxt "Taxonomy General Name"
 msgid "Authors"
 msgstr "Autoren"
 
-#: post-author-taxonomy.php:57
+#: post-author-taxonomy.php:61
 msgctxt "Taxonomy Singular Name"
 msgid "Author"
 msgstr "Autor"
 
-#: post-author-taxonomy.php:59
+#: post-author-taxonomy.php:62
 msgid "All Authors"
 msgstr "Alle Autoren"
 
-#: post-author-taxonomy.php:60
+#: post-author-taxonomy.php:63
 msgid "Parent Author"
 msgstr "Übergeordneter Autor"
 
-#: post-author-taxonomy.php:61
+#: post-author-taxonomy.php:64
 msgid "Parent Author:"
 msgstr "Übergeordneter Autor:"
 
-#: post-author-taxonomy.php:62
+#: post-author-taxonomy.php:65
 msgid "New Author Name"
 msgstr "Neuer Autorenname"
 
-#: post-author-taxonomy.php:63
+#: post-author-taxonomy.php:66
 msgid "Add New Author"
 msgstr "Neuen Autor hinzufügen"
 
-#: post-author-taxonomy.php:64
+#: post-author-taxonomy.php:67
 msgid "Edit Author"
 msgstr "Autor bearbeiten"
 
-#: post-author-taxonomy.php:65
+#: post-author-taxonomy.php:68
 msgid "Update Author"
 msgstr "Autor aktualisieren"
 
-#: post-author-taxonomy.php:66
+#: post-author-taxonomy.php:69
 msgid "View Author"
 msgstr "Autor ansehen"
 
-#: post-author-taxonomy.php:67
+#: post-author-taxonomy.php:70
 msgid "Separate Authors with commas"
 msgstr "Autorennamen, kommagetrennt"
 
-#: post-author-taxonomy.php:68
+#: post-author-taxonomy.php:71
 msgid "Add or remove Authors"
 msgstr "Autoren hinzufügen oder entfernen"
 
-#: post-author-taxonomy.php:69
+#: post-author-taxonomy.php:72
 msgid "Choose from the most used"
 msgstr "Aus meistbenutzten Autorennamen wählen"
 
-#: post-author-taxonomy.php:70
+#: post-author-taxonomy.php:73
 msgid "Popular Authors"
 msgstr "Beliebte Autoren"
 
-#: post-author-taxonomy.php:71
+#: post-author-taxonomy.php:74
 msgid "Search Auhtors"
 msgstr "Autoren suchen"
 
-#: post-author-taxonomy.php:72
+#: post-author-taxonomy.php:75
 msgid "Not Found"
 msgstr "Es wurden keine Autoren gefunden."
 
-#: post-author-taxonomy.php:73
+#: post-author-taxonomy.php:76
 msgid "No Authors"
 msgstr "Keine Autoren"
 
-#: post-author-taxonomy.php:74
+#: post-author-taxonomy.php:77
 msgid "Authors list"
 msgstr "Autorenliste"
 
-#: post-author-taxonomy.php:75
+#: post-author-taxonomy.php:78
 msgid "Authors list navigation"
 msgstr "Autoren Listennavigation"
 
-#: post-author-taxonomy.php:83
+#: post-author-taxonomy.php:86
 msgctxt "Translators: slug part for Post Author Taxonomy in the URLs"
 msgid "post-author"
 msgstr "beitragsautor"
 
-#: post-author-taxonomy.php:103
+#: post-author-taxonomy.php:107
 msgid "A simple post authors taxonomy for the regular Posts post type."
 msgstr ""
 "Eine einfache Beitragsautoren-Taxonomie für den regulären Beitragstyp "
-"„Posts“."
+"„Beiträge“ (Posts)."
 
-#: post-author-taxonomy.php:144
+#: post-author-taxonomy.php:140
 msgid "Authors:"
 msgstr "Autoren:"
 
 #. translators: Title attribute for Post Author Taxonomy tax link
-#: post-author-taxonomy.php:258
+#: post-author-taxonomy.php:336
 msgid "Post Authors"
 msgstr "Beitragsautoren"
 
-#: post-author-taxonomy.php:259
+#: post-author-taxonomy.php:337
 msgctxt "For Post Authors Taxonomy Plugin"
 msgid "Post Authors"
 msgstr "Beitragsautoren"
 
-#: post-author-taxonomy.php:306
+#: post-author-taxonomy.php:384
 msgctxt "Plugins page listing"
 msgid "Donate"
 msgstr "Spenden"
 
-#: post-author-taxonomy.php:312
+#: post-author-taxonomy.php:390
 msgctxt "Plugins page listing"
 msgid "Join our Newsletter"
 msgstr "Jetzt Newsletter"
@@ -146,16 +146,16 @@ msgstr "https://github.com/deckerweb/post-author-taxonomy"
 msgid ""
 "Registers a simple post authors taxonomy for the regular Posts post type. "
 "The taxonomy is not hierarchical, so it's similar to tags but for authors "
-"instead. A shortcode and a widget for post authors are included. For "
-"developers there a lot of filters to extend it for more post types, plus "
+"instead. Shortcodes for a list of authors and an Author Box are included. "
+"For developers there a lot of filters to extend it for more post types, plus "
 "optionally customize stuff."
 msgstr ""
 "Registriert eine einfache Beitragsautor-Taxonomie für den regulären "
 "Beitragsinhaltstyp (post). Die Taxonomie ist nicht hierarchisch, sondern "
-"quasi wie Tags (Schlagwörter), eben nur für Autoren. Ein Shortcode und ein "
-"Widget für Beitragsautoren sind enthalten. Für Entwickler gibt es zahlreiche "
-"Filter, um das Plugin für weitere Inhaltstypen zu verwenden bzw. um es "
-"weiter anzupassen."
+"quasi wie Tags (Schlagwörter), eben nur für Autoren. Mit dabei sind "
+"Shortcodes für eine Liste der Autoren sowie eine Autorbox. Für Entwickler "
+"gibt es zahlreiche Filter, um das Plugin für weitere Beitragstypen zu "
+"verwenden bzw. um es weiter anzupassen."
 
 #. Author of the plugin/theme
 msgid "David Decker - DECKERWEB"

@@ -319,7 +319,7 @@ endif;
 if ( ! function_exists( 'ddw_pat_custom_taxonomy_links' ) ) :
 
 /**
- * Add "Custom Taxonomy" link to Plugins page.
+ * Add the taxonomy link to Plugins page.
  *
  * @since  1.1.0
  *

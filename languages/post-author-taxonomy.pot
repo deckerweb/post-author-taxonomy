@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Post Author Taxonomy\n"
-"POT-Creation-Date: 2025-03-31 09:33+0200\n"
+"POT-Creation-Date: 2025-04-01 06:41+0200\n"
 "PO-Revision-Date: 2018-09-18 21:24+0200\n"
 "Last-Translator: David Decker DECKERWEB.de\n"
 "Language-Team: David Decker DECKERWEB.de\n"
@@ -16,118 +16,118 @@ msgstr ""
 "X-Poedit-WPHeader: post-author-taxonomy.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: post-author-taxonomy.php:56
+#: post-author-taxonomy.php:60
 msgctxt "Taxonomy General Name"
 msgid "Authors"
 msgstr ""
 
-#: post-author-taxonomy.php:57
+#: post-author-taxonomy.php:61
 msgctxt "Taxonomy Singular Name"
 msgid "Author"
 msgstr ""
 
-#: post-author-taxonomy.php:59
+#: post-author-taxonomy.php:62
 msgid "All Authors"
 msgstr ""
 
-#: post-author-taxonomy.php:60
+#: post-author-taxonomy.php:63
 msgid "Parent Author"
 msgstr ""
 
-#: post-author-taxonomy.php:61
+#: post-author-taxonomy.php:64
 msgid "Parent Author:"
 msgstr ""
 
-#: post-author-taxonomy.php:62
+#: post-author-taxonomy.php:65
 msgid "New Author Name"
 msgstr ""
 
-#: post-author-taxonomy.php:63
+#: post-author-taxonomy.php:66
 msgid "Add New Author"
 msgstr ""
 
-#: post-author-taxonomy.php:64
+#: post-author-taxonomy.php:67
 msgid "Edit Author"
 msgstr ""
 
-#: post-author-taxonomy.php:65
+#: post-author-taxonomy.php:68
 msgid "Update Author"
 msgstr ""
 
-#: post-author-taxonomy.php:66
+#: post-author-taxonomy.php:69
 msgid "View Author"
 msgstr ""
 
-#: post-author-taxonomy.php:67
+#: post-author-taxonomy.php:70
 msgid "Separate Authors with commas"
 msgstr ""
 
-#: post-author-taxonomy.php:68
+#: post-author-taxonomy.php:71
 msgid "Add or remove Authors"
 msgstr ""
 
-#: post-author-taxonomy.php:69
+#: post-author-taxonomy.php:72
 msgid "Choose from the most used"
 msgstr ""
 
-#: post-author-taxonomy.php:70
+#: post-author-taxonomy.php:73
 msgid "Popular Authors"
 msgstr ""
 
-#: post-author-taxonomy.php:71
+#: post-author-taxonomy.php:74
 msgid "Search Auhtors"
 msgstr ""
 
-#: post-author-taxonomy.php:72
+#: post-author-taxonomy.php:75
 msgid "Not Found"
 msgstr ""
 
-#: post-author-taxonomy.php:73
+#: post-author-taxonomy.php:76
 msgid "No Authors"
 msgstr ""
 
-#: post-author-taxonomy.php:74
+#: post-author-taxonomy.php:77
 msgid "Authors list"
 msgstr ""
 
-#: post-author-taxonomy.php:75
+#: post-author-taxonomy.php:78
 msgid "Authors list navigation"
 msgstr ""
 
-#: post-author-taxonomy.php:83
+#: post-author-taxonomy.php:86
 msgctxt "Translators: slug part for Post Author Taxonomy in the URLs"
 msgid "post-author"
 msgstr ""
 
-#: post-author-taxonomy.php:103
+#: post-author-taxonomy.php:107
 msgid "A simple post authors taxonomy for the regular Posts post type."
 msgstr ""
 
-#: post-author-taxonomy.php:144
+#: post-author-taxonomy.php:140
 msgid "Authors:"
 msgstr ""
 
 #. translators: Title attribute for Post Author Taxonomy tax link
-#: post-author-taxonomy.php:258
+#: post-author-taxonomy.php:336
 msgid "Post Authors"
 msgstr ""
 
-#: post-author-taxonomy.php:259
+#: post-author-taxonomy.php:337
 msgctxt "For Post Authors Taxonomy Plugin"
 msgid "Post Authors"
 msgstr ""
 
-#: post-author-taxonomy.php:306
+#: post-author-taxonomy.php:384
 msgctxt "Plugins page listing"
 msgid "Donate"
 msgstr ""
 
-#: post-author-taxonomy.php:312
+#: post-author-taxonomy.php:390
 msgctxt "Plugins page listing"
 msgid "Join our Newsletter"
 msgstr ""
@@ -144,9 +144,9 @@ msgstr ""
 msgid ""
 "Registers a simple post authors taxonomy for the regular Posts post type. "
 "The taxonomy is not hierarchical, so it's similar to tags but for authors "
-"instead. A shortcode and a widget for post authors are included. For "
-"developers there a lot of filters to extend it for more post types, plus "
-"optionally customize stuff."
+"instead. Shortcodes for a list of authors and an Author Box are included. "
+"For developers there a lot of filters to extend it for more post types, "
+"plus optionally customize stuff."
 msgstr ""
 
 #. Author of the plugin/theme

@@ -153,11 +153,11 @@ Use WordPress' global `do_shortcode()` function as a template function, like so:
 
 ## Changelog – Version History
 
-### 🎉 v1.2.0 – 2025-03-??
+### 🎉 v1.2.0 – 2025-04-??
 * Updated plugin after 8 years, yeah! – Brought back to its basic beauty. (How it should be!)
 * New: Transformed code into class-based approach (more future-proof)
 * New: Shortcode `pat-author-box` for displaying a simple author box (content = term description)
-* New: Alternate install: Use "plugin" as Code Snippet version – now officially promoted here in Readme and with downloadable `.json` file
+* New: Alternate install – Use "plugin" as Code Snippet version – now officially promoted here in Readme and with downloadable `.json` file
 * Improved: Shortcode `pat-authors` enhanced
 * Change: Simplified additional translation loading (needed, for proper usage/display, as this plugin comes not from .org repository)
 * Plugin: Add meta links on WP Plugins page

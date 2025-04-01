@@ -36,10 +36,40 @@ class DDW_Post_Author_Taxonomy {
 	 * Constructor
 	 */
 	public function __construct() {
+		add_action(    'init',           array( $this, 'load_translations' ), 20 );
 		add_action(    'init',           array( $this, 'register_taxonomy' ), 100 );
 		add_shortcode( 'pat-authors',    array( $this, 'shortcode_authors_list' ) );
 		add_shortcode( 'pat-author-box', array( $this, 'shortcode_author_box' ) );
 		//add_filter(    'debug_information', array( $this, 'site_health_debug_info' ), 9 );
+	}
+	
+	/**
+	 * Load translations.
+	 *   Normally we wouldn't do that since WP 6.5, but since this plugin does not come from wordpress.org plugin repository, we have to care for loading ourselves. We first look in wp-content/languages subfolder, then in plugin subfolder. That way translations can also be used for code snippet version of this plugin.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @uses get_user_locale() | load_textdomain() | load_plugin_textdomain()
+	 */
+	public function load_translations() {
+		
+		/** Set unique textdomain string */
+		$pat_textdomain = 'post-author-taxonomy';
+		
+		/** The 'plugin_locale' filter is also used by default in load_plugin_textdomain() */
+		$locale = apply_filters( 'plugin_locale', get_user_locale(), $pat_textdomain );
+		
+		/**
+		 * WordPress languages directory
+		 *   Will default to: wp-content/languages/post-author-taxonomy/post-author-taxonomy-{locale}.mo
+		 */
+		$pat_wp_lang_dir = trailingslashit( WP_LANG_DIR ) . trailingslashit( $pat_textdomain ) . $pat_textdomain . '-' . $locale . '.mo';
+		
+		/** Translations: First, look in WordPress' "languages" folder = custom & update-safe! */
+		load_textdomain( $pat_textdomain, $pat_wp_lang_dir );
+		
+		/** Secondly, look in plugin's "languages" subfolder = default */
+		load_plugin_textdomain( $pat_textdomain, FALSE, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 	
 	/**
@@ -51,9 +81,6 @@ class DDW_Post_Author_Taxonomy {
 	 * @return object Taxonomy declaration
 	 */
 	public function register_taxonomy() {
-	
-		/** Load our plugin translation, as there are no language packs from wordpress.org */
-		load_plugin_textdomain( 'post-author-taxonomy', FALSE, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	
 		/** Define tax labels/ wording */
 		$labels = array(

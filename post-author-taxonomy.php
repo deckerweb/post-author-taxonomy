@@ -16,6 +16,23 @@ Requires PHP:      7.4
 GitHub Plugin URI: https://github.com/deckerweb/post-author-taxonomy
 GitHub Branch:     master
 Copyright:         © 2017-2025, David Decker - DECKERWEB
+
+TESTED WITH:
+Product			Versions
+--------------------------------------------------------------------------------------------------------------
+PHP 			8.0, 8.3
+WordPress		6.7.2 ... 6.8 Beta
+--------------------------------------------------------------------------------------------------------------
+
+VERSION HISTORY:
+Date        Version     Description
+--------------------------------------------------------------------------------------------------------------
+2025-04-05	1.2.0       New: Class-based approach
+						New: Author box Shortcode
+						New: Installable and updateable via Git Updater plugin
+2018-09-18	1.1.0	    Internal private release
+2017-12-15	1.0.0       Initial public release
+--------------------------------------------------------------------------------------------------------------
 */
 
 /**
@@ -30,7 +47,6 @@ class DDW_Post_Author_Taxonomy {
 
 	/** Class constants & variables */
 	private const VERSION = '1.2.0';
-	private const DEFAULT_MENU_POSITION	= 999;  // default: 999
 
 	/**
 	 * Constructor
@@ -130,7 +146,6 @@ class DDW_Post_Author_Taxonomy {
 			'show_tagcloud'     => TRUE,
 			'show_in_rest'      => TRUE,
 			'rewrite'           => $rewrite,
-			'meta_box_cb'       => 'post_categories_meta_box',	// only for Classic, not for Gutenberg Editor
 			'description'       => __( 'A simple post authors taxonomy for the regular Posts post type.', 'post-author-taxonomy' ),
 		);
 	
@@ -370,10 +385,7 @@ function ddw_pat_custom_taxonomy_links( $pat_links ) {
 	}
 
 	/** Display plugin settings links */
-	return apply_filters(
-		'pat/plugins-page/tax-link',
-		$pat_links
-	);
+	return apply_filters( 'pat/plugins-page/tax-link', $pat_links );
 
 }  // end function
 

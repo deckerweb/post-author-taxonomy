@@ -1,208 +1,282 @@
 msgid ""
-msgstr ""
-"Project-Id-Version: Post Author Taxonomy\n"
-"POT-Creation-Date: 2025-04-05 19:08+0200\n"
-"PO-Revision-Date: 2025-04-05 19:08+0200\n"
-"Last-Translator: David Decker DECKERWEB.de <David Decker DECKERWEB.de>\n"
-"Language-Team: David Decker DECKERWEB.de\n"
-"Language: de_DE@formal\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: post-author-taxonomy.php\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: "
-"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+msgstr "Project-Id-Version: Post Author Taxonomy 1.3.0\nPOT-Creation-Date: 2026-10-01 12:00+0200\nPO-Revision-Date: 2026-10-01 12:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: de_DE_formal\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: post-author-taxonomy.php:103
+#: includes/class-pat-admin.php:63
+msgid "A local image from your media library. No external avatar service is used."
+msgstr "Ein lokales Bild aus Ihrer Mediathek. Es wird kein externer Avatar-Dienst verwendet."
+
+#: includes/class-pat-admin.php:119
+msgid "A shortcode link attribute overrides this default. Authors without a website appear as plain text in website mode."
+msgstr "Das Shortcode-Attribut link überschreibt diese Vorgabe. Im Website-Modus erscheinen Autoren ohne Website als reiner Text."
+
+#: includes/class-post-author-taxonomy.php:77
+msgid "A simple post authors taxonomy for the regular Posts post type."
+msgstr "Eine einfache Beitragsautoren-Taxonomie für den regulären Beitragstyp „Beiträge“ (Posts)."
+
+#: includes/class-post-author-taxonomy.php:33
+msgid "Add New Author"
+msgstr "Neuen Autor hinzufügen"
+
+#: includes/class-pat-admin.php:104
+msgid "Add a shortcode to your content or builder template."
+msgstr "Fügen Sie einen Shortcode in Ihren Inhalt oder Ihr Builder-Template ein."
+
+#: includes/class-post-author-taxonomy.php:38
+msgid "Add or remove Authors"
+msgstr "Autoren hinzufügen oder entfernen"
+
+#: includes/class-post-author-taxonomy.php:29
+msgid "All Authors"
+msgstr "Alle Autoren"
+
+#: includes/class-pat-admin.php:105
+msgid "All author profiles for the current post"
+msgstr "Alle Autorenprofile für den aktuellen Beitrag"
+
+#: includes/class-pat-admin.php:104
+msgid "Assign authors to your posts."
+msgstr "Weisen Sie Ihren Beiträgen Autoren zu."
+
+#: includes/class-pat-admin.php:116
+msgid "Author archive"
+msgstr "Autorenarchiv"
+
+#: includes/class-pat-admin.php:108
+msgid "Author attribution does not change WordPress user accounts or editing permissions."
+msgstr "Autorenangaben verändern weder WordPress-Benutzerkonten noch Bearbeitungsrechte."
+
+#: includes/class-pat-admin.php:72
+msgid "Author profile"
+msgstr "Autorenprofil"
+
+#: includes/class-pat-admin.php:116
+msgid "Author website"
+msgstr "Autorenwebsite"
+
+#: includes/class-pat-github-updates.php:32
+msgid "Authors as a public taxonomy: multiple authors, local photos, profiles and flexible shortcodes for your builder or theme."
+msgstr "Autoren als öffentliche Taxonomie: mehrere Autoren, lokale Fotos, Profile und flexible Shortcodes für Ihren Builder oder Ihr Theme."
+
+#: includes/class-post-author-taxonomy.php:44
+msgid "Authors list"
+msgstr "Autorenliste"
+
+#: includes/class-post-author-taxonomy.php:45
+msgid "Authors list navigation"
+msgstr "Autoren Listennavigation"
+
+#: includes/class-post-author-taxonomy.php:146
+msgid "Authors:"
+msgstr "Autoren:"
+
+#: includes/class-pat-changelog.php:79
+msgid "Changelog"
+msgstr "Änderungsprotokoll"
+
+#: includes/class-pat-admin.php:54
+msgid "Choose author photo"
+msgstr "Autorenfoto auswählen"
+
+#: includes/class-post-author-taxonomy.php:39
+msgid "Choose from the most used"
+msgstr "Aus meistbenutzten Autorennamen wählen"
+
+#: includes/class-pat-admin.php:63
+msgid "Choose photo"
+msgstr "Foto auswählen"
+
+#: includes/class-pat-changelog.php:78
+msgid "Close"
+msgstr "Schließen"
+
+#: includes/class-pat-admin.php:106
+msgid "Copied"
+msgstr "Kopiert"
+
+#: includes/class-pat-admin.php:106
+msgid "Copy"
+msgstr "Kopieren"
+
+#: includes/class-pat-admin.php:104
+msgid "Create authors with a name, biography and optional photo."
+msgstr "Legen Sie Autoren mit Name, Biografie und optionalem Foto an."
+
+#: includes/class-pat-admin.php:105
+msgid "Current author on an author taxonomy archive"
+msgstr "Aktueller Autor auf einem Autorenarchiv"
+
+#: includes/class-pat-admin.php:115
+msgid "Default links in author lists"
+msgstr "Standardverlinkung in Autorenlisten"
+
+#: includes/class-pat-admin.php:121
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: includes/class-post-author-taxonomy.php:34
+msgid "Edit Author"
+msgstr "Autor bearbeiten"
+
+#: includes/class-pat-admin.php:110
+msgid "Enable authors for"
+msgstr "Autoren aktivieren für"
+
+#: includes/class-pat-admin.php:105
+msgid "Linked names for the current post"
+msgstr "Verlinkte Namen für den aktuellen Beitrag"
+
+#: includes/class-pat-admin.php:104
+msgid "Manage authors"
+msgstr "Autoren verwalten"
+
+#: includes/class-pat-admin.php:105
+msgid "Names without links"
+msgstr "Namen ohne Verlinkung"
+
+#: includes/class-post-author-taxonomy.php:32
+msgid "New Author Name"
+msgstr "Neuer Autorenname"
+
+#: includes/class-pat-admin.php:93
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: includes/class-post-author-taxonomy.php:43
+msgid "No Authors"
+msgstr "Keine Autoren"
+
+#: includes/class-pat-admin.php:116
+msgid "No links"
+msgstr "Keine Links"
+
+#: includes/class-post-author-taxonomy.php:42
+msgid "Not Found"
+msgstr "Es wurden keine Autoren gefunden."
+
+#: includes/class-pat-admin.php:105
+msgid "One author, on any page"
+msgstr "Ein Autor auf einer beliebigen Seite"
+
+#: includes/class-post-author-taxonomy.php:30
+msgid "Parent Author"
+msgstr "Übergeordneter Autor"
+
+#: includes/class-post-author-taxonomy.php:31
+msgid "Parent Author:"
+msgstr "Übergeordneter Autor:"
+
+#: includes/class-pat-admin.php:121
+msgid "Plugin information"
+msgstr "Plugin-Informationen"
+
+#: includes/class-pat-admin.php:121
+msgid "Plugin website"
+msgstr "Plugin-Website"
+
+#: includes/class-post-author-taxonomy.php:40
+msgid "Popular Authors"
+msgstr "Beliebte Autoren"
+
+#: includes/class-pat-admin.php:104
+msgid "Ready in three steps"
+msgstr "In drei Schritten startklar"
+
+#: includes/class-pat-admin.php:63
+msgid "Remove photo"
+msgstr "Foto entfernen"
+
+#: includes/class-post-author-taxonomy.php:41
+msgid "Search Authors"
+msgstr "Autoren suchen"
+
+#: includes/class-pat-admin.php:30
+msgid "Select at least one post type. Posts have been kept enabled."
+msgstr "Wählen Sie mindestens einen Inhaltstyp. Beiträge bleiben aktiviert."
+
+#: includes/class-post-author-taxonomy.php:37
+msgid "Separate Authors with commas"
+msgstr "Autorennamen, kommagetrennt"
+
+#: includes/class-pat-admin.php:108
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: includes/class-pat-admin.php:92
+msgid "Support the project"
+msgstr "Projekt unterstützen"
+
+#: includes/class-post-author-taxonomy.php:27
 msgctxt "Taxonomy General Name"
 msgid "Authors"
 msgstr "Autoren"
 
-#: post-author-taxonomy.php:104
+#: includes/class-post-author-taxonomy.php:28
 msgctxt "Taxonomy Singular Name"
 msgid "Author"
 msgstr "Autor"
 
-#: post-author-taxonomy.php:105
-msgid "All Authors"
-msgstr "Alle Autoren"
+#: includes/class-pat-github-updates.php:100
+msgid "The GitHub package could not be prepared. The installed version has been kept."
+msgstr "Das GitHub-Paket konnte nicht vorbereitet werden. Die installierte Version wurde beibehalten."
 
-#: post-author-taxonomy.php:106
-msgid "Parent Author"
-msgstr "Übergeordneter Autor"
+#: includes/class-pat-github-updates.php:99
+msgid "The GitHub package does not contain the Post Author Taxonomy plugin file."
+msgstr "Das GitHub-Paket enthält die Plugin-Datei von Post Author Taxonomy nicht."
 
-#: post-author-taxonomy.php:107
-msgid "Parent Author:"
-msgstr "Übergeordneter Autor:"
+#: includes/class-pat-github-updates.php:122
+msgid "The package identity or version does not match a newer Post Author Taxonomy release."
+msgstr "Die Paketidentität oder Version entspricht keiner neueren Version von Post Author Taxonomy."
 
-#: post-author-taxonomy.php:108
-msgid "New Author Name"
-msgstr "Neuer Autorenname"
+#: includes/class-pat-github-updates.php:127
+msgid "The package version differs from the offered update. Please check for updates again."
+msgstr "Die Paketversion weicht vom angebotenen Update ab. Bitte prüfen Sie erneut auf Updates."
 
-#: post-author-taxonomy.php:109
-msgid "Add New Author"
-msgstr "Neuen Autor hinzufügen"
+#: includes/class-pat-github-updates.php:98
+msgid "The update filesystem is unavailable. Please try again."
+msgstr "Das Dateisystem für das Update ist nicht verfügbar. Bitte versuchen Sie es erneut."
 
-#: post-author-taxonomy.php:110
-msgid "Edit Author"
-msgstr "Autor bearbeiten"
+#: includes/class-pat-github-updates.php:115
+msgid "The update package could not be checked."
+msgstr "Das Update-Paket konnte nicht geprüft werden."
 
-#: post-author-taxonomy.php:111
-msgid "Update Author"
-msgstr "Autor aktualisieren"
+#: includes/class-pat-github-updates.php:131
+msgid "The update package has missing or invalid WordPress/PHP requirements."
+msgstr "Die WordPress/PHP-Anforderungen im Update-Paket fehlen oder sind ungültig."
 
-#: post-author-taxonomy.php:112
-msgid "View Author"
-msgstr "Autor ansehen"
+#: includes/class-pat-github-updates.php:135
+msgid "This release requires a newer WordPress or PHP version. The installed version has been kept."
+msgstr "Diese Version benötigt eine neuere WordPress- oder PHP-Version. Die installierte Version wurde beibehalten."
 
-#: post-author-taxonomy.php:113
-msgid "Separate Authors with commas"
-msgstr "Autorennamen, kommagetrennt"
-
-#: post-author-taxonomy.php:114
-msgid "Add or remove Authors"
-msgstr "Autoren hinzufügen oder entfernen"
-
-#: post-author-taxonomy.php:115
-msgid "Choose from the most used"
-msgstr "Aus meistbenutzten Autorennamen wählen"
-
-#: post-author-taxonomy.php:116
-msgid "Popular Authors"
-msgstr "Beliebte Autoren"
-
-#: post-author-taxonomy.php:117
-msgid "Search Auhtors"
-msgstr "Autoren suchen"
-
-#: post-author-taxonomy.php:118
-msgid "Not Found"
-msgstr "Es wurden keine Autoren gefunden."
-
-#: post-author-taxonomy.php:119
-msgid "No Authors"
-msgstr "Keine Autoren"
-
-#: post-author-taxonomy.php:120
-msgid "Authors list"
-msgstr "Autorenliste"
-
-#: post-author-taxonomy.php:121
-msgid "Authors list navigation"
-msgstr "Autoren Listennavigation"
-
-#: post-author-taxonomy.php:129
+#: includes/class-post-author-taxonomy.php:55
 msgctxt "Translators: slug part for Post Author Taxonomy in the URLs"
 msgid "post-author"
 msgstr "beitragsautor"
 
-#: post-author-taxonomy.php:149
-msgid "A simple post authors taxonomy for the regular Posts post type."
-msgstr ""
-"Eine einfache Beitragsautoren-Taxonomie für den regulären Beitragstyp "
-"„Beiträge“ (Posts)."
+#: includes/class-post-author-taxonomy.php:35
+msgid "Update Author"
+msgstr "Autor aktualisieren"
 
-#: post-author-taxonomy.php:182
-msgid "Authors:"
-msgstr "Autoren:"
+#: includes/class-pat-admin.php:54
+msgid "Use photo"
+msgstr "Foto verwenden"
 
-#. translators: Title attribute for Post Author Taxonomy tax link
-#: post-author-taxonomy.php:378
-msgid "Post Authors"
-msgstr "Beitragsautoren"
+#: includes/class-pat-admin.php:121
+msgid "Version"
+msgstr "Version"
 
-#: post-author-taxonomy.php:379
-msgctxt "For Post Authors Taxonomy Plugin"
-msgid "Post Authors"
-msgstr "Beitragsautoren"
+#: includes/class-post-author-taxonomy.php:36
+msgid "View Author"
+msgstr "Autor ansehen"
 
-#: post-author-taxonomy.php:423
-msgctxt "Plugins page listing"
-msgid "Donate"
-msgstr "Spenden"
+#: includes/class-pat-admin.php:64
+msgid "Website"
+msgstr "Website"
 
-#: post-author-taxonomy.php:429
-msgctxt "Plugins page listing"
-msgid "Join our Newsletter"
-msgstr "Jetzt Newsletter"
+#: includes/class-post-author-taxonomy.php:197
+#, php-format
+msgid "Website of %s"
+msgstr "Website von %s"
 
-#. Plugin Name of the plugin/theme
-msgid "Post Author Taxonomy"
-msgstr "Beitragsautoren-Taxonomie"
-
-#. Plugin URI of the plugin/theme
-msgid "https://github.com/deckerweb/post-author-taxonomy"
-msgstr "https://github.com/deckerweb/post-author-taxonomy"
-
-#. Description of the plugin/theme
-msgid ""
-"Registers a simple post authors taxonomy for the regular Posts post type. "
-"The taxonomy is not hierarchical, so it's similar to tags but for authors "
-"instead. Shortcodes for a list of authors and an Author Box are included. "
-"For developers there a lot of filters to extend it for more post types, plus "
-"optionally customize stuff."
-msgstr ""
-"Registriert eine einfache Beitragsautor-Taxonomie für den regulären "
-"Beitragsinhaltstyp (post). Die Taxonomie ist nicht hierarchisch, sondern "
-"quasi wie Tags (Schlagwörter), eben nur für Autoren. Mit dabei sind "
-"Shortcodes für eine Liste der Autoren sowie eine Autorbox. Für Entwickler "
-"gibt es zahlreiche Filter, um das Plugin für weitere Beitragstypen zu "
-"verwenden bzw. um es weiter anzupassen."
-
-#. Author of the plugin/theme
-msgid "David Decker - DECKERWEB"
-msgstr "David Decker - DECKERWEB.de"
-
-#. Author URI of the plugin/theme
-msgid "https://deckerweb.de/"
-msgstr "https://deckerweb.de/"
-
-#~ msgid "Authors"
-#~ msgstr "Autoren"
-
-#~ msgid "Label before"
-#~ msgstr "Bezeichnung davor"
-
-#~ msgctxt "Translators: HTML placeholder"
-#~ msgid "Authors:"
-#~ msgstr "Autoren:"
-
-#~ msgid "Optional label output at the beginning"
-#~ msgstr "Optionale Bezeichnung am Anfang"
-
-#~ msgid "Label after"
-#~ msgstr "Bezeichnung danach"
-
-#~ msgid "Optional label output at the end"
-#~ msgstr "Optionale Bezeichnung am Ende"
-
-#~ msgid "Separator string/ character"
-#~ msgstr "Trennzeichen"
-
-#~ msgctxt ""
-#~ "Translators: separator string between date and time values (comma plus "
-#~ "space)"
-#~ msgid ", "
-#~ msgstr ", "
-
-#~ msgid "What is output between each author string"
-#~ msgstr "Was wird zwischen den einzelnen Autorennamen ausgegeben?"
-
-#~ msgid "CSS class?"
-#~ msgstr "CSS-Klasse?"
-
-#~ msgid "Additional custom CSS class for the whole wrapper"
-#~ msgstr "Zusätzliche benutzerdefinierte CSS-Klasse für den gesamten Wrapper"
-
-#~ msgid "Wrapper tag?"
-#~ msgstr "Wrapper-Tag?"
-
-#~ msgid "HTML wrapper tag that is used"
-#~ msgstr "HTML-Wrapper-Tag, der verwendet wird"
+#: includes/class-pat-admin.php:121
+msgid "Your authors. Your layout. Your WordPress."
+msgstr "Ihre Autoren. Ihr Layout. Ihr WordPress."

@@ -1,0 +1,16 @@
+== Changelog ==
+= 1.3.0 — 2026-10-01 =
+* Neu: automatische Autorenboxen, Archiv-Kontext, lokale Fotos und Websites.
+* Neu: Autorenlinks zu Archiv, Website oder reine Namen; post_id-Unterstützung.
+* Neu: Inhaltstyp-Einstellungen, kopierbare Beispiele und Header/Footer wie Brand Admin Schemes.
+* Neu: gemeinsamer deckerweb Updater V2 und Library 0.2.0.
+* Verbessert: erlaubte HTML-Elemente, sichere Ausgabe; deutsche und englische Dokumentation/Grafiken.
+* Behoben: Warnungen bei fehlenden Autoren, doppelter Nachtext, mehrere CSS-Klassen und Namenssuche.
+* Sonstiges: PHP-Mindestversion jetzt 8.0.
+* Sonstiges: Autoren-Taxonomie-Daten, übersetzter Archiv-Slug und vorhandene Erweiterungsfilter.
+= 1.2.0 — 2025-04-05 =
+* Klassenbasierter Kern, Autorenbox-Shortcode und mitgelieferte deutsche Übersetzungen.
+= 1.1.0 — 2018-09-18 =
+* Interne private Version.
+= 1.0.0 — 2017-12-15 =
+* Erste öffentliche Version.

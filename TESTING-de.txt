@@ -1,0 +1,22 @@
+Post Author Taxonomy 1.3.0 — Prüfbericht, 1. Oktober 2026
+
+44 gezielte Funktionsprüfungen bestanden:
+- 22 Regressionen für Shortcodes, Eingaben, sichere Ausgabe, Klassen, Filter und Schreibrechte; unter WordPress 6.7 und 7.1.2.
+- 17 Integrationsprüfungen unter WordPress 7.1.2: Update-Angebot, Paketidentität/Version/Anforderungen, lokale Grafiken, Fotos und REST-Schreibrechte.
+- Gemeinsames Laden mit Brand Admin Schemes 0.18.0-rc1-library: zwei Hosts, eine Library-Laufzeit.
+- JSON-Snippet eigenständig ausgeführt, ohne Plugin-Admin/Updater/Library.
+- Aktivierung und Deaktivierung: Rewrite-Regeln erneuert; Autoren und Metadaten erhalten.
+- Archiv-Slug bei englischer und deutscher Admin-Sprache auf deutscher Website identisch: beitragsautor.
+
+Zusätzlich: Syntaxprüfung aller 20 PHP-Dateien und der Admin-JavaScript-Datei. 69 Plugin-Strings auf Deutsch und formellem Deutsch; englische Originale. PO/MO-Kataloge geprüft und PHP-Übersetzungsdateien erzeugt.
+Browserprüfung: deutsche/englische Plugin-Oberfläche, Änderungen speichern, Shortcode-Kopierstatus, Changelog-Dialog, Mediathek-Auswahl und Profil speichern. Mobile Prüfung bei 390 Pixeln: kein horizontaler Überlauf.
+Grafiken: Variante 1 gewählt; drei eigenständige SVG/PNG-Sätze mit deutschen und englischen Bannern, 772×250 und 1544×500; Icons 128, 256 und 512 Pixel.
+
+Laufzeit: PHP 8.4.5 mit SQLite-Testdatenbank. PHP 8.0 ist die deklarierte Mindestversion, wurde hier aber nicht als eigene Laufzeit getestet. Kein ClassicPress-Test; kein offizieller ClassicPress-Support.
+Updater-Metadaten und zukünftige Update-Pakete wurden mit lokalen Fixtures geprüft. Ein echter Download/Update einer zukünftigen Veröffentlichung, FTP/SSH-Transporte, vollständige Multisite-Aktivierung und kommerzielle Builder wurden nicht in dieser Sitzung getestet.
+WordPress Coding Standards konnten nicht ausgeführt werden: der vorhandene PHP_CodeSniffer-Verweis hat fehlende Abhängigkeiten. Die Syntax- und Funktionsprüfungen liefen unabhängig davon.
+
+Tests nur auf einer wegwerfbaren WordPress-Installation ausführen:
+PAT_TEST_DISPOSABLE=yes PAT_TEST_ROOT=/absoluter/pfad/zur/testinstallation php tests/wordpress.php
+PAT_TEST_DISPOSABLE=yes PAT_TEST_ROOT=/absoluter/pfad/zur/testinstallation PAT_TEST_PHOTO_ID=ID_EINES_TESTBILDES php tests/integration.php
+Die Testinstallation muss das Plugin aktiv haben. Die Tests erzeugen Autoren/Beiträge, ändern Testeinstellungen und benötigen einen Administrator mit ID 1; nicht auf Produktivseiten ausführen.

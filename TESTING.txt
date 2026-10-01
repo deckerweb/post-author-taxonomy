@@ -1,0 +1,22 @@
+Post Author Taxonomy 1.3.0 — validation, October 1, 2026
+
+44 targeted functional checks passed:
+- 22 shortcode/input/output/filter/permission regressions on WordPress 6.7 and 7.1.2.
+- 17 integration checks on WordPress 7.1.2: update metadata, candidate package identity/version/requirements, local artwork, images and REST permissions.
+- Co-loading with Brand Admin Schemes 0.18.0-rc1-library: two hosts, one shared Library runtime.
+- Generated JSON snippet executed independently, without plugin admin/updater/Library.
+- Activation/deactivation refreshed rewrite rules and preserved author metadata.
+- German-site archive slug remained beitragsautor for English and German administrators.
+
+Additional checks: syntax validation of all 20 PHP files and admin JavaScript. 69 plugin strings translated into German and formal German; English originals. PO/MO catalogs checked and PHP translation files generated.
+Browser checks: German/English plugin UI, settings save, shortcode copy status, changelog dialog, local media selection and profile save. Mobile at 390 pixels: no horizontal overflow.
+Artwork: selected variant 1; three complete SVG/PNG alternatives with English/German banners at 772×250 and 1544×500; icons at 128, 256 and 512 pixels.
+
+Runtime: PHP 8.4.5 with disposable SQLite databases. PHP 8.0 is the declared minimum but was not tested as a separate runtime. ClassicPress is not tested or officially supported.
+Updater checks used local metadata/package fixtures. A future live release download/update, FTP/SSH transports, full multisite activation and commercial page builders were not tested in this session.
+WordPress Coding Standards could not run: the available PHP_CodeSniffer launcher has missing dependencies. Syntax and functional checks ran independently.
+
+Run only against a disposable WordPress installation with the plugin active and administrator ID 1:
+PAT_TEST_DISPOSABLE=yes PAT_TEST_ROOT=/absolute/test/site php tests/wordpress.php
+PAT_TEST_DISPOSABLE=yes PAT_TEST_ROOT=/absolute/test/site PAT_TEST_PHOTO_ID=TEST_IMAGE_ID php tests/integration.php
+Tests create terms/posts and change test settings. Never run against production.

@@ -1,0 +1,24 @@
+# Changelog · Post Author Taxonomy
+
+### 1.3.0 — 2026-10-01
+
+- **New:** automatic author boxes, archive context, local photo and website fields.
+- **New:** archive, website or plain author links; post_id support.
+- **New:** post-type settings, copyable recipes and Brand Admin Schemes-style header/footer.
+- **New:** shared deckerweb Updater V2 and Library 0.2.0.
+- **Improved:** bounded HTML elements and escaped output; German and English documentation/artwork.
+- **Fixed:** missing-term warnings, duplicate suffix, multiple CSS classes and premature name escaping.
+- **Misc:** minimum PHP version is now 8.0.
+- **Misc:** author taxonomy data, translated rewrite slug and existing extension hooks.
+
+### 1.2.0 — 2025-04-05
+
+- **Misc:** Class-based core, author box shortcode and bundled German translations.
+
+### 1.1.0 — 2018-09-18
+
+- **Misc:** Internal private release.
+
+### 1.0.0 — 2017-12-15
+
+- **Misc:** Initial public release.

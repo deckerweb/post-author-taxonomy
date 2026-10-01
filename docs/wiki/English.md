@@ -2,11 +2,11 @@
 
 **Authors as tags. Designed in your builder.** A small WordPress plugin for multiple author attribution using the public `pat-author` taxonomy. Authors do not need WordPress user accounts.
 
-![Post Author Taxonomy](assets/banner-1544x500.png)
+![Post Author Taxonomy](https://github.com/deckerweb/post-author-taxonomy/raw/master/assets/banner-1544x500.png)
 
 **Version:** 1.3.0 · **Requires:** WordPress 6.7+ / PHP 8.0+ · **License:** GPL v2 or later
 
-[Download](https://github.com/deckerweb/post-author-taxonomy/releases/latest) · [User guide](https://github.com/deckerweb/post-author-taxonomy/wiki/English) · [Deutsch](README-de.md)
+[Download](https://github.com/deckerweb/post-author-taxonomy/releases/latest) · [User guide](https://github.com/deckerweb/post-author-taxonomy/wiki/English) · [Deutsch](https://github.com/deckerweb/post-author-taxonomy/wiki/Deutsch)
 
 ## Contents
 

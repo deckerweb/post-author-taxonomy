@@ -1,4 +1,6 @@
-# FAQ · Post Author Taxonomy
+# FAQ by topic · Post Author Taxonomy
+
+[Deutsch](https://github.com/deckerweb/post-author-taxonomy/wiki/FAQ%E2%80%90Deutsch)
 
 ## Getting started
 
@@ -70,6 +72,26 @@ Names and headlines are escaped; biographies are plain text. List labels permit 
 
 Your theme or builder owns the layout. No frontend stylesheet or JavaScript is loaded. Style the documented pat-author-box and child classes in your template or stylesheet.
 
+### How do I set author order?
+
+In the post editor, assign authors normally, then use Author order and roles → Refresh assigned authors. Drag rows or use the arrows and save the post. The order applies only to that post. Newly assigned authors append; old removed assignments are ignored.
+
+### Do editorial roles change access or SEO schema?
+
+No. Author, Reviewed by and Translation are attribution labels per post. They do not change login access, editing permissions, post_author or SEO schema. Show them explicitly with roles="yes", and filter groups with role="reviewer", role="translator" or role="author".
+
+### Does the configurator save settings?
+
+No. It creates a shortcode and a real-data preview. Current context is reusable in templates; fixed context includes post_id. Previewing drafts/private posts requires permission to edit the selected post.
+
+### Which Bricks dynamic tags are available?
+
+The optional Post Author Taxonomy group supplies pat_authors, pat_author_boxes, pat_author_name, pat_author_photo and pat_author_website. Put braces around a tag in Bricks. The first profile follows the current post order; photo returns an attachment-ID array in image context. Other builders can use the unchanged shortcodes.
+
+### How do I repair author archive 404s?
+
+Check Settings → Post Author Taxonomy → Local diagnostics, then use Refresh author archive rules once. The action requires an administrator and does not delete authors, settings or posts. If the problem remains, inspect permalink and theme/routing conflicts.
+
 ## Builders and integration
 
 ### Does it work with Bricks, Breakdance or the block editor?
@@ -96,7 +118,7 @@ It adds a deckerweb discovery tab under Plugins → Add New. Shared copies elect
 
 ### What remains after deactivation or removal?
 
-Author terms, assignments and profile metadata remain in the database. Archives may stop resolving while the plugin is inactive. There is no destructive uninstall routine.
+Authors, assignments, profile metadata and settings remain. Uninstall removes temporary caches; Library cleanup checks whether other hosts are still installed. Archives may stop resolving while the plugin is inactive.
 
 ### Which WordPress and PHP versions are required?
 
@@ -110,4 +132,26 @@ No. Compatibility is welcome but ClassicPress is not officially supported or tes
 
 Author data, taxonomy key and extension hooks remain. Review custom label HTML and wrapper tags because output is now restricted. The after suffix is printed once. PHP 8.0 is required.
 
-[User guide](https://github.com/deckerweb/post-author-taxonomy/wiki/English) · [Download](https://github.com/deckerweb/post-author-taxonomy/releases/latest)
+### Can I activate it across a network?
+
+Settings, authors, assignments, photos and websites belong to each individual site. Network activation makes the plugin available across the network; its settings remain in each site's admin. New sites receive the normal Posts default. Archive rules refresh when needed after registering in the site's language.
+
+### Which information is sent to external servers?
+
+Author photos stay in the local media library. The updater requests release metadata from api.github.com; packages use GitHub and its download infrastructure. The optional catalog contacts only its approved deckerweb source. External servers receive normal connection information such as IP address and HTTP client identification; author content and credentials are not sent. No telemetry or external avatar requests.
+
+### How do I report a security vulnerability?
+
+Use private GitHub vulnerability reporting in the host repository, including Library issues. Supply versions, reproduction and impact without credentials. If private reporting is unavailable, do not disclose security details in public issues or discussions.
+
+### Why are plugin updates paused?
+
+If another plugin loaded an older shared updater first, Post Author Taxonomy shows a notice and pauses its new integration. Update the other deckerweb host to a compatible updater version. Author features remain available; other files and updater hooks are not rewritten.
+
+## Technical details
+
+### Who can change author photos?
+
+Profile editing requires permission to edit the author term. A selected photo must be an image the editor can edit in the local media library. The same checks apply through the REST API. Omitting a photo or website from a partial profile form keeps the saved value; submitting zero or an empty website explicitly clears it.
+
+[User guide](https://github.com/deckerweb/post-author-taxonomy/wiki/English)

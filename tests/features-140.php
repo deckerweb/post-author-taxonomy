@@ -1,0 +1,115 @@
+<?php
+/** Exercise author attribution, safe preview, table helpers and public builder contracts in disposable Core. */
+if ( 'yes' !== getenv( 'PAT_TEST_DISPOSABLE' ) ) { exit( 1 ); }
+define( 'WP_ADMIN', true ); define( 'DOING_AJAX', true );
+require rtrim( getenv( 'PAT_TEST_ROOT' ), '/' ) . '/wp-load.php';
+require_once ABSPATH . 'wp-admin/includes/user.php';
+require_once PAT_PLUGIN_DIR . 'includes/class-pat-bricks.php';
+set_exception_handler( static function( $error ) { fwrite( STDERR, $error->getMessage() . "\n" ); exit( 1 ); } );
+$checks = 0;
+/** Assert one data/permission boundary. @param bool $ok Expected condition. @param string $label Boundary label. @return void */
+function pat_feature_check( $ok, $label ) { global $checks; if ( ! $ok ) { throw new RuntimeException( $label ); } ++$checks; echo "PASS $label\n"; }
+/** Capture native AJAX output without terminating this isolated test process. @param callable $callback Handler. @param array $values Request. @return array Decoded JSON or native die marker. */
+function pat_feature_ajax( $callback, $values ) {
+	$_POST = $values; $_REQUEST = $values;
+	add_filter( 'wp_die_ajax_handler', static fn() => static function( $message ) { throw new RuntimeException( (string) $message ); } );
+	ob_start(); $die = null;
+	try { $callback(); } catch ( RuntimeException $error ) { $die = $error->getMessage(); }
+	$output = ob_get_clean(); return json_decode( $output, true ) ?: array( 'die' => $die );
+}
+wp_set_current_user( 1 );
+$uuid = wp_generate_uuid4(); $terms = array();
+foreach ( array( 'Alpha', 'Beta', 'Gamma' ) as $name ) { $term = wp_insert_term( $name . ' ' . $uuid, 'pat-author' ); $terms[] = $term['term_id']; }
+list( $alpha, $beta, $gamma ) = $terms;
+$post_id = wp_insert_post( array( 'post_title' => 'Attribution fixture', 'post_status' => 'publish' ) );
+$other_id = wp_insert_post( array( 'post_title' => 'Other attribution fixture', 'post_status' => 'draft' ) );
+wp_set_post_terms( $post_id, array( $alpha, $beta ), 'pat-author' ); wp_set_post_terms( $other_id, array( $alpha, $beta ), 'pat-author' );
+$core = new DDW_Post_Author_Taxonomy( false ); $editor = new DDW_PAT_Attribution(); $tools = new DDW_PAT_Tools();
+$ids = static fn( $id ) => array_map( static fn( $term ) => $term->term_id, DDW_PAT_Attribution::terms( $id ) );
+pat_feature_check( array( $alpha, $beta ) === $ids( $post_id ), 'Unconfigured posts retain native term order' );
+$record = array( array( 'id' => $beta, 'role' => 'reviewer' ), array( 'id' => $alpha, 'role' => 'translator' ), array( 'id' => $gamma, 'role' => 'author' ) );
+update_post_meta( $post_id, DDW_PAT_Attribution::META, $record );
+pat_feature_check( array( $beta, $alpha ) === $ids( $post_id ), 'Saved post order applies only to actual assignments' );
+pat_feature_check( array( $alpha, $beta ) === $ids( $other_id ), 'Another post remains independently ordered' );
+pat_feature_check( 'reviewer' === DDW_PAT_Attribution::role( $post_id, $beta ) && 'author' === DDW_PAT_Attribution::role( $other_id, $beta ), 'Editorial roles belong to the post rather than the shared profile' );
+$attributes = array( 'post_id' => (string) $post_id, 'before' => '', 'link' => 'none' );
+$list = $core->shortcode_authors_list( $attributes );
+pat_feature_check( strpos( $list, 'Beta' ) < strpos( $list, 'Alpha' ) && ! str_contains( $list, 'pat-author-role' ), 'Legacy output honors order but keeps role labels off' );
+$list = $core->shortcode_authors_list( $attributes + array( 'roles' => 'yes' ) );
+pat_feature_check( str_contains( $list, 'pat-author-role' ) && str_contains( $list, DDW_PAT_Attribution::roles()['reviewer'] ), 'Explicit role labels render through the current locale' );
+$list = $core->shortcode_authors_list( $attributes + array( 'role' => 'reviewer' ) );
+pat_feature_check( str_contains( $list, 'Beta' ) && ! str_contains( $list, 'Alpha' ), 'Role filter selects only matching assigned authors' );
+$boxes = $core->shortcode_author_boxes( $attributes + array( 'role' => 'translator', 'roles' => 'yes' ) );
+pat_feature_check( str_contains( $boxes, 'Alpha' ) && ! str_contains( $boxes, 'Beta' ) && str_contains( $boxes, 'pat-author-box__role' ), 'Profile groups use the same role context and filtering' );
+pat_feature_check( '' === $core->shortcode_authors_list( $attributes + array( 'role' => 'unknown' ) ), 'Unknown role filter yields no accidental attribution' );
+wp_set_post_terms( $post_id, array( $alpha, $gamma ), 'pat-author' );
+pat_feature_check( array( $alpha, $gamma ) === $ids( $post_id ), 'Removed terms disappear and new assignments are appended' );
+wp_set_post_terms( $post_id, array( $alpha, $beta ), 'pat-author' );
+$normalized = DDW_PAT_Attribution::sanitize( array( array( 'id' => $alpha, 'role' => 'author' ), array( 'id' => $alpha, 'role' => 'reviewer' ), array( 'id' => 0, 'role' => 'author' ), array( 'id' => $beta, 'role' => 'unsafe' ), array( 'id' => array(), 'role' => 'author' ) ) );
+pat_feature_check( array( array( 'id' => $alpha, 'role' => 'author' ) ) === $normalized, 'Duplicate malformed and unknown-role records are discarded safely' );
+$_POST = array(); $editor->save( $post_id, get_post( $post_id ) );
+pat_feature_check( $record === get_post_meta( $post_id, DDW_PAT_Attribution::META, true ), 'Absent editor panel preserves stored attribution' );
+$_POST = array( 'pat_attribution_nonce' => wp_create_nonce( 'pat_save_attribution_' . $other_id ), 'pat_attribution_data' => '[]' ); $editor->save( $post_id, get_post( $post_id ) );
+pat_feature_check( $record === get_post_meta( $post_id, DDW_PAT_Attribution::META, true ), 'A nonce from another post cannot alter this post' );
+$_POST['pat_attribution_nonce'] = wp_create_nonce( 'pat_save_attribution_' . $post_id ); $_POST['pat_attribution_data'] = '{broken'; $editor->save( $post_id, get_post( $post_id ) );
+pat_feature_check( $record === get_post_meta( $post_id, DDW_PAT_Attribution::META, true ), 'Malformed editor JSON preserves attribution' );
+$_POST['pat_attribution_data'] = wp_slash( wp_json_encode( array( array( 'id' => $alpha, 'role' => 'author' ), array( 'id' => $gamma, 'role' => 'reviewer' ) ) ) ); $editor->save( $post_id, get_post( $post_id ) );
+pat_feature_check( array( array( 'id' => $alpha, 'role' => 'author' ) ) === get_post_meta( $post_id, DDW_PAT_Attribution::META, true ), 'Valid panel saves only genuinely assigned authors' );
+pat_feature_check( has_term( $beta, 'pat-author', $post_id ), 'Saving attribution never removes native term assignments' );
+$_POST = array();
+update_post_meta( $post_id, DDW_PAT_Attribution::META, array( array( 'id' => $beta, 'role' => 'reviewer' ) ) );
+wp_update_post( array( 'ID' => $post_id, 'post_content' => 'First revision ' . wp_generate_uuid4() ) );
+$revisions = wp_get_post_revisions( $post_id ); $revision = reset( $revisions );
+pat_feature_check( $revision && array( array( 'id' => $beta, 'role' => 'reviewer' ) ) === get_post_meta( $revision->ID, DDW_PAT_Attribution::META, true ), 'Native post revisions include optional attribution records' );
+update_post_meta( $post_id, DDW_PAT_Attribution::META, array( array( 'id' => $alpha, 'role' => 'author' ) ) );
+wp_restore_post_revision( $revision->ID );
+pat_feature_check( 'reviewer' === DDW_PAT_Attribution::role( $post_id, $beta ), 'Native revision restore recovers the saved editorial attribution' );
+update_post_meta( $post_id, DDW_PAT_Attribution::META, array( array( 'id' => $alpha, 'role' => 'author' ) ) );
+$config = DDW_PAT_Tools::configuration( array( 'output' => 'evil] [other', 'link' => array(), 'author' => array(), 'role' => 'unknown' ) );
+pat_feature_check( 'pat-authors' === $config['tag'] && '[pat-authors link="archive"]' === $config['code'], 'Configurator ignores arbitrary tags and malformed controls' );
+$config = DDW_PAT_Tools::configuration( array( 'output' => 'pat-author-boxes', 'context' => 'fixed', 'preview_post' => $post_id, 'roles' => 'yes', 'role' => 'reviewer', 'photo' => 'no', 'website' => 'no', 'link' => 'none' ) );
+pat_feature_check( str_contains( $config['code'], 'post_id="' . $post_id . '"' ) && str_contains( $config['code'], 'role="reviewer"' ), 'Fixed context creates one canonical filtered shortcode' );
+$nonce = wp_create_nonce( 'pat_editor' );
+$ajax = pat_feature_ajax( array( $tools, 'preview' ), array( 'nonce' => $nonce, 'configuration' => wp_json_encode( array( 'output' => 'pat-authors', 'preview_post' => $post_id ) ) ) );
+pat_feature_check( $ajax['success'] && str_contains( $ajax['data']['html'], 'Alpha' ), 'Native AJAX preview renders actual authorized post data' );
+pat_feature_check( ! str_contains( $ajax['data']['code'], 'post_id=' ), 'Current-context preview creates a reusable shortcode' );
+pat_feature_check( array( array( 'id' => $alpha, 'role' => 'author' ) ) === get_post_meta( $post_id, DDW_PAT_Attribution::META, true ), 'Preview makes no attribution writes' );
+$ajax = pat_feature_ajax( array( $tools, 'preview' ), array( 'nonce' => 'wrong', 'configuration' => '{}' ) );
+pat_feature_check( '-1' === $ajax['die'], 'Preview rejects an invalid request nonce' );
+$ajax = pat_feature_ajax( array( $tools, 'preview' ), array( 'nonce' => $nonce, 'configuration' => wp_json_encode( array( 'context' => 'fixed' ) ) ) );
+pat_feature_check( false === $ajax['success'], 'A fixed context without a valid post does not produce a misleading reusable shortcode' );
+$ajax = pat_feature_ajax( array( $tools, 'preview' ), array( 'nonce' => $nonce, 'configuration' => '{broken' ) );
+pat_feature_check( false === $ajax['success'], 'Malformed preview JSON is rejected before rendering' );
+$ajax = pat_feature_ajax( array( $editor, 'refresh' ), array( 'nonce' => $nonce, 'post_id' => $post_id, 'ids' => wp_json_encode( array( $alpha, $gamma ) ) ) );
+pat_feature_check( $ajax['success'] && str_contains( $ajax['data']['html'], (string) $gamma ) && ! str_contains( $ajax['data']['html'], 'Beta ' ), 'Read-only editor refresh supports pending native term selections' );
+pat_feature_check( has_term( $beta, 'pat-author', $post_id ) && ! has_term( $gamma, 'pat-author', $post_id ), 'Editor refresh never writes pending selections' );
+$user = wp_create_user( 'pat-reader-' . wp_generate_password( 8, false ), wp_generate_password(), 'pat-' . wp_generate_uuid4() . '@example.test' );
+wp_set_current_user( $user );
+$ajax = pat_feature_ajax( array( $tools, 'preview' ), array( 'nonce' => wp_create_nonce( 'pat_editor' ), 'configuration' => wp_json_encode( array( 'preview_post' => $post_id ) ) ) );
+pat_feature_check( false === $ajax['success'], 'Valid nonce alone never authorizes the configurator' );
+$ajax = pat_feature_ajax( array( $editor, 'refresh' ), array( 'nonce' => wp_create_nonce( 'pat_editor' ), 'post_id' => $post_id, 'ids' => '[]' ) );
+pat_feature_check( false === $ajax['success'], 'Post object permissions protect editor refresh' );
+$request = new WP_REST_Request( 'POST', '/wp/v2/posts/' . $post_id ); $request->set_param( 'meta', array( DDW_PAT_Attribution::META => array( array( 'id' => $beta, 'role' => 'reviewer' ) ) ) );
+pat_feature_check( 403 === rest_do_request( $request )->get_status(), 'Native REST denies unauthorized attribution edits' );
+wp_set_current_user( 1 ); wp_delete_user( $user );
+pat_feature_check( 200 === rest_do_request( $request )->get_status() && 'reviewer' === DDW_PAT_Attribution::role( $post_id, $beta ), 'Authorized REST clients can save the registered attribution schema' );
+$request->set_param( 'meta', array( DDW_PAT_Attribution::META => array( array( 'id' => $beta, 'role' => 'admin' ) ) ) );
+pat_feature_check( 400 === rest_do_request( $request )->get_status() && 'reviewer' === DDW_PAT_Attribution::role( $post_id, $beta ), 'Native REST schema rejects unknown roles without clearing saved data' );
+$column = $tools->column( '', 'pat_shortcode', $alpha );
+pat_feature_check( str_contains( $column, 'pat-author-box' ) && str_contains( $column, 'data-code=' ), 'Author-table row supplies an individual accessible copy action' );
+pat_feature_check( str_contains( $tools->column( '', 'pat_profile', $alpha ), 'optional' ) , 'Profile table keeps optional details optional' );
+$photo_id = (int) getenv( 'PAT_TEST_PHOTO_ID' );update_term_meta( $beta, 'pat_photo_id', $photo_id );update_term_meta( $beta, 'pat_website', 'https://profile.example.test' );
+$bricks = new DDW_PAT_Bricks();
+pat_feature_check( 5 === count( $bricks->tags( array() ) ), 'Five namespaced builder tags are exposed without copying provider code' );
+pat_feature_check( '{foreign_tag}' === $bricks->render( '{foreign_tag}', get_post( $post_id ) ), 'Foreign dynamic tags remain untouched' );
+pat_feature_check( array( 'not a string' ) === $bricks->content( array( 'not a string' ), get_post( $post_id ) ), 'Already resolved non-string builder values retain their type' );
+update_post_meta( $post_id, DDW_PAT_Attribution::META, array( array( 'id' => $beta, 'role' => 'reviewer' ), array( 'id' => $alpha, 'role' => 'author' ) ) );
+pat_feature_check( str_contains( $bricks->render( '{pat_author_name}', get_post( $post_id ) ), 'Beta' ), 'First-profile builder field follows post-local order' );
+pat_feature_check( str_contains( $bricks->render( '{pat_author_name}', get_term( $alpha, 'pat-author' ) ), 'Alpha' ), 'Builder author-term contexts use the supplied term rather than an outer post author' );
+pat_feature_check( array( $photo_id ) === $bricks->render( '{pat_author_photo}', get_post( $post_id ), 'image' ), 'Builder image context returns the local attachment ID for srcset' );
+pat_feature_check( 'https://profile.example.test' === $bricks->render( 'pat_author_website', get_post( $post_id ), 'link' ), 'Builder website field uses the safe profile URL' );
+pat_feature_check( str_contains( $bricks->content( 'By {pat_author_name}; {foreign_tag}', get_post( $post_id ) ), 'Beta' ) && str_contains( $bricks->content( 'By {pat_author_name}; {foreign_tag}', get_post( $post_id ) ), '{foreign_tag}' ), 'Mixed dynamic content replaces only exact host tokens' );
+$settings = get_option( 'pat_settings' ); ob_start(); DDW_PAT_Tools::diagnostics(); $diagnostics = ob_get_clean();
+pat_feature_check( str_contains( $diagnostics, 'pat_refresh_archives' ) && get_option( 'pat_settings' ) === $settings, 'Local diagnostics offers an explicit protected repair without changing settings' );
+foreach ( $terms as $term_id ) { wp_delete_term( $term_id, 'pat-author' ); } wp_delete_post( $post_id, true ); wp_delete_post( $other_id, true ); $_POST = array(); $_REQUEST = array();
+echo "Completed $checks feature checks\n";

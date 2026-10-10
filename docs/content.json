@@ -1,0 +1,623 @@
+{
+  "schema": 1,
+  "version": "1.4.0",
+  "requires_wp": "6.7",
+  "requires_php": "8.0",
+  "tested_up_to": "7.1.3",
+  "languages": {
+    "en": {
+      "about": "**Authors as tags. Designed in your builder.** A small WordPress plugin for multiple author attribution using the public `pat-author` taxonomy. Authors do not need WordPress user accounts.",
+      "banner": "assets-github/banner.png",
+      "sections": [
+        {
+          "title": "Start in three steps",
+          "body": "1. Install the ZIP via Plugins → Add New → Upload Plugin.\n2. Open Settings → Post Author Taxonomy → Manage authors. Add a name, a biography (term description), optional local photo and website; assign authors to a post.\n3. Put `[pat-authors]` or `[pat-author-boxes]` in the content or your builder template.\n\nPosts are enabled by default. Enable pages and public custom post types on the settings page. Existing authors and assignments are kept. This plugin does not replace `post_author`, native theme bylines, user accounts, editing permissions or SEO-plugin author schema."
+        },
+        {
+          "title": "Shortcode configurator",
+          "body": "Open Settings → Post Author Taxonomy → Shortcode configurator. Choose author names, all profiles or one profile; set name links, optional photos/websites and editorial roles. Select a real post for the preview. Current context produces a reusable template shortcode; fixed context adds `post_id` for output from the selected post everywhere. Copy the generated shortcode. The tool does not save defaults or content. The preview uses actual author data; the final appearance remains controlled by your theme or builder.\n\nThe preview list shows recent posts. Enter a Post ID to use an older post; the same edit permissions are checked."
+        },
+        {
+          "title": "Author order and editorial roles",
+          "body": "In the post editor, assign authors in the normal Authors panel. Open Author order and roles, then Refresh assigned authors. Drag the rows or use the accessible arrow buttons; choose Author, Reviewed by or Translation for each author. Save the post. Newly assigned authors are appended; removed assignments are never rendered from an old saved order. Existing posts retain their original order until an order is saved.\n\nRoles belong to the attribution on that post, not to the shared author profile. They do not change `post_author`, editing permissions or SEO schema. Role output is off by default. Use `[pat-authors roles=\"yes\"]` or `[pat-author-boxes roles=\"yes\"]` to show labels. Use `role=\"reviewer\"`, `role=\"translator\"` or `role=\"author\"` to filter lists and profile groups. Regular shortcodes keep all assigned authors.\n\nIf the block editor collapses its Meta boxes area, expand it with its resize separator; the up/down arrow keys work there too. Attribution metadata is included in native post revisions when the post type supports revisions."
+        },
+        {
+          "title": "Author management and local diagnostics",
+          "body": "The Authors table shows a local photo and available biography/website details, plus a copy button for the individual author shortcode. Optional profile details are never required.\n\nSettings → Post Author Taxonomy → Local diagnostics shows the plugin/component versions, enabled post types, archive base, permalink mode and optional Bricks status. It makes no external request and shows no personal author content. Refresh author archive rules is an explicit administrator action for archive 404s; it keeps all content and settings."
+        },
+        {
+          "title": "Bricks dynamic data",
+          "body": "When Bricks is active, the public dynamic-data picker has a Post Author Taxonomy group: `{pat_authors}`, `{pat_author_boxes}`, `{pat_author_name}`, `{pat_author_photo}`, `{pat_author_website}`. The first profile follows the saved order for the current post; individual fields use the current author on author archives. The image tag returns a local attachment ID in image context so Bricks can supply sizes/srcset. Foreign tags remain untouched. No Bricks code or frontend styles are bundled. The regular shortcodes also work with other builders."
+        },
+        {
+          "title": "Profile editing and convenience",
+          "body": "Photo selection remembers the current image. Selection and removal receive clear feedback; Remove stays disabled without a photo. Profile changes apply only after saving. Copy feedback is accessible to screen readers; a blocked clipboard selects the shortcode for manual copying. Settings show a reminder when changes have not been saved."
+        },
+        {
+          "title": "Shortcodes",
+          "body": "```text\n[pat-authors]\n[pat-authors link=\"none\" before=\"Written by:\" after=\".\"]\n[pat-authors link=\"website\" post_id=\"42\"]\n[pat-author-boxes]\n[pat-author-box slug=\"jane-doe\"]\n[pat-author-box id=\"21\" photo=\"no\" website=\"no\"]\n```\n\n`[pat-author-box]` without a selector displays the queried author **only on a `pat-author` taxonomy archive**. On an ordinary page or post it returns empty output. Explicit selectors work on any page. Selection precedence is `id`, then `slug`, then `name`; an invalid explicit ID does not fall through to a different selector.\n\n`[pat-author-boxes]` displays all authors assigned to the current post, or to `post_id`. Terms follow the order provided by WordPress (normally name order). No custom per-post author ordering is introduced.\n\n| Attribute | Shortcodes | Default / behavior |\n| --- | --- | --- |\n| `before`, `after`, `sep` | `pat-authors` | `Authors:`, empty, `, `; limited inline formatting only |\n| `link` | all | List: setting (`archive` by default). Boxes: `none`. Options: `archive`, `website`, `none` |\n| `post_id` | `pat-authors`, `pat-author-boxes` | Current post |\n| `id`, `slug`, `name` | `pat-author-box` | Empty; choose one author |\n| `title`, `headline`, `title_tag` | boxes | `yes`, empty, `h4`; headline overrides author name |\n| `photo`, `website` | boxes | `yes`; use `no` to hide |\n| `content_tag` | boxes | `p`; biography is plain text |\n| `class`, `wrapper` | all | Empty custom classes; list: `span`, box: `div` |\n\nList wrappers/content elements: `div`, `span`, `p`, `section`, `article`, `aside`. Box wrappers: `div`, `section`, `article`, `aside`. Title elements: `h2`–`h6`, `p`, `div`, `span`. Unapproved elements fall back to defaults. Names and headlines are escaped. Labels allow only `span`, `strong`, `em`, `b`, `i`, `br`; other HTML is removed. Website mode falls back to plain names when no URL is set.\n\nNo front-end CSS or JavaScript is loaded: the theme/builder controls the presentation. Stable classes: `pat-authors`, `pat-author-box`, `pat-author-box__photo`, `pat-author-box__title`, `pat-author-box__content`, `pat-author-box__website`. Optional photos use responsive WordPress attachment markup."
+        },
+        {
+          "title": "Builder and template recipes",
+          "body": "**Bricks:** place a Shortcode element with `[pat-author-boxes]` in your single-post template. Native `{post_terms_pat-author}` can still render the taxonomy. Create a `pat-author` archive template; use `[pat-author-box]` for the current profile and a normal archive post query.\n\n**Breakdance / other builders:** put the shortcode in the corresponding Shortcode element. The public taxonomy is available to normal taxonomy queries; profile metadata is `pat_photo_id` (attachment ID) and `pat_website` (URL). No builder-specific integration has been assumed or tested in this release.\n\n**Block editor:** use a Shortcode block. Core Post Terms can show the registered taxonomy. No custom plugin block is bundled.\n\n**Classic PHP templates:**\n```php\n<?php echo do_shortcode( '[pat-author-boxes]' ); ?>\n```"
+        },
+        {
+          "title": "Developer filters",
+          "body": "Existing filters remain: `pat/taxonomy/params`, `pat/shortcode/authors-list-defaults`, `pat/shortcode/authors-list`, `pat/shortcode/author-box-defaults`, `pat/shortcode/author-box`, `pat/plugins-page/tax-link`, `pat/plugins-page/meta-links`.\n\nNew: `pat/taxonomy/post-types`, `pat/shortcode/author-boxes-defaults`, `pat/shortcode/author-boxes`. Output filters receive the rendered HTML and normalized attributes. Plugin callbacks escape their own output; output filters are trusted PHP extension points."
+        },
+        {
+          "title": "Updates and deckerweb Library",
+          "body": "The embedded **deckerweb Updater 2.1.0** supplies stable GitHub releases through regular WordPress plugin updates. This public plugin needs no GitHub token. Package identity, offered version, requirements and local bootstrap includes are checked before replacement, including bulk updates.\n\nThe bundled **deckerweb Library 0.9.0** adds the deckerweb tab to Plugins → Add New. Several hosts elect one compatible runtime. Settings → deckerweb Library controls discovery, the optional online catalog and optional settings deletion when the final host is removed. The online catalog starts disabled; an existing opt-in is retained. Installations use explicitly approved packages with verified SHA256 digests; prerequisites are not automatically installed.\n\nAuthor photos stay in the local media library. The updater requests release metadata from api.github.com; packages use GitHub and its download infrastructure. The optional catalog contacts only its approved deckerweb source. External servers receive normal connection information such as IP address and HTTP client identification; author content and credentials are not sent. No telemetry or external avatar requests."
+        },
+        {
+          "title": "Snippet edition",
+          "body": "The historical snippet exports of published [version 1.3.0](https://github.com/deckerweb/post-author-taxonomy/releases/tag/v1.3.0) remain available. They contain taxonomy and shortcodes only, without settings, media editor, updater or Library. Use them instead of the installed plugin. The regular distribution is the plugin ZIP."
+        },
+        {
+          "title": "Compatibility notes for 1.2.0 users",
+          "body": "The taxonomy key, shortcodes, primary CSS classes and translated archive slug remain. The duplicate `after` output is fixed; invalid authors now produce no box. Limited label HTML and approved tags replace unrestricted markup. Existing custom labels using other HTML may need adaptation. Singular author boxes remain explicit except on taxonomy archives. PHP 8.0 is now required."
+        },
+        {
+          "title": "Multisite and data",
+          "body": "Settings, authors, assignments, photos and websites belong to each individual site. Network activation makes the plugin available across the network; its settings remain in each site's admin. New sites receive the normal Posts default. Archive rules refresh when needed after registering in the site's language.\n\nDeactivation preserves all content and settings. Uninstall removes only temporary update/rewrite caches and runs shared Library cleanup. Author terms, assignments, metadata and `pat_settings` remain. The Library preserves shared data while other hosts are installed, including inactive hosts. Its optional settings deletion applies only to the final host; installed plugins and their content remain.\n\nThe optional author order/roles are stored in the post meta key `pat_attribution` and retained with the post on deactivation/uninstall."
+        }
+      ],
+      "faq": [
+        {
+          "group": "Getting started",
+          "question": "Do authors need a WordPress account?",
+          "answer": "No. Author profiles are taxonomy terms. They do not grant login access, editing permissions or ownership of posts."
+        },
+        {
+          "group": "Getting started",
+          "question": "Can a post have several authors?",
+          "answer": "Yes. Assign several terms in the author taxonomy. [pat-authors] displays their names and [pat-author-boxes] displays all assigned profiles."
+        },
+        {
+          "group": "Getting started",
+          "question": "Does this replace the theme’s author line?",
+          "answer": "No. Add a shortcode to your content or template and configure your theme’s native byline separately."
+        },
+        {
+          "group": "Getting started",
+          "question": "Can I use authors on pages or custom post types?",
+          "answer": "Yes. Enable public post types under Settings → Post Author Taxonomy. Attachments are excluded. Posts are enabled by default."
+        },
+        {
+          "group": "Profiles and archives",
+          "question": "Where do I edit the biography, photo and website?",
+          "answer": "Open Manage authors from the settings page. Use the term description for the biography, choose a local media-library image and enter an optional HTTP/HTTPS website URL."
+        },
+        {
+          "group": "Profiles and archives",
+          "question": "Are photos fetched from Gravatar?",
+          "answer": "No. Photos are local WordPress attachments. The plugin does not request external avatars."
+        },
+        {
+          "group": "Profiles and archives",
+          "question": "Why is [pat-author-box] empty on a normal post?",
+          "answer": "Without an explicit selector it shows only the current pat-author taxonomy archive profile. Use [pat-author-boxes] for a post’s assigned authors or select one author with id, slug or name."
+        },
+        {
+          "group": "Profiles and archives",
+          "question": "What if an explicit author ID is invalid?",
+          "answer": "The box is empty. ID takes precedence over slug and name; an invalid ID does not silently select a different profile."
+        },
+        {
+          "group": "Profiles and archives",
+          "question": "Can I order authors individually per post?",
+          "answer": "No. Terms follow the order returned by WordPress, normally name order. Individual co-author ordering is not included."
+        },
+        {
+          "group": "Profiles and archives",
+          "question": "Does an author archive list posts?",
+          "answer": "Yes, through a normal theme or builder archive template. The profile shortcode adds the profile; the theme’s archive query lists associated content."
+        },
+        {
+          "group": "Profiles and archives",
+          "question": "What is the archive URL?",
+          "answer": "The taxonomy key stays pat-author. The default archive slug is post-author in English and beitragsautor on a German site. It follows the site language, not an administrator’s personal language. Existing taxonomy filters can customize registration."
+        },
+        {
+          "group": "Shortcodes and layout",
+          "question": "Which link targets are available?",
+          "answer": "Use link=\"archive\", link=\"website\" or link=\"none\". Lists use the saved default; boxes default to none. A missing website produces a plain name in website mode."
+        },
+        {
+          "group": "Shortcodes and layout",
+          "question": "Can I display authors from another post?",
+          "answer": "Yes. Use post_id with [pat-authors] or [pat-author-boxes], for example [pat-author-boxes post_id=\"42\"]."
+        },
+        {
+          "group": "Shortcodes and layout",
+          "question": "Can I hide photos or website links?",
+          "answer": "Yes. Use photo=\"no\" or website=\"no\" on either box shortcode. These attributes do not delete profile metadata."
+        },
+        {
+          "group": "Shortcodes and layout",
+          "question": "Can I use HTML in names or biographies?",
+          "answer": "Names and headlines are escaped; biographies are plain text. List labels permit limited inline formatting. Wrapper and heading tags are restricted to documented elements."
+        },
+        {
+          "group": "Shortcodes and layout",
+          "question": "Where are the styling options?",
+          "answer": "Your theme or builder owns the layout. No frontend stylesheet or JavaScript is loaded. Style the documented pat-author-box and child classes in your template or stylesheet."
+        },
+        {
+          "group": "Shortcodes and layout",
+          "question": "How do I set author order?",
+          "answer": "In the post editor, assign authors normally, then use Author order and roles → Refresh assigned authors. Drag rows or use the arrows and save the post. The order applies only to that post. Newly assigned authors append; old removed assignments are ignored."
+        },
+        {
+          "group": "Shortcodes and layout",
+          "question": "Do editorial roles change access or SEO schema?",
+          "answer": "No. Author, Reviewed by and Translation are attribution labels per post. They do not change login access, editing permissions, post_author or SEO schema. Show them explicitly with roles=\"yes\", and filter groups with role=\"reviewer\", role=\"translator\" or role=\"author\"."
+        },
+        {
+          "group": "Shortcodes and layout",
+          "question": "Does the configurator save settings?",
+          "answer": "No. It creates a shortcode and a real-data preview. Current context is reusable in templates; fixed context includes post_id. Previewing drafts/private posts requires permission to edit the selected post."
+        },
+        {
+          "group": "Shortcodes and layout",
+          "question": "Which Bricks dynamic tags are available?",
+          "answer": "The optional Post Author Taxonomy group supplies pat_authors, pat_author_boxes, pat_author_name, pat_author_photo and pat_author_website. Put braces around a tag in Bricks. The first profile follows the current post order; photo returns an attachment-ID array in image context. Other builders can use the unchanged shortcodes."
+        },
+        {
+          "group": "Shortcodes and layout",
+          "question": "How do I repair author archive 404s?",
+          "answer": "Check Settings → Post Author Taxonomy → Local diagnostics, then use Refresh author archive rules once. The action requires an administrator and does not delete authors, settings or posts. If the problem remains, inspect permalink and theme/routing conflicts."
+        },
+        {
+          "group": "Builders and integration",
+          "question": "Does it work with Bricks, Breakdance or the block editor?",
+          "answer": "Use a Shortcode element or block. The taxonomy is public and available to normal taxonomy queries. Commercial builders were not separately tested; there is no dedicated builder extension."
+        },
+        {
+          "group": "Builders and integration",
+          "question": "Does it add SEO author schema?",
+          "answer": "No. Configure structured data in your SEO plugin or template. Taxonomy authors do not automatically become WordPress users or schema persons."
+        },
+        {
+          "group": "Builders and integration",
+          "question": "Is the snippet edition equivalent to the plugin?",
+          "answer": "It shares the taxonomy and shortcode core but omits settings, the media editor, updater and Library. Use it instead of the plugin. Configure post types and defaults through PHP filters."
+        },
+        {
+          "group": "Updates and data",
+          "question": "How do updates arrive?",
+          "answer": "The embedded deckerweb GitHub Release Updater V2 offers stable GitHub releases through regular WordPress plugin updates. No separate updater plugin is needed."
+        },
+        {
+          "group": "Updates and data",
+          "question": "What does the deckerweb Library do?",
+          "answer": "It adds a deckerweb discovery tab under Plugins → Add New. Shared copies elect one runtime. Its optional first-party online catalog is configurable in Settings → deckerweb Library; this plugin does not enable it automatically."
+        },
+        {
+          "group": "Updates and data",
+          "question": "What remains after deactivation or removal?",
+          "answer": "Authors, assignments, profile metadata and settings remain. Uninstall removes temporary caches; Library cleanup checks whether other hosts are still installed. Archives may stop resolving while the plugin is inactive."
+        },
+        {
+          "group": "Updates and data",
+          "question": "Which WordPress and PHP versions are required?",
+          "answer": "WordPress 6.7+ and PHP 8.0+. The minimum PHP version increased from 7.4 in version 1.2.0 because the bundled Library requires PHP 8.0. Functional tests used WordPress 6.7 and 7.1.2 with PHP 8.4.5."
+        },
+        {
+          "group": "Updates and data",
+          "question": "Is ClassicPress officially supported?",
+          "answer": "No. Compatibility is welcome but ClassicPress is not officially supported or tested."
+        },
+        {
+          "group": "Updates and data",
+          "question": "What should I check when upgrading from 1.2.0?",
+          "answer": "Author data, taxonomy key and extension hooks remain. Review custom label HTML and wrapper tags because output is now restricted. The after suffix is printed once. PHP 8.0 is required."
+        },
+        {
+          "group": "Updates and data",
+          "question": "Can I activate it across a network?",
+          "answer": "Settings, authors, assignments, photos and websites belong to each individual site. Network activation makes the plugin available across the network; its settings remain in each site's admin. New sites receive the normal Posts default. Archive rules refresh when needed after registering in the site's language."
+        },
+        {
+          "group": "Updates and data",
+          "question": "Which information is sent to external servers?",
+          "answer": "Author photos stay in the local media library. The updater requests release metadata from api.github.com; packages use GitHub and its download infrastructure. The optional catalog contacts only its approved deckerweb source. External servers receive normal connection information such as IP address and HTTP client identification; author content and credentials are not sent. No telemetry or external avatar requests."
+        },
+        {
+          "group": "Updates and data",
+          "question": "How do I report a security vulnerability?",
+          "answer": "Use private GitHub vulnerability reporting in the host repository, including Library issues. Supply versions, reproduction and impact without credentials. If private reporting is unavailable, do not disclose security details in public issues or discussions."
+        },
+        {
+          "group": "Updates and data",
+          "question": "Why are plugin updates paused?",
+          "answer": "If another plugin loaded an older shared updater first, Post Author Taxonomy shows a notice and pauses its new integration. Update the other deckerweb host to a compatible updater version. Author features remain available; other files and updater hooks are not rewritten."
+        },
+        {
+          "group": "Technical details",
+          "question": "Who can change author photos?",
+          "answer": "Profile editing requires permission to edit the author term. A selected photo must be an image the editor can edit in the local media library. The same checks apply through the REST API. Omitting a photo or website from a partial profile form keeps the saved value; submitting zero or an empty website explicitly clears it."
+        }
+      ],
+      "readme_faq_indices": [
+        0,
+        1,
+        16,
+        17,
+        18,
+        26,
+        27
+      ],
+      "history": "== Changelog ==\n= 1.4.0 — 2026-10-10 =\n* Improved: admin notices appear below the complete page header, keeping title and slogan together.\n* New: shortcode configurator with real-post preview and copy; per-post author order and optional editorial roles.\n* New: profile overview and individual shortcode copying in author management, local archive diagnostics and optional Bricks dynamic-data tags.\n* Improved: current-photo selection, accessible copy/photo feedback, unsaved-settings notice and structured localized changelog.\n* Improved: deckerweb Library 0.9.0, updater 2.1.0, synchronized bilingual documentation and complete German/formal German translations.\n* Fixed: REST image permission validation before profile changes; partial forms retain omitted profile fields; native bulk-update package validation.\n* Improved: site/network lifecycle and data-preserving uninstall; scoped admin work and conditional rewrite refresh.\n* Misc: new Collective artwork with centered icon, native vector sources and licensed Space Grotesk glyph paths; existing data and minimum requirements retained.\n= 1.3.0 — 2026-10-01 =\n* New: automatic author boxes, archive context, local photo and website fields.\n* New: archive, website or plain author links; post_id support.\n* New: post-type settings, copyable recipes and Brand Admin Schemes-style header/footer.\n* New: shared deckerweb Updater V2 and Library 0.2.0.\n* Improved: bounded HTML elements and escaped output; German and English documentation/artwork.\n* Fixed: missing-term warnings, duplicate suffix, multiple CSS classes and premature name escaping.\n* Misc: minimum PHP version is now 8.0.\n* Misc: author taxonomy data, translated rewrite slug and existing extension hooks.\n= 1.2.0 — 2025-04-05 =\n* Misc: Class-based core, author box shortcode and bundled German translations.\n= 1.0.0 — 2017-12-15 =\n* Misc: Initial public release.\n",
+      "project": "Developed and published by David Decker – DECKERWEB. Public-taxonomy author attribution since 2017, without user-account management or an imposed frontend design.",
+      "glance": [
+        "Real-data shortcode configurator; per-post author order and optional editorial roles.",
+        "Author-table photo overview and copy buttons; local diagnostics; optional Bricks tags.",
+        "Several authors without WordPress user accounts.",
+        "Local photos, biographies and author websites.",
+        "Three flexible shortcodes and selectable link targets.",
+        "Posts, pages and public custom post types.",
+        "Site-level settings and network activation.",
+        "Regular WordPress updates and deckerweb Library."
+      ]
+    },
+    "de": {
+      "about": "**Autoren wie Tags. Gestalte mit deinem Builder.** Ein kleines WordPress-Plugin für mehrere Autorenangaben über die öffentliche Taxonomie `pat-author`. Autoren benötigen kein WordPress-Benutzerkonto.",
+      "banner": "assets-github/banner-de.png",
+      "sections": [
+        {
+          "title": "In drei Schritten starten",
+          "body": "1. ZIP über Plugins → Installieren → Plugin hochladen installieren.\n2. Einstellungen → Post Author Taxonomy → Autoren verwalten öffnen. Name, Biografie (Taxonomie-Beschreibung), optional Foto aus der Mediathek und Website hinterlegen; Autoren einem Beitrag zuweisen.\n3. `[pat-authors]` oder `[pat-author-boxes]` im Inhalt oder Builder-Template einfügen.\n\nStandardmäßig sind Beiträge aktiviert. Seiten und öffentliche eigene Inhaltstypen lassen sich in den Einstellungen ergänzen. Bestehende Autoren und Zuweisungen bleiben erhalten. Das Plugin ersetzt weder `post_author` noch Theme-Autorenzeilen, Benutzerkonten, Bearbeitungsrechte oder Autoren-Schema von SEO-Plugins."
+        },
+        {
+          "title": "Shortcode-Konfigurator",
+          "body": "Öffne Einstellungen → Post Author Taxonomy → Shortcode-Konfigurator. Wähle Autorennamen, alle Profile oder ein Profil; stelle Verlinkung, optionale Fotos/Websites und redaktionelle Rollen ein. Wähle einen echten Beitrag für die Vorschau. Der aktuelle Kontext liefert einen wiederverwendbaren Template-Shortcode; ein fester Kontext ergänzt `post_id` für die Ausgabe des ausgewählten Beitrags an beliebiger Stelle. Kopiere den erzeugten Shortcode. Das Werkzeug speichert weder Vorgaben noch Inhalte. Die Vorschau nutzt tatsächliche Autorendaten; das endgültige Aussehen bestimmt dein Theme oder Builder.\n\nDie Vorschau-Liste zeigt aktuelle Beiträge. Für einen älteren Beitrag kannst du seine Beitrags-ID eingeben; dieselben Bearbeitungsrechte werden geprüft."
+        },
+        {
+          "title": "Autorenreihenfolge und redaktionelle Rollen",
+          "body": "Ordne Autoren im normalen Autoren-Bereich des Beitragseditors zu. Öffne Autorenreihenfolge und Rollen und klicke auf Zugeordnete Autoren aktualisieren. Ziehe die Zeilen oder verwende die zugänglichen Pfeiltasten; wähle Autor, Redaktionell geprüft von oder Übersetzung. Speichere den Beitrag. Neu zugeordnete Autoren werden angehängt; entfernte Zuordnungen erscheinen auch bei einer alten gespeicherten Reihenfolge nicht. Bestehende Beiträge behalten ihre bisherige Reihenfolge, bis du eine Reihenfolge speicherst.\n\nRollen gehören zur Mitarbeit an diesem Beitrag, nicht zum gemeinsamen Autorenprofil. Sie ändern weder `post_author` noch Bearbeitungsrechte oder SEO-Schema. Die Rollenanzeige ist standardmäßig aus. Mit `[pat-authors roles=\"yes\"]` oder `[pat-author-boxes roles=\"yes\"]` erscheinen die Bezeichnungen. `role=\"reviewer\"`, `role=\"translator\"` oder `role=\"author\"` filtert Listen und Profilgruppen. Reguläre Shortcodes zeigen weiterhin alle zugeordneten Autoren.\n\nFalls der Blockeditor den Bereich Meta-Boxen zugeklappt hat, vergrößere ihn über die Trennleiste; dort funktionieren auch die Pfeiltasten nach oben/unten. Unterstützt der Inhaltstyp Revisionen, wird die Mitarbeit in nativen Beitragsrevisionen mitgesichert."
+        },
+        {
+          "title": "Autorenverwaltung und lokale Diagnose",
+          "body": "Die Autorentabelle zeigt das lokale Foto und vorhandene Biografie-/Website-Angaben sowie einen Kopierbutton für den individuellen Autoren-Shortcode. Optionale Profildetails bleiben freiwillig.\n\nUnter Einstellungen → Post Author Taxonomy → Lokale Diagnose stehen Plugin-/Komponentenversionen, aktivierte Inhaltstypen, Archivbasis, Permalink-Modus und der optionale Bricks-Status. Dabei gibt es keine externe Anfrage und keine persönlichen Autoreninhalte. Regeln für Autorenarchive erneuern ist eine ausdrückliche Administratoraktion bei Archiv-404s; Inhalte und Einstellungen bleiben erhalten."
+        },
+        {
+          "title": "Dynamische Daten in Bricks",
+          "body": "Bei aktivem Bricks enthält die öffentliche Auswahl dynamischer Daten eine Gruppe Post Author Taxonomy: `{pat_authors}`, `{pat_author_boxes}`, `{pat_author_name}`, `{pat_author_photo}`, `{pat_author_website}`. Das erste Profil folgt der gespeicherten Reihenfolge des aktuellen Beitrags; auf Autorenarchiven verwenden die einzelnen Felder den aktuellen Autor. Der Bild-Tag liefert im Bildkontext eine lokale Anhang-ID, damit Bricks Größen und srcset bereitstellen kann. Fremde Tags bleiben unverändert. Bricks-Code und Frontend-Stile werden nicht mitgeliefert. Reguläre Shortcodes funktionieren auch in anderen Buildern."
+        },
+        {
+          "title": "Profilpflege und Komfort",
+          "body": "Foto-Auswahl merkt sich das aktuelle Bild. Auswahl und Entfernung werden verständlich bestätigt; ohne Foto bleibt Entfernen deaktiviert. Profiländerungen werden erst beim Speichern übernommen. Kopiermeldungen sind für Screenreader zugänglich; bei gesperrter Zwischenablage wird der Shortcode zum Kopieren markiert. Die Einstellungsseite weist auf ungespeicherte Änderungen hin."
+        },
+        {
+          "title": "Shortcodes",
+          "body": "```text\n[pat-authors]\n[pat-authors link=\"none\" before=\"Geschrieben von:\" after=\".\"]\n[pat-authors link=\"website\" post_id=\"42\"]\n[pat-author-boxes]\n[pat-author-box slug=\"jane-doe\"]\n[pat-author-box id=\"21\" photo=\"no\" website=\"no\"]\n```\n\n`[pat-author-box]` ohne Auswahl zeigt den aktuellen Autor **nur auf einem Taxonomie-Archiv von `pat-author`**. Auf normalen Seiten und Beiträgen bleibt die Ausgabe leer. Eine ausdrückliche Autorenauswahl funktioniert auf jeder Seite. Vorrang: `id`, dann `slug`, dann `name`. Eine ungültige angegebene ID führt nicht zum Ausweichen auf einen anderen Autor.\n\n`[pat-author-boxes]` zeigt alle Autoren des aktuellen Beitrags oder von `post_id`. Die Reihenfolge folgt WordPress, normalerweise nach Namen. Eine individuelle Reihenfolge pro Beitrag ist nicht enthalten.\n\n| Attribut | Shortcodes | Standard / Verhalten |\n| --- | --- | --- |\n| `before`, `after`, `sep` | `pat-authors` | `Autoren:`, leer, `, `; begrenzte Inline-Formatierung |\n| `link` | alle | Liste: Einstellung, zunächst `archive`. Boxen: `none`. Optionen: `archive`, `website`, `none` |\n| `post_id` | `pat-authors`, `pat-author-boxes` | Aktueller Beitrag |\n| `id`, `slug`, `name` | `pat-author-box` | Leer; Auswahl eines Autors |\n| `title`, `headline`, `title_tag` | Boxen | `yes`, leer, `h4`; eigene Überschrift ersetzt den Namen |\n| `photo`, `website` | Boxen | `yes`; mit `no` ausblenden |\n| `content_tag` | Boxen | `p`; Biografie als reiner Text |\n| `class`, `wrapper` | alle | Eigene Klassen leer; Liste: `span`, Box: `div` |\n\nListen-Wrapper/Inhaltselemente: `div`, `span`, `p`, `section`, `article`, `aside`. Box-Wrapper: `div`, `section`, `article`, `aside`. Überschriften: `h2`–`h6`, `p`, `div`, `span`. Nicht erlaubte Elemente fallen auf den Standard zurück. Namen und Überschriften werden escaped. Labels erlauben nur `span`, `strong`, `em`, `b`, `i`, `br`; anderes HTML wird entfernt. Im Website-Modus erscheinen Autoren ohne Website unverlinkt.\n\nDas Plugin lädt kein CSS oder JavaScript im Frontend. Das Layout gestaltet dein Theme oder Builder. Stabile Klassen: `pat-authors`, `pat-author-box`, `pat-author-box__photo`, `pat-author-box__title`, `pat-author-box__content`, `pat-author-box__website`. Fotos verwenden responsive WordPress-Bildausgabe."
+        },
+        {
+          "title": "Builder- und Template-Beispiele",
+          "body": "**Bricks:** Shortcode-Element mit `[pat-author-boxes]` im Beitrags-Template platzieren. `{post_terms_pat-author}` kann die Taxonomie weiterhin nativ ausgeben. Für Autoren ein `pat-author`-Archiv-Template anlegen; darin `[pat-author-box]` für das Profil und eine normale Archiv-Abfrage für Beiträge nutzen.\n\n**Breakdance / andere Builder:** Shortcode im entsprechenden Element einfügen. Die öffentliche Taxonomie steht für normale Taxonomie-Abfragen zur Verfügung. Profil-Metafelder: `pat_photo_id` (Medien-ID) und `pat_website` (URL). Builder-spezifische Integrationen wurden in dieser Version nicht vorausgesetzt oder getestet.\n\n**Block-Editor:** Shortcode-Block verwenden. Der Core-Block für Beitragstaxonomien kann die registrierte Taxonomie darstellen. Kein eigener Plugin-Block enthalten.\n\n**Klassische PHP-Templates:**\n```php\n<?php echo do_shortcode( '[pat-author-boxes]' ); ?>\n```"
+        },
+        {
+          "title": "Filter für Entwickler",
+          "body": "Bestehende Filter bleiben: `pat/taxonomy/params`, `pat/shortcode/authors-list-defaults`, `pat/shortcode/authors-list`, `pat/shortcode/author-box-defaults`, `pat/shortcode/author-box`, `pat/plugins-page/tax-link`, `pat/plugins-page/meta-links`.\n\nNeu: `pat/taxonomy/post-types`, `pat/shortcode/author-boxes-defaults`, `pat/shortcode/author-boxes`. Ausgabe-Filter erhalten HTML und normalisierte Attribute. Plugin-eigene Ausgaben werden escaped; Ausgabe-Filter sind vertrauenswürdige PHP-Erweiterungspunkte."
+        },
+        {
+          "title": "Updates und deckerweb Library",
+          "body": "Der integrierte **deckerweb Updater 2.1.0** liefert stabile GitHub-Versionen über reguläre WordPress-Plugin-Updates. Das Plugin benötigt keinen GitHub-Token. Paketidentität, Angebotsversion, Voraussetzungen und lokale Bootstrap-Dateien werden vor dem Austausch geprüft, auch bei Sammelupdates.\n\nDie eingebundene **deckerweb Library 0.9.0** ergänzt den deckerweb-Tab unter Plugins → Installieren. Mehrere Hosts verwenden eine gemeinsame kompatible Laufzeit. Einstellungen → deckerweb Library verwaltet Anzeige, freiwilligen Online-Katalog und die optionale Löschung ihrer Einstellungen beim letzten Host. Der Online-Katalog ist zunächst ausgeschaltet. Ein bestehender Online-Katalog-Schalter bleibt erhalten. Installationen verwenden ausdrücklich freigegebene Pakete und geprüfte SHA256-Prüfsummen; Voraussetzungen werden nicht automatisch installiert.\n\nAutorenfotos liegen lokal in der Mediathek. Der Updater fragt api.github.com nach Release-Metadaten; Downloads erfolgen über GitHub und dessen Download-Infrastruktur. Der freiwillige Katalog fragt nur die freigegebene deckerweb-Quelle ab. Externe Server erhalten die üblichen Verbindungsdaten, etwa IP-Adresse und HTTP-Clientkennung; Autoreninhalte und Zugangsdaten werden nicht übertragen. Keine Telemetrie und keine externen Avatar-Anfragen."
+        },
+        {
+          "title": "Snippet-Version",
+          "body": "Die historischen Snippet-Dateien der veröffentlichten [Version 1.3.0](https://github.com/deckerweb/post-author-taxonomy/releases/tag/v1.3.0) bleiben verfügbar. Sie enthalten nur Taxonomie und Shortcodes, ohne Einstellungen, Medieneditor, Updater oder Library. Verwende sie anstelle des installierten Plugins. Der reguläre Lieferweg ist das Plugin-ZIP."
+        },
+        {
+          "title": "Hinweise beim Wechsel von 1.2.0",
+          "body": "Taxonomie-Key, Shortcodes, zentrale CSS-Klassen und übersetzter Archiv-Slug bleiben erhalten. Doppelte `after`-Ausgabe ist korrigiert; ungültige Autoren erzeugen keine Box. Begrenztes Label-HTML und erlaubte Elemente ersetzen uneingeschränktes Markup. Bisherige Labels mit anderem HTML müssen gegebenenfalls angepasst werden. Einzelne Boxen bleiben explizit, außer auf Taxonomie-Archiven. PHP 8.0 wird jetzt benötigt."
+        },
+        {
+          "title": "Multisite und Datenhaltung",
+          "body": "Einstellungen, Autoren, Zuweisungen, Fotos und Websites gelten jeweils für die einzelne Website. Bei Netzwerkaktivierung steht das Plugin auf allen Websites bereit; die Einstellungsseite bleibt im jeweiligen Website-Admin. Neue Websites erhalten die normale Beitrags-Vorgabe. Archivregeln werden bei Bedarf nach Registrierung der Website-Sprache aktualisiert.\n\nDeaktivierung erhält alle Inhalte und Einstellungen. Deinstallation entfernt nur temporäre Update-/Rewrite-Caches und führt die gemeinsame Library-Bereinigung aus. Autoren, Zuweisungen, Metadaten und `pat_settings` bleiben erhalten. Die Library bewahrt gemeinsame Daten, solange weitere Hosts installiert sind, auch deaktivierte. Ihre optionale Einstellungslöschung betrifft nur den letzten Host; installierte Plugins und ihre Inhalte bleiben erhalten.\n\nDie optionale Autorenreihenfolge und Rollen liegen im Post-Meta-Feld `pat_attribution` und bleiben bei Deaktivierung/Deinstallation beim Beitrag erhalten."
+        }
+      ],
+      "faq": [
+        {
+          "group": "Erste Schritte",
+          "question": "Brauchen Autoren ein WordPress-Konto?",
+          "answer": "Nein. Autorenprofile sind Taxonomie-Begriffe. Sie gewähren weder Zugang noch Bearbeitungsrechte oder Beitragsbesitz."
+        },
+        {
+          "group": "Erste Schritte",
+          "question": "Kann ein Beitrag mehrere Autoren haben?",
+          "answer": "Ja. Weise mehrere Autoren zu. [pat-authors] zeigt ihre Namen, [pat-author-boxes] alle zugewiesenen Profile."
+        },
+        {
+          "group": "Erste Schritte",
+          "question": "Ersetzt das Plugin die Autorenzeile des Themes?",
+          "answer": "Nein. Füge einen Shortcode im Inhalt oder Template ein und konfiguriere die native Autorenzeile deines Themes separat."
+        },
+        {
+          "group": "Erste Schritte",
+          "question": "Sind Autoren für Seiten und eigene Inhaltstypen möglich?",
+          "answer": "Ja. Aktiviere öffentliche Inhaltstypen unter Einstellungen → Post Author Taxonomy. Anhänge sind ausgenommen. Beiträge sind standardmäßig aktiviert."
+        },
+        {
+          "group": "Profile und Archive",
+          "question": "Wo bearbeite ich Biografie, Foto und Website?",
+          "answer": "Öffne Autoren verwalten auf der Einstellungsseite. Nutze die Beschreibung für die Biografie, wähle ein lokales Mediathek-Bild und ergänze optional eine HTTP/HTTPS-Website."
+        },
+        {
+          "group": "Profile und Archive",
+          "question": "Werden Fotos von Gravatar geladen?",
+          "answer": "Nein. Fotos sind lokale WordPress-Medien. Das Plugin ruft keine externen Avatare ab."
+        },
+        {
+          "group": "Profile und Archive",
+          "question": "Warum bleibt [pat-author-box] auf einem Beitrag leer?",
+          "answer": "Ohne ausdrückliche Auswahl zeigt dieser Shortcode nur das aktuelle Profil eines pat-author-Taxonomie-Archivs. Nutze [pat-author-boxes] für alle zugewiesenen Autoren oder wähle einen Autor über id, slug oder name."
+        },
+        {
+          "group": "Profile und Archive",
+          "question": "Was passiert bei einer ungültigen Autoren-ID?",
+          "answer": "Die Box bleibt leer. ID hat Vorrang vor Slug und Name; eine ungültige ID wählt nicht stillschweigend ein anderes Profil."
+        },
+        {
+          "group": "Profile und Archive",
+          "question": "Kann ich Autoren pro Beitrag individuell sortieren?",
+          "answer": "Nein. Die Reihenfolge folgt WordPress, normalerweise nach Namen. Eine individuelle Reihenfolge pro Beitrag ist nicht enthalten."
+        },
+        {
+          "group": "Profile und Archive",
+          "question": "Zeigt ein Autorenarchiv die Beiträge?",
+          "answer": "Ja, über ein normales Archiv-Template deines Themes oder Builders. Der Profil-Shortcode ergänzt das Profil; die Archivabfrage listet zugehörige Inhalte."
+        },
+        {
+          "group": "Profile und Archive",
+          "question": "Wie lautet die Archiv-URL?",
+          "answer": "Der Taxonomie-Schlüssel bleibt pat-author. Der Standard-Slug lautet auf englischen Websites post-author und auf deutschen Websites beitragsautor. Entscheidend ist die Website-Sprache, nicht die persönliche Adminsprache. Taxonomie-Filter können die Registrierung anpassen."
+        },
+        {
+          "group": "Shortcodes und Gestaltung",
+          "question": "Welche Linkziele gibt es?",
+          "answer": "Nutze link=\"archive\", link=\"website\" oder link=\"none\". Listen verwenden die gespeicherte Vorgabe, Boxen zunächst none. Ohne Website bleibt der Name im Website-Modus unverlinkt."
+        },
+        {
+          "group": "Shortcodes und Gestaltung",
+          "question": "Kann ich Autoren eines anderen Beitrags anzeigen?",
+          "answer": "Ja. Nutze post_id mit [pat-authors] oder [pat-author-boxes], beispielsweise [pat-author-boxes post_id=\"42\"]."
+        },
+        {
+          "group": "Shortcodes und Gestaltung",
+          "question": "Kann ich Fotos oder Website-Links ausblenden?",
+          "answer": "Ja. Nutze photo=\"no\" oder website=\"no\" bei beiden Box-Shortcodes. Die Profilinformationen bleiben gespeichert."
+        },
+        {
+          "group": "Shortcodes und Gestaltung",
+          "question": "Ist HTML in Namen oder Biografien möglich?",
+          "answer": "Namen und Überschriften werden maskiert; Biografien sind reiner Text. Listenbeschriftungen erlauben begrenzte Inline-Formatierung. Wrapper und Überschriften sind auf dokumentierte Elemente begrenzt."
+        },
+        {
+          "group": "Shortcodes und Gestaltung",
+          "question": "Wo sind die Gestaltungsoptionen?",
+          "answer": "Dein Theme oder Builder bestimmt das Layout. Es werden weder Frontend-CSS noch JavaScript geladen. Gestalte die dokumentierten pat-author-box-Klassen im Template oder Stylesheet."
+        },
+        {
+          "group": "Shortcodes und Gestaltung",
+          "question": "Wie lege ich die Autorenreihenfolge fest?",
+          "answer": "Ordne Autoren im Beitragseditor wie gewohnt zu und öffne Autorenreihenfolge und Rollen → Zugeordnete Autoren aktualisieren. Ziehe die Zeilen oder verwende die Pfeiltasten und speichere den Beitrag. Die Reihenfolge gilt nur für diesen Beitrag. Neue Autoren werden angehängt; alte entfernte Zuordnungen werden ignoriert."
+        },
+        {
+          "group": "Shortcodes und Gestaltung",
+          "question": "Ändern redaktionelle Rollen Rechte oder SEO-Schema?",
+          "answer": "Nein. Autor, Redaktionell geprüft von und Übersetzung sind Angaben zur Mitarbeit je Beitrag. Sie ändern weder Zugang noch Bearbeitungsrechte, post_author oder SEO-Schema. Zeige sie ausdrücklich mit roles=\"yes\" an und filtere Gruppen mit role=\"reviewer\", role=\"translator\" oder role=\"author\"."
+        },
+        {
+          "group": "Shortcodes und Gestaltung",
+          "question": "Speichert der Konfigurator Einstellungen?",
+          "answer": "Nein. Er erzeugt einen Shortcode und eine Vorschau mit echten Daten. Der aktuelle Kontext ist in Templates wiederverwendbar; der feste Kontext enthält post_id. Für die Vorschau von Entwürfen oder privaten Beiträgen brauchst du Bearbeitungsrechte für den ausgewählten Beitrag."
+        },
+        {
+          "group": "Shortcodes und Gestaltung",
+          "question": "Welche dynamischen Bricks-Tags gibt es?",
+          "answer": "Die optionale Gruppe Post Author Taxonomy enthält pat_authors, pat_author_boxes, pat_author_name, pat_author_photo und pat_author_website. Verwende die Tags in Bricks mit geschweiften Klammern. Das erste Profil folgt der Beitragsreihenfolge; das Foto liefert im Bildkontext eine Anhang-ID als Array. Andere Builder können weiterhin die regulären Shortcodes verwenden."
+        },
+        {
+          "group": "Shortcodes und Gestaltung",
+          "question": "Wie behebe ich 404-Fehler in Autorenarchiven?",
+          "answer": "Prüfe Einstellungen → Post Author Taxonomy → Lokale Diagnose und erneuere die Regeln für Autorenarchive einmal. Die Aktion erfordert einen Administrator und löscht weder Autoren noch Einstellungen oder Beiträge. Besteht das Problem weiter, prüfe Permalink- und Theme-/Routing-Konflikte."
+        },
+        {
+          "group": "Builder und Integration",
+          "question": "Funktioniert es mit Bricks, Breakdance oder dem Block-Editor?",
+          "answer": "Nutze ein Shortcode-Element beziehungsweise einen Shortcode-Block. Die öffentliche Taxonomie steht normalen Taxonomie-Abfragen zur Verfügung. Kommerzielle Builder wurden nicht separat getestet; eine spezielle Builder-Erweiterung ist nicht enthalten."
+        },
+        {
+          "group": "Builder und Integration",
+          "question": "Ergänzt es SEO-Autoren-Schema?",
+          "answer": "Nein. Konfiguriere strukturierte Daten in deinem SEO-Plugin oder Template. Taxonomie-Autoren werden nicht automatisch zu WordPress-Benutzern oder Schema-Personen."
+        },
+        {
+          "group": "Builder und Integration",
+          "question": "Ist die Snippet-Ausgabe gleichwertig mit dem Plugin?",
+          "answer": "Sie teilt Taxonomie und Shortcode-Kern, enthält aber keine Einstellungen, keinen Medieneditor, Updater oder Library. Verwende sie anstelle des Plugins. Inhaltstypen und Vorgaben lassen sich über PHP-Filter anpassen."
+        },
+        {
+          "group": "Updates und Daten",
+          "question": "Wie kommen Updates an?",
+          "answer": "Der eingebettete deckerweb GitHub Release Updater V2 bietet stabile GitHub-Versionen über reguläre WordPress-Plugin-Updates an. Ein separates Updater-Plugin ist nicht nötig."
+        },
+        {
+          "group": "Updates und Daten",
+          "question": "Was macht die deckerweb Library?",
+          "answer": "Sie ergänzt den deckerweb-Tab unter Plugins → Installieren. Mehrere Kopien wählen eine gemeinsame Laufzeit. Der optionale Online-Katalog ist unter Einstellungen → deckerweb Library konfigurierbar; dieses Plugin aktiviert ihn nicht automatisch."
+        },
+        {
+          "group": "Updates und Daten",
+          "question": "Was bleibt nach Deaktivierung oder Entfernung?",
+          "answer": "Autoren, Zuweisungen, Profilinformationen und Einstellungen bleiben erhalten. Temporäre Caches werden bei Deinstallation entfernt; die Library prüft, ob weitere Hosts installiert sind. Archive sind während der Deaktivierung gegebenenfalls nicht erreichbar."
+        },
+        {
+          "group": "Updates und Daten",
+          "question": "Welche WordPress- und PHP-Versionen sind nötig?",
+          "answer": "WordPress 6.7+ und PHP 8.0+. Die PHP-Mindestversion steigt gegenüber 1.2.0 von 7.4 auf 8.0, weil die Library PHP 8.0 benötigt. Funktionstests liefen mit WordPress 6.7 und 7.1.2 unter PHP 8.4.5."
+        },
+        {
+          "group": "Updates und Daten",
+          "question": "Wird ClassicPress offiziell unterstützt?",
+          "answer": "Nein. Kompatibilität ist willkommen, aber ClassicPress wird nicht offiziell unterstützt oder getestet."
+        },
+        {
+          "group": "Updates und Daten",
+          "question": "Was muss ich beim Update von 1.2.0 prüfen?",
+          "answer": "Autorendaten, Taxonomie-Schlüssel und Erweiterungsfilter bleiben erhalten. Prüfe eigene HTML-Beschriftungen und Wrapper, da die Ausgabe jetzt begrenzt ist. Der after-Nachtext erscheint einmal. PHP 8.0 ist erforderlich."
+        },
+        {
+          "group": "Updates und Daten",
+          "question": "Kann ich das Plugin im Netzwerk aktivieren?",
+          "answer": "Einstellungen, Autoren, Zuweisungen, Fotos und Websites gelten jeweils für die einzelne Website. Bei Netzwerkaktivierung steht das Plugin auf allen Websites bereit; die Einstellungsseite bleibt im jeweiligen Website-Admin. Neue Websites erhalten die normale Beitrags-Vorgabe. Archivregeln werden bei Bedarf nach Registrierung der Website-Sprache aktualisiert."
+        },
+        {
+          "group": "Updates und Daten",
+          "question": "Welche Daten gehen an externe Server?",
+          "answer": "Autorenfotos liegen lokal in der Mediathek. Der Updater fragt api.github.com nach Release-Metadaten; Downloads erfolgen über GitHub und dessen Download-Infrastruktur. Der freiwillige Katalog fragt nur die freigegebene deckerweb-Quelle ab. Externe Server erhalten die üblichen Verbindungsdaten, etwa IP-Adresse und HTTP-Clientkennung; Autoreninhalte und Zugangsdaten werden nicht übertragen. Keine Telemetrie und keine externen Avatar-Anfragen."
+        },
+        {
+          "group": "Updates und Daten",
+          "question": "Wie melde ich Sicherheitslücken?",
+          "answer": "Nutze den privaten GitHub-Sicherheitsmeldeweg im Repository des Host-Plugins, auch bei Library-Problemen. Melde Versionen, Reproduktion und Auswirkungen ohne Zugangsdaten. Ist die private Meldung nicht verfügbar, veröffentliche keine Sicherheitsdetails in Issues oder Discussions."
+        },
+        {
+          "group": "Updates und Daten",
+          "question": "Warum pausieren die Plugin-Updates?",
+          "answer": "Hat ein anderes Plugin zuerst einen älteren gemeinsamen Updater geladen, zeigt Post Author Taxonomy einen Hinweis und pausiert seine neue Integration. Aktualisiere den anderen deckerweb Host auf einen kompatiblen Updater-Stand. Die Autorenfunktionen bleiben nutzbar; fremde Dateien oder Update-Hooks werden nicht umgeschrieben."
+        },
+        {
+          "group": "Technische Details",
+          "question": "Wer darf Autorenfotos ändern?",
+          "answer": "Zum Bearbeiten eines Profils brauchst du die Berechtigung für den Autorenbegriff. Das ausgewählte Foto muss ein Bild sein, das du in der lokalen Mediathek bearbeiten darfst. Dieselben Prüfungen gelten über die REST-API. Fehlt ein Foto- oder Website-Feld in einem teilweise übermittelten Profilformular, bleibt der gespeicherte Wert erhalten. Eine übermittelte Null beziehungsweise eine leere Website entfernt den Wert ausdrücklich."
+        }
+      ],
+      "readme_faq_indices": [
+        0,
+        1,
+        16,
+        17,
+        18,
+        26,
+        27
+      ],
+      "history": "== Changelog ==\n= 1.4.0 — 2026-10-10 =\n* Verbessert: Admin-Meldungen erscheinen unter dem vollständigen Seitenkopf; Titel und Slogan bleiben zusammen.\n* Neu: Shortcode-Konfigurator mit echter Beitragsvorschau und Kopieren; Autorenreihenfolge je Beitrag und optionale redaktionelle Rollen.\n* Neu: Profilübersicht und individuelles Shortcode-Kopieren in der Autorenverwaltung, lokale Archivdiagnose und optionale dynamische Bricks-Tags.\n* Verbessert: Vorauswahl des aktuellen Fotos, zugängliche Kopier-/Fotomeldungen, Hinweis auf ungespeicherte Einstellungen und strukturierter übersetzter Changelog.\n* Verbessert: deckerweb Library 0.9.0, Updater 2.1.0, synchronisierte zweisprachige Dokumentation und vollständige deutsche Du-/Sie-Übersetzungen.\n* Behoben: Bildrechteprüfung über REST vor Profiländerungen; teilweise übermittelte Formulare erhalten fehlende Profilfelder; Paketprüfung bei nativen Stapel-Updates.\n* Verbessert: Site-/Netzwerk-Lebenszyklus und datenbewahrende Deinstallation; gezielte Admin-Arbeit und bedarfsgerechte Archivregeln.\n* Sonstiges: neue Collective-Grafiken mit zentriertem Icon, nativen Vektorquellen und lizenzierten Schriftpfaden aus Space Grotesk; Daten und Mindestanforderungen erhalten.\n= 1.3.0 — 2026-10-01 =\n* Neu: automatische Autorenboxen, Archiv-Kontext, lokale Fotos und Websites.\n* Neu: Autorenlinks zu Archiv, Website oder reine Namen; post_id-Unterstützung.\n* Neu: Inhaltstyp-Einstellungen, kopierbare Beispiele und Header/Footer wie Brand Admin Schemes.\n* Neu: gemeinsamer deckerweb Updater V2 und Library 0.2.0.\n* Verbessert: erlaubte HTML-Elemente, sichere Ausgabe; deutsche und englische Dokumentation/Grafiken.\n* Behoben: Warnungen bei fehlenden Autoren, doppelter Nachtext, mehrere CSS-Klassen und Namenssuche.\n* Sonstiges: PHP-Mindestversion jetzt 8.0.\n* Sonstiges: Autoren-Taxonomie-Daten, übersetzter Archiv-Slug und vorhandene Erweiterungsfilter.\n= 1.2.0 — 2025-04-05 =\n* Sonstiges: Klassenbasierter Kern, Autorenbox-Shortcode und mitgelieferte deutsche Übersetzungen.\n= 1.0.0 — 2017-12-15 =\n* Sonstiges: Erste öffentliche Version.\n",
+      "project": "Entwickelt und herausgegeben von David Decker – DECKERWEB. Seit 2017 für Autorenangaben über eine öffentliche Taxonomie; keine Benutzerkontenverwaltung und kein eigenes Frontend-Design.",
+      "glance": [
+        "Shortcode-Konfigurator mit echten Daten; Autorenreihenfolge je Beitrag und optionale redaktionelle Rollen.",
+        "Fotoübersicht und Kopierbuttons in der Autorentabelle; lokale Diagnose; optionale Bricks-Tags.",
+        "Mehrere Autoren ohne WordPress-Benutzerkonten.",
+        "Lokale Fotos, Biografien und Websites in Autorenprofilen.",
+        "Drei flexible Shortcodes und wählbare Linkziele.",
+        "Beiträge, Seiten und öffentliche eigene Inhaltstypen.",
+        "Websitebezogene Einstellungen und Netzwerkaktivierung.",
+        "Reguläre WordPress-Updates und deckerweb Library."
+      ]
+    }
+  },
+  "glossary": [
+    [
+      "Author",
+      "Autor",
+      "Autor"
+    ],
+    [
+      "Authors",
+      "Autoren",
+      "Autoren"
+    ],
+    [
+      "Author profile",
+      "Autorenprofil",
+      "Autorenprofil"
+    ],
+    [
+      "Author photo",
+      "Autorenfoto",
+      "Autorenfoto"
+    ],
+    [
+      "Biography",
+      "Biografie",
+      "Biografie"
+    ],
+    [
+      "Website",
+      "Website",
+      "Website"
+    ],
+    [
+      "Archive",
+      "Archiv",
+      "Archiv"
+    ],
+    [
+      "Post type",
+      "Inhaltstyp",
+      "Inhaltstyp"
+    ],
+    [
+      "Manage authors",
+      "Autoren verwalten",
+      "Autoren verwalten"
+    ],
+    [
+      "Settings",
+      "Einstellungen",
+      "Einstellungen"
+    ],
+    [
+      "New",
+      "Neu",
+      "Neu"
+    ],
+    [
+      "Improved",
+      "Verbessert",
+      "Verbessert"
+    ],
+    [
+      "Fixed",
+      "Behoben",
+      "Behoben"
+    ],
+    [
+      "Misc",
+      "Sonstiges",
+      "Sonstiges"
+    ],
+    [
+      "Your authors. Your layout. Your WordPress.",
+      "Deine Autoren. Dein Layout. Dein WordPress.",
+      "Ihre Autoren. Ihr Layout. Ihr WordPress."
+    ],
+    [
+      "Reviewed by",
+      "Redaktionell geprüft von",
+      "Redaktionell geprüft von"
+    ],
+    [
+      "Translation",
+      "Übersetzung",
+      "Übersetzung"
+    ],
+    [
+      "Shortcode configurator",
+      "Shortcode-Konfigurator",
+      "Shortcode-Konfigurator"
+    ],
+    [
+      "Author order and roles",
+      "Autorenreihenfolge und Rollen",
+      "Autorenreihenfolge und Rollen"
+    ],
+    [
+      "Local diagnostics",
+      "Lokale Diagnose",
+      "Lokale Diagnose"
+    ]
+  ]
+}

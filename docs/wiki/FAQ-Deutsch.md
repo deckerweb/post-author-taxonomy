@@ -1,4 +1,6 @@
-# Häufige Fragen · Post Author Taxonomy
+# Fragen nach Themen · Post Author Taxonomy
+
+[English](https://github.com/deckerweb/post-author-taxonomy/wiki/FAQ%E2%80%90English)
 
 ## Erste Schritte
 
@@ -70,6 +72,26 @@ Namen und Überschriften werden maskiert; Biografien sind reiner Text. Listenbes
 
 Dein Theme oder Builder bestimmt das Layout. Es werden weder Frontend-CSS noch JavaScript geladen. Gestalte die dokumentierten pat-author-box-Klassen im Template oder Stylesheet.
 
+### Wie lege ich die Autorenreihenfolge fest?
+
+Ordne Autoren im Beitragseditor wie gewohnt zu und öffne Autorenreihenfolge und Rollen → Zugeordnete Autoren aktualisieren. Ziehe die Zeilen oder verwende die Pfeiltasten und speichere den Beitrag. Die Reihenfolge gilt nur für diesen Beitrag. Neue Autoren werden angehängt; alte entfernte Zuordnungen werden ignoriert.
+
+### Ändern redaktionelle Rollen Rechte oder SEO-Schema?
+
+Nein. Autor, Redaktionell geprüft von und Übersetzung sind Angaben zur Mitarbeit je Beitrag. Sie ändern weder Zugang noch Bearbeitungsrechte, post_author oder SEO-Schema. Zeige sie ausdrücklich mit roles="yes" an und filtere Gruppen mit role="reviewer", role="translator" oder role="author".
+
+### Speichert der Konfigurator Einstellungen?
+
+Nein. Er erzeugt einen Shortcode und eine Vorschau mit echten Daten. Der aktuelle Kontext ist in Templates wiederverwendbar; der feste Kontext enthält post_id. Für die Vorschau von Entwürfen oder privaten Beiträgen brauchst du Bearbeitungsrechte für den ausgewählten Beitrag.
+
+### Welche dynamischen Bricks-Tags gibt es?
+
+Die optionale Gruppe Post Author Taxonomy enthält pat_authors, pat_author_boxes, pat_author_name, pat_author_photo und pat_author_website. Verwende die Tags in Bricks mit geschweiften Klammern. Das erste Profil folgt der Beitragsreihenfolge; das Foto liefert im Bildkontext eine Anhang-ID als Array. Andere Builder können weiterhin die regulären Shortcodes verwenden.
+
+### Wie behebe ich 404-Fehler in Autorenarchiven?
+
+Prüfe Einstellungen → Post Author Taxonomy → Lokale Diagnose und erneuere die Regeln für Autorenarchive einmal. Die Aktion erfordert einen Administrator und löscht weder Autoren noch Einstellungen oder Beiträge. Besteht das Problem weiter, prüfe Permalink- und Theme-/Routing-Konflikte.
+
 ## Builder und Integration
 
 ### Funktioniert es mit Bricks, Breakdance oder dem Block-Editor?
@@ -96,7 +118,7 @@ Sie ergänzt den deckerweb-Tab unter Plugins → Installieren. Mehrere Kopien w�
 
 ### Was bleibt nach Deaktivierung oder Entfernung?
 
-Autoren, Zuweisungen und Profilinformationen bleiben in der Datenbank. Archive können während der Deaktivierung nicht mehr erreichbar sein. Eine löschende Deinstallation ist nicht enthalten.
+Autoren, Zuweisungen, Profilinformationen und Einstellungen bleiben erhalten. Temporäre Caches werden bei Deinstallation entfernt; die Library prüft, ob weitere Hosts installiert sind. Archive sind während der Deaktivierung gegebenenfalls nicht erreichbar.
 
 ### Welche WordPress- und PHP-Versionen sind nötig?
 
@@ -110,4 +132,26 @@ Nein. Kompatibilität ist willkommen, aber ClassicPress wird nicht offiziell unt
 
 Autorendaten, Taxonomie-Schlüssel und Erweiterungsfilter bleiben erhalten. Prüfe eigene HTML-Beschriftungen und Wrapper, da die Ausgabe jetzt begrenzt ist. Der after-Nachtext erscheint einmal. PHP 8.0 ist erforderlich.
 
-[Anleitung](https://github.com/deckerweb/post-author-taxonomy/wiki/Deutsch) · [Download](https://github.com/deckerweb/post-author-taxonomy/releases/latest)
+### Kann ich das Plugin im Netzwerk aktivieren?
+
+Einstellungen, Autoren, Zuweisungen, Fotos und Websites gelten jeweils für die einzelne Website. Bei Netzwerkaktivierung steht das Plugin auf allen Websites bereit; die Einstellungsseite bleibt im jeweiligen Website-Admin. Neue Websites erhalten die normale Beitrags-Vorgabe. Archivregeln werden bei Bedarf nach Registrierung der Website-Sprache aktualisiert.
+
+### Welche Daten gehen an externe Server?
+
+Autorenfotos liegen lokal in der Mediathek. Der Updater fragt api.github.com nach Release-Metadaten; Downloads erfolgen über GitHub und dessen Download-Infrastruktur. Der freiwillige Katalog fragt nur die freigegebene deckerweb-Quelle ab. Externe Server erhalten die üblichen Verbindungsdaten, etwa IP-Adresse und HTTP-Clientkennung; Autoreninhalte und Zugangsdaten werden nicht übertragen. Keine Telemetrie und keine externen Avatar-Anfragen.
+
+### Wie melde ich Sicherheitslücken?
+
+Nutze den privaten GitHub-Sicherheitsmeldeweg im Repository des Host-Plugins, auch bei Library-Problemen. Melde Versionen, Reproduktion und Auswirkungen ohne Zugangsdaten. Ist die private Meldung nicht verfügbar, veröffentliche keine Sicherheitsdetails in Issues oder Discussions.
+
+### Warum pausieren die Plugin-Updates?
+
+Hat ein anderes Plugin zuerst einen älteren gemeinsamen Updater geladen, zeigt Post Author Taxonomy einen Hinweis und pausiert seine neue Integration. Aktualisiere den anderen deckerweb Host auf einen kompatiblen Updater-Stand. Die Autorenfunktionen bleiben nutzbar; fremde Dateien oder Update-Hooks werden nicht umgeschrieben.
+
+## Technische Details
+
+### Wer darf Autorenfotos ändern?
+
+Zum Bearbeiten eines Profils brauchst du die Berechtigung für den Autorenbegriff. Das ausgewählte Foto muss ein Bild sein, das du in der lokalen Mediathek bearbeiten darfst. Dieselben Prüfungen gelten über die REST-API. Fehlt ein Foto- oder Website-Feld in einem teilweise übermittelten Profilformular, bleibt der gespeicherte Wert erhalten. Eine übermittelte Null beziehungsweise eine leere Website entfernt den Wert ausdrücklich.
+
+[Anleitung](https://github.com/deckerweb/post-author-taxonomy/wiki/Deutsch)

@@ -1,5 +1,6 @@
 <?php
 if ( 'yes' !== getenv( 'PAT_TEST_DISPOSABLE' ) ) { fwrite( STDERR, 'Use an isolated disposable test site.\n' ); exit(1); }
+define( 'WP_ADMIN', true );
 require rtrim( getenv( 'PAT_TEST_ROOT' ), '/' ) . '/wp-load.php';
 wp_set_current_user( 1 );
 update_option( 'pat_settings', array( 'post_types' => array( 'post' ), 'link' => 'archive' ) );

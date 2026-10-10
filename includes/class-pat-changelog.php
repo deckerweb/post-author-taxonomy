@@ -52,10 +52,23 @@ final class Changelog {
 				continue;
 			}
 			if ( preg_match( '/^= (.+) =$/', $line, $heading ) ) {
-				$html .= ( $list ? '</ul>' : '' ) . '<h3>' . esc_html( $heading[1] ) . '</h3>';
+				$parts = preg_split( '/\s+—\s+/', $heading[1], 2 );
+				$html .= ( $list ? '</ul>' : '' ) . '<section class="pat-changelog-release"><h3>' . esc_html( $parts[0] ) . '</h3>';
+				if ( isset( $parts[1] ) ) {
+					$html .= '<p class="pat-changelog-date">' . esc_html( $parts[1] ) . '</p>';
+				}
+				// The section is closed immediately; the following list remains a semantic sibling.
+				$html .= '</section>';
 				$list  = false;
 			} elseif ( str_starts_with( $line, '* ' ) ) {
-				$html .= ( $list ? '' : '<ul>' ) . '<li>' . esc_html( substr( $line, 2 ) ) . '</li>';
+				$entry = substr( $line, 2 );
+				$classes = array( 'New' => 'new', 'Neu' => 'new', 'Improved' => 'improved', 'Verbessert' => 'improved', 'Fixed' => 'fixed', 'Behoben' => 'fixed', 'Misc' => 'misc', 'Sonstiges' => 'misc' );
+				if ( preg_match( '/^(New|Neu|Improved|Verbessert|Fixed|Behoben|Misc|Sonstiges):\s*(.*)$/u', $entry, $category ) ) {
+					$entry = '<span class="pat-changelog-badge pat-changelog-' . esc_attr( $classes[ $category[1] ] ) . '">' . esc_html( $category[1] . ':' ) . '</span> ' . esc_html( $category[2] );
+				} else {
+					$entry = esc_html( $entry );
+				}
+				$html .= ( $list ? '' : '<ul>' ) . '<li>' . $entry . '</li>';
 				$list  = true;
 			} else {
 				$html .= ( $list ? '</ul>' : '' ) . '<p>' . esc_html( $line ) . '</p>';

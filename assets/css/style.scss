@@ -4,8 +4,8 @@
 @import "{{ site.theme }}";
 
 .page-header {
-  background-color: #C86DD7;
-  background-image: linear-gradient(120deg, #3023AE, #C86DD7);
+  background-color: #102b35;
+  background-image: linear-gradient(120deg, #102b35, #184e58);
 }
 
 .main-content h1,
@@ -15,5 +15,5 @@
 .main-content h5,
 .main-content h6 {
   font-weight: 700;
-  color: #C86DD7;
+  color: #102b35;
 }

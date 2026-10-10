@@ -21,8 +21,14 @@ final class GitHubUpdates {
 
 	/** Load the shared versioned class once, including beside other deckerweb plugins. @return void */
 	public function boot(): void {
+		if ( ! is_admin() && ! ( defined( 'DOING_CRON' ) && DOING_CRON ) && ! ( defined( 'WP_CLI' ) && WP_CLI ) ) { return; }
 		if ( ! class_exists( '\Deckerweb\GitHubReleaseUpdater\V2\Updater' ) ) {
 			require_once PAT_PLUGIN_DIR . 'includes/deckerweb-github-release-updater-v2.php';
+		}
+		if ( ! defined( '\\Deckerweb\\GitHubReleaseUpdater\\V2\\Updater::SUPPORTS_HOST_TRANSLATIONS' ) ) {
+			add_action( 'admin_notices', array( $this, 'compatibility_notice' ) );
+			add_action( 'network_admin_notices', array( $this, 'compatibility_notice' ) );
+			return;
 		}
 		try {
 			$updater = new \Deckerweb\GitHubReleaseUpdater\V2\Updater(
@@ -30,10 +36,11 @@ final class GitHubUpdates {
 				self::REPOSITORY,
 				'Post Author Taxonomy',
 				__( 'Authors as a public taxonomy: multiple authors, local photos, profiles and flexible shortcodes for your builder or theme.', 'post-author-taxonomy' ),
-				$this->artwork()
+				$this->artwork(),
+				array( 'translate' => array( $this, 'translate' ) )
 			);
 		} catch ( \InvalidArgumentException $error ) {
-			// An unsupported directory must not break the admin or login design.
+			// An unsupported directory must not break the plugin interface.
 			return;
 		}
 		$updater->register();
@@ -90,7 +97,7 @@ final class GitHubUpdates {
 	 * @return mixed Original source or localized WP_Error.
 	 */
 	public function validate_source( $source, $remote_source, $upgrader, array $hook_extra ) {
-		if ( ( $hook_extra['plugin'] ?? '' ) !== plugin_basename( PAT_PLUGIN_FILE ) || ( $hook_extra['type'] ?? '' ) !== 'plugin' || ( $hook_extra['action'] ?? '' ) !== 'update' ) {
+		if ( ( $hook_extra['plugin'] ?? '' ) !== plugin_basename( PAT_PLUGIN_FILE ) || ( isset( $hook_extra['type'] ) && 'plugin' !== $hook_extra['type'] ) || ( isset( $hook_extra['action'] ) && 'update' !== $hook_extra['action'] ) || ( ! isset( $hook_extra['type'], $hook_extra['action'] ) && ! ( $upgrader instanceof \Plugin_Upgrader && true === $upgrader->bulk ) ) ) {
 			return $source;
 		}
 		if ( is_wp_error( $source ) ) {
@@ -134,6 +141,55 @@ final class GitHubUpdates {
 		if ( ! is_php_version_compatible( $headers['Requires PHP'] ) || ! is_wp_version_compatible( $headers['Requires at least'] ) ) {
 			return new \WP_Error( 'pat_update_compatibility', __( 'This release requires a newer WordPress or PHP version. The installed version has been kept.', 'post-author-taxonomy' ) );
 		}
+		if ( preg_match_all( '/require(?:_once)?\s+__DIR__\s*\.\s*[\"\'](\/includes\/[^\"\']+\.php)[\"\']/', $text, $includes ) ) {
+			foreach ( $includes[1] as $include ) {
+				if ( str_contains( $include, '..' ) || ! $wp_filesystem->is_file( untrailingslashit( $source ) . $include ) ) {
+					return new \WP_Error( 'pat_update_incomplete', __( 'The update package is incomplete. The installed plugin has been kept.', 'post-author-taxonomy' ) );
+				}
+			}
+		}
 		return $source;
+	}
+
+	/**
+	 * Translate shared-engine messages through this host's existing textdomain at output time.
+	 *
+	 * @param string $message Original English component message.
+	 * @return string Localized message, or unchanged input for an unknown component message.
+	 */
+	public function translate( string $message ): string {
+		switch ( $message ) {
+			case 'Private mode must be boolean.':
+				return __( 'Private mode must be boolean.', 'post-author-taxonomy' );
+			case 'Invalid authentication provider.':
+				return __( 'Invalid authentication provider.', 'post-author-taxonomy' );
+			case 'The plugin must be installed in a stable slug directory.':
+				return __( 'The plugin must be installed in a stable slug directory.', 'post-author-taxonomy' );
+			case 'Invalid GitHub repository URL.':
+				return __( 'Invalid GitHub repository URL.', 'post-author-taxonomy' );
+			case 'The private update could not be authorized. Check the repository credentials and refresh updates.':
+				return __( 'The private update could not be authorized. Check the repository credentials and refresh updates.', 'post-author-taxonomy' );
+			case 'Could not create the update download file.':
+				return __( 'Could not create the update download file.', 'post-author-taxonomy' );
+			case 'The private update download failed. Check credentials and try again.':
+				return __( 'The private update download failed. Check credentials and try again.', 'post-author-taxonomy' );
+			case 'Could not access the update filesystem.':
+				return __( 'Could not access the update filesystem.', 'post-author-taxonomy' );
+			case 'GitHub release does not contain the plugin main file.':
+				return __( 'GitHub release does not contain the plugin main file.', 'post-author-taxonomy' );
+			case 'Could not prepare the GitHub release package.':
+				return __( 'Could not prepare the GitHub release package.', 'post-author-taxonomy' );
+			case 'See the release on GitHub.':
+				return __( 'See the release on GitHub.', 'post-author-taxonomy' );
+			default:
+				return $message;
+		}
+	}
+
+	/** Report a shared-class compatibility conflict only on relevant administrative screens. @return void */
+	public function compatibility_notice(): void {
+		$screen = get_current_screen();
+		if ( ! current_user_can( 'update_plugins' ) || ! $screen || ! in_array( $screen->id, array( 'plugins', 'plugins-network', 'update-core', 'update-core-network', 'settings_page_post-author-taxonomy' ), true ) ) { return; }
+		echo '<div class="notice notice-warning"><p>' . esc_html__( 'Post Author Taxonomy updates are paused because another plugin loaded an older deckerweb updater. Update the other deckerweb plugin to restore compatible updates.', 'post-author-taxonomy' ) . '</p></div>';
 	}
 }

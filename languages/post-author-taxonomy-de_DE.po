@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Post Author Taxonomy 1.4.0\nPOT-Creation-Date: 2026-10-10 12:00+0200\nPO-Revision-Date: 2026-10-10 12:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: de_DE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: Post Author Taxonomy 1.4.1\nPOT-Creation-Date: 2026-10-21 12:00+0200\nPO-Revision-Date: 2026-10-21 12:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: de_DE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 #, php-format
@@ -44,6 +44,14 @@ msgstr "Bricks QuickNav bitte je Website aktivieren, nachdem das Bricks-Theme od
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Activating…"
 msgstr "Wird aktiviert…"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Active"
+msgstr "Aktiv"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Active filters: "
+msgstr "Aktive Filter: "
 
 #: includes/class-post-author-taxonomy.php:51
 msgid "Add New Author"
@@ -96,6 +104,10 @@ msgstr "Bereits aktuell."
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Another action for this plugin is running. Please wait."
 msgstr "Für dieses Plugin läuft bereits eine Aktion. Bitte warten."
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Another component interrupted the request. If Git Updater is active, temporarily deactivate it and retry."
+msgstr "Eine andere Komponente hat die Anfrage unterbrochen. Falls Git Updater aktiv ist, deaktiviere ihn vorübergehend und wiederhole den Vorgang."
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Another updater provides a different release. Refresh updates before continuing."
@@ -181,7 +193,7 @@ msgstr "Autoren-Shortcode"
 msgid "Author website"
 msgstr "Autorenwebsite"
 
-#: includes/class-pat-github-updates.php:38
+#: includes/class-pat-github-updates.php:42
 msgid "Authors as a public taxonomy: multiple authors, local photos, profiles and flexible shortcodes for your builder or theme."
 msgstr "Autoren als öffentliche Taxonomie: mehrere Autoren, lokale Fotos, Profile und flexible Shortcodes für deinen Builder oder dein Theme."
 
@@ -214,6 +226,14 @@ msgid "Builder"
 msgstr "Builder"
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Bundled catalog"
+msgstr "Mitgelieferter Katalog"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Cached or bundled catalog"
+msgstr "Gespeicherter oder mitgelieferter Katalog"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Cannot create temporary file."
 msgstr "Temporäre Datei konnte nicht erstellt werden."
 
@@ -243,7 +263,7 @@ msgstr "Katalog aktualisiert."
 
 #: includes/class-pat-changelog.php:92
 msgid "Changelog"
-msgstr "Änderungsprotokoll"
+msgstr "Änderungsverlauf"
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Check status"
@@ -301,19 +321,27 @@ msgstr "Inhalte"
 msgid "Copied"
 msgstr "Kopiert"
 
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Copied."
+msgstr "Kopiert."
+
 #: includes/class-pat-tools.php:69
 msgid "Copy"
 msgstr "Kopieren"
 
-#: includes/class-pat-github-updates.php:177
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Copy diagnostic information"
+msgstr "Diagnoseinformationen kopieren"
+
+#: includes/class-pat-github-updates.php:181
 msgid "Could not access the update filesystem."
 msgstr "Auf das Dateisystem für das Update konnte nicht zugegriffen werden."
 
-#: includes/class-pat-github-updates.php:173
+#: includes/class-pat-github-updates.php:177
 msgid "Could not create the update download file."
 msgstr "Die Datei für den Update-Download konnte nicht erstellt werden."
 
-#: includes/class-pat-github-updates.php:181
+#: includes/class-pat-github-updates.php:185
 msgid "Could not prepare the GitHub release package."
 msgstr "Das GitHub-Release-Paket konnte nicht vorbereitet werden."
 
@@ -358,8 +386,16 @@ msgid "Discover more plugins by deckerweb"
 msgstr "Weitere Plugins von deckerweb entdecken"
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Discover randomly"
+msgstr "Zufällig entdecken"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Dismiss permanently"
 msgstr "Dauerhaft schließen"
+
+#: includes/class-pat-github-updates.php:193
+msgid "Dismiss this notice"
+msgstr "Diesen Hinweis ausblenden"
 
 #: includes/class-pat-admin.php:229
 msgid "Documentation"
@@ -445,11 +481,15 @@ msgstr "Fr"
 msgid "Friday"
 msgstr "Freitag"
 
+#: includes/class-pat-github-updates.php:189
+msgid "Git Updater is active. If a deckerweb installation or update fails, temporarily deactivate Git Updater and retry. Reactivate it afterwards if other plugins or themes need it. Only leave it disabled when those extensions have another reliable update provider."
+msgstr "Git Updater ist aktiv. Wenn eine deckerweb-Installation oder ein Update fehlschlägt, deaktiviere Git Updater vorübergehend und versuche es erneut. Aktiviere ihn danach wieder, wenn andere Plugins oder Themes ihn benötigen. Lass ihn nur dauerhaft deaktiviert, wenn diese Erweiterungen einen anderen zuverlässigen Updateweg besitzen."
+
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "GitHub Stars"
 msgstr "GitHub-Sterne"
 
-#: includes/class-pat-github-updates.php:179
+#: includes/class-pat-github-updates.php:183
 msgid "GitHub release does not contain the plugin main file."
 msgstr "Der GitHub-Release enthält nicht die Hauptdatei des Plugins."
 
@@ -490,6 +530,10 @@ msgid "Installed"
 msgstr "Installiert"
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Installed · inactive"
+msgstr "Installiert · inaktiv"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Installed: "
 msgstr "Installiert: "
 
@@ -497,7 +541,7 @@ msgstr "Installiert: "
 msgid "Installing…"
 msgstr "Wird installiert…"
 
-#: includes/class-pat-github-updates.php:169
+#: includes/class-pat-github-updates.php:173
 msgid "Invalid GitHub repository URL."
 msgstr "Ungültige GitHub-Repository-URL."
 
@@ -509,7 +553,7 @@ msgstr "Ungültiges ZIP-Archiv."
 msgid "Invalid approval flag."
 msgstr "Ungültige Freigabeangabe."
 
-#: includes/class-pat-github-updates.php:165
+#: includes/class-pat-github-updates.php:169
 msgid "Invalid authentication provider."
 msgstr "Ungültiger Authentifizierungsanbieter."
 
@@ -582,6 +626,10 @@ msgid "Invalid preview configuration."
 msgstr "Ungültige Vorschau-Einstellungen."
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Invalid sort order."
+msgstr "Ungültige Sortierung."
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Invalid star count."
 msgstr "Ungültige Anzahl der GitHub-Sterne."
 
@@ -612,6 +660,10 @@ msgstr "Jun"
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "June"
 msgstr "Juni"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Last successful check: "
+msgstr "Zuletzt erfolgreich geprüft: "
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Library"
@@ -649,7 +701,7 @@ msgstr "Inhalte verwalten"
 msgid "Manage authors"
 msgstr "Autoren verwalten"
 
-#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+#: includes/class-pat-github-updates.php:191
 msgid "Manage installed plugins"
 msgstr "Installierte Plugins verwalten"
 
@@ -701,6 +753,14 @@ msgstr "Nach oben"
 msgid "Multisite"
 msgstr "Multisite"
 
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Name A–Z"
+msgstr "Name A–Z"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Name Z–A"
+msgstr "Name Z–A"
+
 #: includes/class-pat-tools.php:67
 msgid "Name links"
 msgstr "Verlinkung der Namen"
@@ -716,6 +776,10 @@ msgstr "Namen ohne Verlinkung"
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Network activate"
 msgstr "Netzwerkweit aktivieren"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Network active"
+msgstr "Netzwerkweit aktiv"
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Network permission denied."
@@ -845,9 +909,13 @@ msgstr "Übergeordneter Autor:"
 msgid "Permalinks"
 msgstr "Permalinks"
 
-#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+#: includes/class-pat-github-updates.php:195
 msgid "Permission denied."
-msgstr "Keine Berechtigung."
+msgstr "Zugriff verweigert."
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Permission denied. Reload the page and check your permissions."
+msgstr "Zugriff verweigert. Lade die Seite neu und prüfe deine Berechtigungen."
 
 #: includes/class-pat-tools.php:39
 msgid "Photo"
@@ -893,7 +961,7 @@ msgstr "Plugin-Website"
 msgid "Popular Authors"
 msgstr "Beliebte Autoren"
 
-#: includes/class-pat-github-updates.php:193
+#: includes/class-pat-github-updates.php:211
 msgid "Post Author Taxonomy updates are paused because another plugin loaded an older deckerweb updater. Update the other deckerweb plugin to restore compatible updates."
 msgstr "Updates für Post Author Taxonomy pausieren, weil ein anderes Plugin einen älteren deckerweb Updater geladen hat. Aktualisiere das andere deckerweb Plugin, um kompatible Updates wiederherzustellen."
 
@@ -909,7 +977,7 @@ msgstr "Beitragskontext"
 msgid "Preview post"
 msgstr "Beitrag für die Vorschau"
 
-#: includes/class-pat-github-updates.php:163
+#: includes/class-pat-github-updates.php:167
 msgid "Private mode must be boolean."
 msgstr "Der Private-Modus muss ein boolescher Wert sein."
 
@@ -921,9 +989,17 @@ msgstr "Produktwebsite"
 msgid "Profile overview"
 msgstr "Profilübersicht"
 
+#: includes/class-pat-github-updates.php:197
+msgid "Public catalog callbacks require both providers and cannot be used in private mode."
+msgstr "Öffentliche Katalog-Callbacks benötigen beide Anbieter und können nicht im Private-Modus verwendet werden."
+
 #: includes/class-pat-admin.php:205
 msgid "Ready in three steps"
 msgstr "In drei Schritten startklar"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Recently updated"
+msgstr "Zuletzt aktualisiert"
 
 #: includes/class-pat-attribution.php:116
 msgid "Refresh assigned authors"
@@ -957,6 +1033,10 @@ msgstr "Release in Vorbereitung"
 msgid "Release must contain exactly the approved plugin directory."
 msgstr "Das Release muss genau das freigegebene Plugin-Verzeichnis enthalten."
 
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Remove filter: "
+msgstr "Filter entfernen: "
+
 #: includes/class-pat-admin.php:103
 msgid "Remove photo"
 msgstr "Foto entfernen"
@@ -986,6 +1066,10 @@ msgstr "Benötigt ein WordPress-Multisite-Netzwerk."
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Reset filters"
 msgstr "Filter zurücksetzen"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Reset view"
+msgstr "Ansicht zurücksetzen"
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Retrieve approved catalog updates online"
@@ -1031,13 +1115,17 @@ msgstr "Autoren suchen"
 msgid "Search this catalog"
 msgstr "Diesen Katalog durchsuchen"
 
-#: includes/class-pat-github-updates.php:183
+#: includes/class-pat-github-updates.php:187
 msgid "See the release on GitHub."
 msgstr "Sieh dir den Release auf GitHub an."
 
 #: includes/class-pat-tools.php:59
 msgid "Select a preview post"
 msgstr "Beitrag für die Vorschau auswählen"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Select and copy the text."
+msgstr "Text markieren und kopieren."
 
 #: includes/class-pat-admin.php:53
 msgid "Select at least one post type. Posts have been kept enabled."
@@ -1104,12 +1192,24 @@ msgid "Shows plugins whose platform and dependency requirements are met in this 
 msgstr "Zeigt Plugins, deren Plattform- und Abhängigkeitsanforderungen auf dieser Website oder im Netzwerk erfüllt sind. Ohne diesen Filter bleiben Plugins mit fehlenden Voraussetzungen sichtbar."
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Shuffle again"
+msgstr "Neu mischen"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Small plugins. Practical improvements."
 msgstr "Kleine Plugins. Konkrete Verbesserungen."
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Sort by"
+msgstr "Sortieren nach"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Source: GitHub"
 msgstr "Quelle: GitHub"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Standard"
+msgstr "Standard"
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Sun"
@@ -1133,11 +1233,15 @@ msgctxt "Taxonomy Singular Name"
 msgid "Author"
 msgstr "Autor"
 
-#: includes/class-pat-github-updates.php:107
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Technical information"
+msgstr "Technische Informationen"
+
+#: includes/class-pat-github-updates.php:111
 msgid "The GitHub package could not be prepared. The installed version has been kept."
 msgstr "Das GitHub-Paket konnte nicht vorbereitet werden. Die installierte Version wurde beibehalten."
 
-#: includes/class-pat-github-updates.php:106
+#: includes/class-pat-github-updates.php:110
 msgid "The GitHub package does not contain the Post Author Taxonomy plugin file."
 msgstr "Das GitHub-Paket enthält die Plugin-Datei von Post Author Taxonomy nicht."
 
@@ -1153,13 +1257,13 @@ msgstr "Die Aktion läuft noch. Bitte den Status erneut prüfen."
 msgid "The approved package could not be verified."
 msgstr "Das freigegebene Paket konnte nicht geprüft werden."
 
-#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+#: includes/class-pat-github-updates.php:201
 msgid "The approved release changed. Refresh updates first."
-msgstr "Das freigegebene Release hat sich geändert. Bitte zuerst die Updates aktualisieren."
+msgstr "Die freigegebene Version hat sich geändert. Suche zuerst erneut nach Updates."
 
-#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+#: includes/class-pat-github-updates.php:199
 msgid "The approved release could not be verified."
-msgstr "Der freigegebene Release konnte nicht geprüft werden."
+msgstr "Die freigegebene Version konnte nicht geprüft werden."
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "The catalog URL is not an allowed first-party HTTPS endpoint."
@@ -1193,15 +1297,15 @@ msgstr "Der Online-Katalog ist nicht erreichbar. Angezeigt wird der gespeicherte
 msgid "The online catalog source is not trusted."
 msgstr "Die Online-Katalogquelle ist nicht vertrauenswürdig."
 
-#: includes/class-pat-github-updates.php:129
+#: includes/class-pat-github-updates.php:133
 msgid "The package identity or version does not match a newer Post Author Taxonomy release."
 msgstr "Die Paketidentität oder Version entspricht keiner neueren Version von Post Author Taxonomy."
 
-#: includes/class-pat-github-updates.php:134
+#: includes/class-pat-github-updates.php:138
 msgid "The package version differs from the offered update. Please check for updates again."
 msgstr "Die Paketversion weicht vom angebotenen Update ab. Bitte prüfe erneut auf Updates."
 
-#: includes/class-pat-github-updates.php:167
+#: includes/class-pat-github-updates.php:171
 msgid "The plugin must be installed in a stable slug directory."
 msgstr "Das Plugin muss in einem Verzeichnis mit einem festen Slug installiert sein."
 
@@ -1209,11 +1313,11 @@ msgstr "Das Plugin muss in einem Verzeichnis mit einem festen Slug installiert s
 msgid "The preview uses your actual author data. Your theme or builder controls the final appearance. A current-archive author needs an author archive to render."
 msgstr "Die Vorschau nutzt deine tatsächlichen Autorendaten. Das endgültige Aussehen bestimmt dein Theme oder Builder. Der aktuelle Archivautor wird nur auf einem Autorenarchiv ausgegeben."
 
-#: includes/class-pat-github-updates.php:171
+#: includes/class-pat-github-updates.php:175
 msgid "The private update could not be authorized. Check the repository credentials and refresh updates."
 msgstr "Das private Update konnte nicht autorisiert werden. Prüfe die Repository-Zugangsdaten und suche erneut nach Updates."
 
-#: includes/class-pat-github-updates.php:175
+#: includes/class-pat-github-updates.php:179
 msgid "The private update download failed. Check credentials and try again."
 msgstr "Der Download des privaten Updates ist fehlgeschlagen. Prüfe die Zugangsdaten und versuche es erneut."
 
@@ -1233,7 +1337,7 @@ msgstr "Die Anfrage ist fehlgeschlagen. Bitte erneut versuchen."
 msgid "The requirements below describe the offered release."
 msgstr "Die folgenden Voraussetzungen beziehen sich auf den angebotenen Release."
 
-#: includes/class-pat-github-updates.php:105
+#: includes/class-pat-github-updates.php:109
 msgid "The update filesystem is unavailable. Please try again."
 msgstr "Das Dateisystem für das Update ist nicht verfügbar. Bitte versuche es erneut."
 
@@ -1241,17 +1345,21 @@ msgstr "Das Dateisystem für das Update ist nicht verfügbar. Bitte versuche es 
 msgid "The update has not been confirmed. You can try again."
 msgstr "Die Aktualisierung wurde nicht bestätigt. Du kannst es erneut versuchen."
 
-#: includes/class-pat-github-updates.php:122
+#: includes/class-pat-github-updates.php:126
 msgid "The update package could not be checked."
 msgstr "Das Update-Paket konnte nicht geprüft werden."
 
-#: includes/class-pat-github-updates.php:138
+#: includes/class-pat-github-updates.php:142
 msgid "The update package has missing or invalid WordPress/PHP requirements."
 msgstr "Die WordPress/PHP-Anforderungen im Update-Paket fehlen oder sind ungültig."
 
-#: includes/class-pat-github-updates.php:147
+#: includes/class-pat-github-updates.php:151
 msgid "The update package is incomplete. The installed plugin has been kept."
 msgstr "Das Update-Paket ist unvollständig. Das installierte Plugin wurde beibehalten."
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "These details contain component versions and catalog status, without credentials or site content."
+msgstr "Diese Angaben enthalten Komponentenversionen und den Katalogstatus, keine Zugangsdaten oder Website-Inhalte."
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "This catalog requires a newer Library."
@@ -1269,7 +1377,7 @@ msgstr "Dieses Release ist nicht mehr freigegeben."
 msgid "This release is not approved."
 msgstr "Dieses Release ist nicht freigegeben."
 
-#: includes/class-pat-github-updates.php:142
+#: includes/class-pat-github-updates.php:146
 msgid "This release requires a newer WordPress or PHP version. The installed version has been kept."
 msgstr "Diese Version benötigt eine neuere WordPress- oder PHP-Version. Die installierte Version wurde beibehalten."
 
@@ -1322,6 +1430,10 @@ msgstr "%1$s bitte auf Version %2$s oder neuer aktualisieren."
 #: includes/class-post-author-taxonomy.php:53
 msgid "Update Author"
 msgstr "Autor aktualisieren"
+
+#: includes/deckerweb-plugin-library/languages/de_DE.mo:1
+msgid "Update available"
+msgstr "Update verfügbar"
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 msgid "Update failed."

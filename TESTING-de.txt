@@ -1,23 +1,8 @@
-Post Author Taxonomy 1.4.0 — Prüfbericht vom 10. Oktober 2026
-
-Zielversion 1.4.0; Mindestanforderungen WordPress 6.7 / PHP 8.0 unverändert. Unveränderte deckerweb Library 0.9.0 und Updater 2.1.0.
-113 gezielte Host-Prüfungen (22 Kern, 17 Integration, 30 Wartung, 44 neue Funktionen) bestanden auf WordPress 6.7 und 7.1.3, jeweils mit PHP 8.1.29 und 8.4.5.
-22 Prüfungen bestanden in einer tatsächlichen isolierten Multisite, einschließlich Aktivierung, neuer Sites, Deaktivierung/Deinstallation und Erhalt der Beitragsreihenfolge/Rollen.
-Mischaktivierung älterer/neuerer Hosts in beiden Lade-Reihenfolgen geprüft. Ein zuerst geladener älterer gemeinsamer Updater bleibt Eigentum seines Hosts; die eigene Updatefunktion pausiert sicher mit gezieltem Hinweis.
-Native Installation des tatsächlichen ZIPs über 1.2.0 und 1.3.0 bestanden: Autoren, Zuordnungen, Metadaten und Einstellungen erhalten; Profil nach neuem Bootstrap funktionsfähig.
-69 Regressionstests des unveränderten Updaters bestanden unter PHP 8.1 und 8.4.
-Sechs tatsächliche Bricks-2.4.1-Integrationsprüfungen bestanden: Name, gemischter Inhalt, Profil, Bild-/Linkkontext und Auswahl der Tags. Das vorhandene Theme wurde nur in einer isolierten Kopie referenziert; Bricks-Code wird nicht mitgeliefert.
-
-Neue Funktionen geprüft: unabhängige Reihenfolge je Beitrag, entfernte/neue Zuordnungen, optionale Rollenanzeige/-filter, unbekannte Rollen, objektbezogene Rechte/Nonce, ungültiges JSON, native REST-Metaschemas, Revisionen/Wiederherstellung, schreibfreie AJAX-Vorschau/Aktualisierung, Ausschluss beliebiger Shortcodes, Tabellenhilfen und Bild-/Fremd-Tag-Verträge.
-24 Runtime-PHP-Dateien auf Syntax mit PHP 8.1/8.4 geprüft; Admin-JavaScript ebenso. Acht Host-Klassen und 78 Methodenverträge dokumentiert/geprüft. Vorhandene öffentliche Filter/Shortcodes behalten ihre Identität.
-349 vollständige Texte je deutscher Anredeform; englische Quellen. Sieben FAQ je Readme, 35 Fragen je vollständiger Sprachfassung; gemeinsame Quelle für Readmes/Historie/Wiki/Offline-Anleitungen und Glossar geprüft.
-Komponenten bytegleich zum veröffentlichten Original, Library-Manifest-Hashes geprüft. Tatsächliches ZIP mit 98 Quelldateien abgeglichen; Werkzeuge, Tests, Wiki-Quellen, Grafikvarianten, interne Berichte und historische Snippets ausgeschlossen.
-Freigegebene Collective-Grafiken: EN/DE 1280×640 für GitHub und proportionale WP-Zuschnitte 1544×500/772×250. Native SVG-Formen/Verlauf/Schriftpfade, Space Grotesk unter SIL OFL 1.1 mit Lizenzbeilage. Icons 128/256/512, transparent gerundete Ecken, Motivmittelpunkt 256/256 im 512er Export. Frühere Originale sowie alle Entwürfe/Revisionen außerhalb des Runtime-ZIPs erhalten.
-
-Browser: EN/DE/Sie-Texte, aktueller/fester Kontext und manuelle Beitrags-ID im Konfigurator, echte Vorschau/Rollenfilter, Kopiermeldung, native Editor-Reihenfolge/Rollen/Aktualisierung/Speichern/Neuladen, Rücksetzung der Speichermeldung, Diagnose-Reparatur/Bestätigung, Fotohilfen, Changelog-Tastaturbedienung und 390px ohne horizontalen Überlauf. Keine beobachteten JavaScript-Konsolenfehler. Kein Screenshot des geöffneten Changelog-Modals.
-Performance: acht abwechselnde lokale Messungen je Quelle; je fünf SQL-Abfragen, keine Admin-Assets im Frontend. Konfigurator-/Tabellenwerkzeuge nur im Admin; Bricks-Modul nur bei Bricks. Rollenlisten werden beim Rendern einer Gruppe gemeinsam gelesen. Lokale Messwerte sind Diagnose und keine Garantie produktiver Geschwindigkeit.
-Grenzen: isolierte SQLite-Installationen; kein produktives MySQL/MariaDB oder großer Netzwerk-Lasttest. PHP 8.0 als Laufzeit nicht verfügbar; kein FTP/SSH-/zukünftiges Live-Release-Update und keine vollständige kommerzielle Builder-Matrix. PHPCS/WPCS nicht verfügbar. ClassicPress nicht geprüft/unterstützt.
-
-Testaufrufe stehen in TESTING.txt. Nur isolierte Sites mit Administrator-ID 1 und gültigem Testbild verwenden; Deutsch/Sie müssen für den Core-Locale-Switcher verfügbar sein. Tests ändern Testbeiträge, Autoren, Einstellungen und Netzwerkdaten. Niemals produktiv ausführen.
-
-Nachprüfung 2026-10-10: WordPress-konformes Header-Ende unter Titel und Slogan ergänzt. Eigene Bestätigung und fremde Warnmeldung im Browser nach vollständigem Laden darunter; keine Meldung im Header und keine JavaScript-Fehler. Erneut 113 Host-Prüfungen in vier Kombinationen, 22 Multisite-Prüfungen und 69 Updater-Prüfungen je PHP bestanden. Release 1.4.0 lokal vorbereitet; nicht veröffentlicht.
+Post Author Taxonomy 1.4.1 — lokale Prüfung, 21. Oktober 2026
+WordPress mindestens 6.7 bleibt erhalten; PHP mindestens 8.1 für Updater 2.2.0 ausdrücklich bestätigt. Kanonische Library 1.1.0 und Updater 2.2.0 mit unveränderten Quellen/Hashes.
+113 Host-Prüfungen bestanden in vier Kombinationen: WordPress 6.7 und 7.1.3, jeweils PHP 8.1.29 und 8.4.5. Zusätzlich 22 Multisite-Prüfungen. Alte/neue Hosts in beiden Ladefolgen geprüft. Die 84 Regressions-/Sicherheits-/Provider-Prüfungen des Updaters bestanden unter PHP 8.1 und 8.4.
+Echtes natives Bulk-Update von 1.4.0 auf das vorbereitete ZIP erhält Autoren, Zuordnungen, Foto-/Website-Metadaten, Beitragsrollen/-reihenfolge und Einstellungen; Ausgabe nach neuem Bootstrap geprüft.
+Offizieller Plugin Check 2.1.0: alle stabilen statischen Prüfungen und fünf tatsächlich ausgeführte Laufzeitchecks, keine pauschalen Ausschlüsse. Statische Kanal-/Verzeichnisbefunde und manuell geprüfte Hinweise bleiben einzeln im internen Release-Abgleich dokumentiert; kein behauptetes Null-Befund-Ergebnis. Laufzeitchecks bestanden. Keine WordPress.org-Einreichung vorgesehen.
+Geschlossener Dialog trotz fremder Styles, natives Schließen, Tastatur/Escape/Fokusrückgabe, doppelte Scripts, überschriebene Instanzmethoden, fehlender Controller und Dokumentationslink bei Öffnungsfehler lokal geprüft. Keine Bilder des offenen Changelog-Modals.
+Frontend-Diagnose weiter fünf SQL-Abfragen, keine Admin-Assets oder externen HTTP-Aufrufe des Plugins; lokale Zeiten sind kein Produktivversprechen.
+Grenzen: isoliertes SQLite, kein produktiver MySQL-/MariaDB- oder Großnetzwerk-Lasttest, kein FTP-/SSH-Update und kein Live-GitHub-Download/Updatepfad in diesem Prüflauf. ClassicPress ohne Support oder Test.

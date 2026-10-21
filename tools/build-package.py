@@ -6,10 +6,10 @@ ROOT=Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser();parser.add_argument('destination');args=parser.parse_args()
 out=Path(args.destination).resolve();out.parent.mkdir(parents=True,exist_ok=True)
 files=[ROOT/f for f in ['post-author-taxonomy.php','uninstall.php','index.php','LICENSE','SECURITY.md','README.md','README-de.md','readme.txt','readme-de.txt']]
-files += [f for f in (ROOT/'includes').rglob('*') if f.is_file()]
+files += [f for f in (ROOT/'includes').rglob('*') if f.is_file() and f.name != 'messages.json']
 files += [f for f in (ROOT/'languages').iterdir() if f.suffix in ['.po','.mo','.php','.pot']]
-files += [f for f in (ROOT/'assets').iterdir() if f.is_file()]
-files += [f for f in (ROOT/'assets-github').iterdir() if f.is_file()]
+# These images are referenced by the local admin and WordPress updater interface.
+files += [ROOT/'assets'/name for name in ['admin.css','admin.js','icon.svg','icon-128x128.png','icon-256x256.png','banner-772x250.png','banner-1544x500.png','banner-de-772x250.png','banner-de-1544x500.png','SpaceGrotesk-OFL.txt']]
 files += [ROOT/'docs'/f for f in ['changelog.txt','changelog-de.txt','guide.html','guide-de.html','ASSETS.md','ASSETS-de.md','GLOSSARY.md','GLOSSARY-de.md']]
 for f in files:
     if not f.is_file():raise ValueError('Missing runtime file: '+str(f))

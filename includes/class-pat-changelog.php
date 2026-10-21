@@ -89,7 +89,7 @@ final class Changelog {
 			return;
 		}
 		$close = __( 'Close', 'post-author-taxonomy' );
-		echo '<dialog id="pat-document-changelog" class="pat-document-dialog" aria-labelledby="pat-document-changelog-title"><header class="pat-document-header"><h2 id="pat-document-changelog-title">Post Author Taxonomy · ' . esc_html__( 'Changelog', 'post-author-taxonomy' ) . '</h2><button type="button" class="button" data-pat-close autofocus>' . esc_html( $close ) . '</button></header><div class="pat-document-content" tabindex="0">';
+		echo '<dialog id="pat-document-changelog" class="pat-document-dialog" hidden aria-labelledby="pat-document-changelog-title"><header class="pat-document-header"><h2 id="pat-document-changelog-title">Post Author Taxonomy · ' . esc_html__( 'Changelog', 'post-author-taxonomy' ) . '</h2><form method="dialog"><button type="submit" class="button" data-pat-close autofocus>' . esc_html( $close ) . '</button></form></header><div class="pat-document-content" tabindex="0">';
 		echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- content() escapes every text node; only fixed heading, list and paragraph markup is emitted.
 		echo '</div><p class="pat-document-source"><a href="' . esc_url( self::url() ) . '">' . esc_html( self::is_german() ? 'docs/changelog-de.txt' : 'docs/changelog.txt' ) . '</a></p></dialog>';
 	}

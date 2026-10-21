@@ -30,6 +30,10 @@ final class GitHubUpdates {
 			add_action( 'network_admin_notices', array( $this, 'compatibility_notice' ) );
 			return;
 		}
+		$options = array( 'translate' => array( $this, 'translate' ) );
+		if ( defined( '\\Deckerweb\\GitHubReleaseUpdater\\V2\\Updater::SUPPORTS_CATALOG_PROVIDER' ) && function_exists( 'deckerweb_library_updater_options_v1' ) ) {
+			$options = array_merge( $options, deckerweb_library_updater_options_v1( PAT_PLUGIN_FILE, self::REPOSITORY ) );
+		}
 		try {
 			$updater = new \Deckerweb\GitHubReleaseUpdater\V2\Updater(
 				PAT_PLUGIN_FILE,
@@ -37,7 +41,7 @@ final class GitHubUpdates {
 				'Post Author Taxonomy',
 				__( 'Authors as a public taxonomy: multiple authors, local photos, profiles and flexible shortcodes for your builder or theme.', 'post-author-taxonomy' ),
 				$this->artwork(),
-				array( 'translate' => array( $this, 'translate' ) )
+				$options
 			);
 		} catch ( \InvalidArgumentException $error ) {
 			// An unsupported directory must not break the plugin interface.
@@ -158,32 +162,46 @@ final class GitHubUpdates {
 	 * @return string Localized message, or unchanged input for an unknown component message.
 	 */
 	public function translate( string $message ): string {
-		switch ( $message ) {
-			case 'Private mode must be boolean.':
-				return __( 'Private mode must be boolean.', 'post-author-taxonomy' );
-			case 'Invalid authentication provider.':
-				return __( 'Invalid authentication provider.', 'post-author-taxonomy' );
-			case 'The plugin must be installed in a stable slug directory.':
-				return __( 'The plugin must be installed in a stable slug directory.', 'post-author-taxonomy' );
-			case 'Invalid GitHub repository URL.':
-				return __( 'Invalid GitHub repository URL.', 'post-author-taxonomy' );
-			case 'The private update could not be authorized. Check the repository credentials and refresh updates.':
-				return __( 'The private update could not be authorized. Check the repository credentials and refresh updates.', 'post-author-taxonomy' );
-			case 'Could not create the update download file.':
-				return __( 'Could not create the update download file.', 'post-author-taxonomy' );
-			case 'The private update download failed. Check credentials and try again.':
-				return __( 'The private update download failed. Check credentials and try again.', 'post-author-taxonomy' );
-			case 'Could not access the update filesystem.':
-				return __( 'Could not access the update filesystem.', 'post-author-taxonomy' );
-			case 'GitHub release does not contain the plugin main file.':
-				return __( 'GitHub release does not contain the plugin main file.', 'post-author-taxonomy' );
-			case 'Could not prepare the GitHub release package.':
-				return __( 'Could not prepare the GitHub release package.', 'post-author-taxonomy' );
-			case 'See the release on GitHub.':
-				return __( 'See the release on GitHub.', 'post-author-taxonomy' );
-			default:
-				return $message;
-		}
+    switch ( $message ) {
+        case 'Private mode must be boolean.':
+            return __( 'Private mode must be boolean.', 'post-author-taxonomy' );
+        case 'Invalid authentication provider.':
+            return __( 'Invalid authentication provider.', 'post-author-taxonomy' );
+        case 'The plugin must be installed in a stable slug directory.':
+            return __( 'The plugin must be installed in a stable slug directory.', 'post-author-taxonomy' );
+        case 'Invalid GitHub repository URL.':
+            return __( 'Invalid GitHub repository URL.', 'post-author-taxonomy' );
+        case 'The private update could not be authorized. Check the repository credentials and refresh updates.':
+            return __( 'The private update could not be authorized. Check the repository credentials and refresh updates.', 'post-author-taxonomy' );
+        case 'Could not create the update download file.':
+            return __( 'Could not create the update download file.', 'post-author-taxonomy' );
+        case 'The private update download failed. Check credentials and try again.':
+            return __( 'The private update download failed. Check credentials and try again.', 'post-author-taxonomy' );
+        case 'Could not access the update filesystem.':
+            return __( 'Could not access the update filesystem.', 'post-author-taxonomy' );
+        case 'GitHub release does not contain the plugin main file.':
+            return __( 'GitHub release does not contain the plugin main file.', 'post-author-taxonomy' );
+        case 'Could not prepare the GitHub release package.':
+            return __( 'Could not prepare the GitHub release package.', 'post-author-taxonomy' );
+        case 'See the release on GitHub.':
+            return __( 'See the release on GitHub.', 'post-author-taxonomy' );
+        case 'Git Updater is active. If a deckerweb installation or update fails, temporarily deactivate Git Updater and retry. Reactivate it afterwards if other plugins or themes need it. Only leave it disabled when those extensions have another reliable update provider.':
+            return __( 'Git Updater is active. If a deckerweb installation or update fails, temporarily deactivate Git Updater and retry. Reactivate it afterwards if other plugins or themes need it. Only leave it disabled when those extensions have another reliable update provider.', 'post-author-taxonomy' );
+        case 'Manage installed plugins':
+            return __( 'Manage installed plugins', 'post-author-taxonomy' );
+        case 'Dismiss this notice':
+            return __( 'Dismiss this notice', 'post-author-taxonomy' );
+        case 'Permission denied.':
+            return __( 'Permission denied.', 'post-author-taxonomy' );
+        case 'Public catalog callbacks require both providers and cannot be used in private mode.':
+            return __( 'Public catalog callbacks require both providers and cannot be used in private mode.', 'post-author-taxonomy' );
+        case 'The approved release could not be verified.':
+            return __( 'The approved release could not be verified.', 'post-author-taxonomy' );
+        case 'The approved release changed. Refresh updates first.':
+            return __( 'The approved release changed. Refresh updates first.', 'post-author-taxonomy' );
+        default:
+            return $message;
+    }
 	}
 
 	/** Report a shared-class compatibility conflict only on relevant administrative screens. @return void */

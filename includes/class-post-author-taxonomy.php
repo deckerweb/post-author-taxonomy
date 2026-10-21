@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) || exit;
 if ( ! class_exists( 'DDW_Post_Author_Taxonomy' ) ) {
 /** Small, standalone taxonomy and rendering core, without frontend assets. */
 class DDW_Post_Author_Taxonomy {
-	public const VERSION = '1.4.0';
+	public const VERSION = '1.4.1';
 	public const TAXONOMY = 'pat-author';
 	public const DOMAIN = 'post-author-taxonomy';
 	/**
@@ -350,7 +350,7 @@ class DDW_Post_Author_Taxonomy {
 			$url = $this->term_url( $term, $this->link_mode( $atts['link'] ) );
 			$html .= '<' . $title_tag . ' class="pat-author-box__title">' . ( $url ? '<a href="' . $url . '">' . $text . '</a>' : $text ) . '</' . $title_tag . '>';
 		}
-		$description = wp_strip_all_tags( term_description( $term->term_id, self::TAXONOMY ) );
+		$description = wp_strip_all_tags( term_description( $term->term_id ) );
 		if ( '' !== trim( $description ) ) {
 			$html .= '<' . $content_tag . ' class="pat-author-box__content">' . esc_html( $description ) . '</' . $content_tag . '>';
 		}

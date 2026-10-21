@@ -14,8 +14,8 @@ if ( ! wp_attachment_is_image( $photo_id ) ) { throw new RuntimeException( 'Expl
 function pat_maintenance_check( $ok, $label ) { global $checks; if ( ! $ok ) { throw new RuntimeException( $label ); } echo "PASS $label\n"; ++$checks; }
 wp_set_current_user( 1 );
 $runtime = $GLOBALS['deckerweb_library_runtime_v1'] ?? null;
-pat_maintenance_check( is_object( $runtime ) && str_contains( get_class( $runtime ), 'V0_9_0' ), 'Library 0.9.0 elected in the host' );
-pat_maintenance_check( '2.1.0' === \Deckerweb\GitHubReleaseUpdater\V2\Updater::IMPLEMENTATION_VERSION, 'Canonical updater 2.1.0 loaded' );
+pat_maintenance_check( is_object( $runtime ) && str_contains( get_class( $runtime ), 'V1_1_0' ), 'Library 1.1.0 elected in the host' );
+pat_maintenance_check( '2.2.0' === \Deckerweb\GitHubReleaseUpdater\V2\Updater::IMPLEMENTATION_VERSION, 'Canonical updater 2.2.0 loaded' );
 $updates = new \Deckerweb\PostAuthorTaxonomy\GitHubUpdates();
 foreach ( array( 'de_DE', 'de_DE_formal' ) as $test_locale ) {
 	$switched = switch_to_locale( $test_locale );
@@ -29,7 +29,7 @@ foreach ( array( 'de_DE', 'de_DE_formal' ) as $test_locale ) {
 }
 wp_set_current_user( 1 );
 $html = \Deckerweb\PostAuthorTaxonomy\Changelog::content();
-pat_maintenance_check( 4 === substr_count( $html, '<h3>' ), 'All four available historical releases retained' );
+pat_maintenance_check( 5 === substr_count( $html, '<h3>' ), 'All five available historical releases retained' );
 $old = get_option( 'pat_settings', array() );
 update_option( 'pat_settings', array( 'post_types' => array( 'post', 'page' ), 'link' => 'none' ) );
 $core = new DDW_Post_Author_Taxonomy( false );
@@ -59,9 +59,9 @@ WP_Filesystem();
 $fixture = ABSPATH . 'pat-maintenance-update';
 $wp_filesystem->delete( $fixture, true );
 wp_mkdir_p( $fixture );
-$main = "<?php\n/*\nPlugin Name: Post Author Taxonomy\nVersion: 1.4.1\nUpdate URI: https://github.com/deckerweb/post-author-taxonomy\nRequires PHP: 8.0\nRequires at least: 6.7\n*/\nrequire_once __DIR__ . '/includes/required.php';\n";
+$main = "<?php\n/*\nPlugin Name: Post Author Taxonomy\nVersion: 1.4.2\nUpdate URI: https://github.com/deckerweb/post-author-taxonomy\nRequires PHP: 8.1\nRequires at least: 6.7\n*/\nrequire_once __DIR__ . '/includes/required.php';\n";
 file_put_contents( $fixture . '/post-author-taxonomy.php', $main );
-set_site_transient( 'update_plugins', (object) array( 'response' => array( plugin_basename( PAT_PLUGIN_FILE ) => (object) array( 'new_version' => '1.4.1' ) ) ) );
+set_site_transient( 'update_plugins', (object) array( 'response' => array( plugin_basename( PAT_PLUGIN_FILE ) => (object) array( 'new_version' => '1.4.2' ) ) ) );
 $bulk = new Plugin_Upgrader(); $bulk->bulk = true;
 $context = array( 'plugin' => plugin_basename( PAT_PLUGIN_FILE ) );
 pat_maintenance_check( is_wp_error( $updates->validate_source( $fixture, null, $bulk, $context ) ), 'Bulk update rejects missing required bootstrap includes' );
@@ -70,7 +70,7 @@ pat_maintenance_check( $fixture === $updates->validate_source( $fixture, null, $
 $context['action'] = 'install';
 pat_maintenance_check( $fixture === $updates->validate_source( $fixture, null, $bulk, $context ), 'Explicit non-update context left untouched' );
 $context = array( 'plugin' => plugin_basename( PAT_PLUGIN_FILE ), 'type' => 'plugin', 'action' => 'update' );
-file_put_contents( $fixture . '/post-author-taxonomy.php', str_replace( '1.4.1', '1.4.2', $main ) );
+file_put_contents( $fixture . '/post-author-taxonomy.php', str_replace( '1.4.2', '1.4.3', $main ) );
 pat_maintenance_check( is_wp_error( $updates->validate_source( $fixture, null, $bulk, $context ) ), 'Unexpected candidate version rejected before replacement' );
 $post_id = wp_insert_post( array( 'post_title' => 'Non-image fixture', 'post_status' => 'publish' ) );
 update_term_meta( $term['term_id'], 'pat_photo_id', $photo_id );

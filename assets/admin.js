@@ -1,3 +1,6 @@
+(() => {
+if (window.patAdminLoaded) return;
+window.patAdminLoaded = true;
 /* Local media, accessible dialogs and progressive clipboard helpers. */
 const patDialogOpeners = new WeakMap();
 const patMediaFrames = new WeakMap();
@@ -21,13 +24,6 @@ function patAnnounce(control, message) {
 }
 
 document.addEventListener('click', async (event) => {
-  const doc = event.target.closest('[data-pat-document]');
-  if (doc) {
-    const dialog = document.getElementById('pat-document-' + doc.dataset.patDocument);
-    if (dialog?.showModal) { event.preventDefault(); patDialogOpeners.set(dialog, doc); dialog.showModal(); }
-  }
-  const close = event.target.closest('[data-pat-close]');
-  if (close) close.closest('dialog').close();
   const copy = event.target.closest('.pat-copy');
   if (copy) {
     const original = copy.textContent;
@@ -95,9 +91,47 @@ if (window.jQuery) {
   });
 }
 
-document.querySelectorAll('.pat-document-dialog').forEach((dialog) => {
-  dialog.addEventListener('close', () => { const opener = patDialogOpeners.get(dialog); if (opener?.isConnected) opener.focus(); });
-});
+/** Guard the single local changelog controller against duplicate scripts and overridden instance methods. */
+(() => {
+  if (window.patDocumentController || typeof HTMLDialogElement === 'undefined') return;
+  const nativeOpen = HTMLDialogElement.prototype.showModal;
+  const nativeClose = HTMLDialogElement.prototype.close;
+  if (typeof nativeOpen !== 'function' || typeof nativeClose !== 'function') return;
+  window.patDocumentController = true;
+  for (const dialog of document.querySelectorAll('.pat-document-dialog')) {
+    dialog.addEventListener('close', () => {
+      dialog.hidden = true;
+      const opener = patDialogOpeners.get(dialog);
+      if (opener?.isConnected) opener.focus();
+    });
+    dialog.addEventListener('click', (event) => {
+      if (event.target !== dialog) return;
+      const box = dialog.getBoundingClientRect();
+      if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) nativeClose.call(dialog);
+    });
+  }
+  document.addEventListener('click', (event) => {
+    const close = event.target.closest('[data-pat-close]');
+    if (close?.closest('.pat-document-dialog')) {
+      nativeClose.call(close.closest('dialog'));
+      event.preventDefault();
+      return;
+    }
+    const link = event.target.closest('[data-pat-document]');
+    if (!link) return;
+    const dialog = document.getElementById('pat-document-' + link.dataset.patDocument);
+    if (!dialog) return;
+    try {
+      dialog.hidden = false;
+      if (!dialog.open) nativeOpen.call(dialog);
+      if (dialog.open) { patDialogOpeners.set(dialog, link); event.preventDefault(); }
+      else dialog.hidden = true;
+    } catch (_) {
+      dialog.hidden = true;
+      // Keep the original link navigation when opening fails.
+    }
+  }, true);
+})();
 
 const patSettingsForm = document.querySelector('.pat-settings-form');
 if (patSettingsForm) {
@@ -236,3 +270,5 @@ for (const panel of document.querySelectorAll('.pat-attribution')) {
   }
   updateRows(false);
 }
+
+})();

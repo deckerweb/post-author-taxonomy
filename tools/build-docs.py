@@ -116,16 +116,22 @@ for suffix,title in [('', 'Terminology'),('-de','Begriffsverzeichnis')]:
 # Navigation is also exported from the common content source.
 home='# Post Author Taxonomy · Documentation / Dokumentation\n\n'
 home+='![Post Author Taxonomy]('+BASE+'/raw/master/'+DATA['languages']['en']['banner']+')\n\n'
-home+='| English | Deutsch |\n| --- | --- |\n'
+home+='**Authors as tags. Designed in your builder. / Autoren wie Tags. Gestalte mit deinem Builder.**\n\nMultiple authors without user accounts, with flexible profiles and shortcodes. / Mehrere Autoren ohne Benutzerkonten, mit flexiblen Profilen und Shortcodes.\n\n| English | Deutsch |\n| --- | --- |\n'
 for name,en,de in [('','User guide','Anleitung'),('FAQ','FAQ by topic','Fragen nach Themen'),('Changelog','Changelog','Änderungsverlauf')]:
     url_en=page(name,'English') if name else WIKI+'English';url_de=page(name,'Deutsch') if name else WIKI+'Deutsch'
     home+='| ['+en+']('+url_en+') | ['+de+']('+url_de+') |\n'
 home+='\n[Download / Releases]('+BASE+'/releases/latest) · [Security / Sicherheit]('+BASE+'/security)\n\n© 2017–2026 David Decker – DECKERWEB · GPL v2 or later\n'
 (ROOT/'docs/wiki/Home.md').write_text(home)
-sidebar='**Post Author Taxonomy**\n\n[Home]('+WIKI+')\n'
+sidebar=''
 for language in ['English','Deutsch']:
-    sidebar+='\n**'+language+'**\n\n'
+    sidebar+='\n## '+language+'\n\n'
     for kind,label in [('', 'User guide' if language=='English' else 'Anleitung'),('FAQ','FAQ by topic' if language=='English' else 'Fragen nach Themen'),('Changelog','Changelog' if language=='English' else 'Änderungsverlauf')]:
         sidebar+='- ['+label+']('+(page(kind,language) if kind else WIKI+language)+')\n'
+    sidebar+='- ['+('Help and security' if language=='English' else 'Hilfe und Sicherheit')+']('+BASE+'/security/policy)\n'
 (ROOT/'docs/wiki/_Sidebar.md').write_text(sidebar)
+footer='**Post Author Taxonomy · Documentation / Dokumentation**\n\n'
+footer+='[Wiki home / Wiki-Startseite]('+WIKI+') · [Repository]('+BASE+') · [Downloads & Releases]('+BASE+'/releases)\n\n'
+footer+='[Help & bugs / Hilfe & Fehler]('+BASE+'/issues) · [Discussions / Austausch]('+BASE+'/discussions) · [Security / Sicherheit]('+BASE+'/security/policy)\n\n'
+footer+='© 2017–2026 David Decker – DECKERWEB.  \nPlugin: [GPL v2 or later / GPL v2 oder höher](https://www.gnu.org/licenses/gpl-2.0.html).\n'
+(ROOT/'docs/wiki/_Footer.md').write_text(footer)
 print('EN/DE readmes, '+str(len(DATA['languages']['en']['faq']))+' FAQ answers per language, history and local guides exported from docs/content.json.')

@@ -1,14 +1,20 @@
 # Changelog · Post Author Taxonomy
 
+### 1.4.1 — 2026-10-21
+
+- **Improved:** deckerweb Library 1.1.0 and updater 2.2.0 with approved catalog update support and complete German translations.
+- **Fixed:** changelog dialogs remain closed until opened and retain native close and documentation fallbacks.
+- **Misc:** requires PHP 8.1 or later; WordPress 6.7 remains supported.
+
 ### 1.4.0 — 2026-10-10
 
-- **Improved:** admin notices appear below the complete page header, keeping title and slogan together.
 - **New:** shortcode configurator with real-post preview and copy; per-post author order and optional editorial roles.
 - **New:** profile overview and individual shortcode copying in author management, local archive diagnostics and optional Bricks dynamic-data tags.
+- **Improved:** admin notices appear below the complete page header, keeping title and slogan together.
 - **Improved:** current-photo selection, accessible copy/photo feedback, unsaved-settings notice and structured localized changelog.
 - **Improved:** deckerweb Library 0.9.0, updater 2.1.0, synchronized bilingual documentation and complete German/formal German translations.
-- **Fixed:** REST image permission validation before profile changes; partial forms retain omitted profile fields; native bulk-update package validation.
 - **Improved:** site/network lifecycle and data-preserving uninstall; scoped admin work and conditional rewrite refresh.
+- **Fixed:** REST image permission validation before profile changes; partial forms retain omitted profile fields; native bulk-update package validation.
 - **Misc:** new Collective artwork with centered icon, native vector sources and licensed Space Grotesk glyph paths; existing data and minimum requirements retained.
 
 ### 1.3.0 — 2026-10-01

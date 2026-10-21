@@ -122,7 +122,7 @@ Authors, assignments, profile metadata and settings remain. Uninstall removes te
 
 ### Which WordPress and PHP versions are required?
 
-WordPress 6.7+ and PHP 8.0+. The minimum PHP version increased from 7.4 in version 1.2.0 because the bundled Library requires PHP 8.0. Functional tests used WordPress 6.7 and 7.1.2 with PHP 8.4.5.
+WordPress 6.7+ and PHP 8.1+. The minimum PHP version increased from 7.4 in version 1.2.0 because the bundled Library requires PHP 8.1. Functional tests used WordPress 6.7 and 7.1.2 with PHP 8.4.5.
 
 ### Is ClassicPress officially supported?
 
@@ -130,7 +130,7 @@ No. Compatibility is welcome but ClassicPress is not officially supported or tes
 
 ### What should I check when upgrading from 1.2.0?
 
-Author data, taxonomy key and extension hooks remain. Review custom label HTML and wrapper tags because output is now restricted. The after suffix is printed once. PHP 8.0 is required.
+Author data, taxonomy key and extension hooks remain. Review custom label HTML and wrapper tags because output is now restricted. The after suffix is printed once. PHP 8.1 is required.
 
 ### Can I activate it across a network?
 

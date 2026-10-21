@@ -4,7 +4,7 @@
 
 **Authors as tags. Designed in your builder.** A small WordPress plugin for multiple author attribution using the public `pat-author` taxonomy. Authors do not need WordPress user accounts.
 
-**Version:** 1.4.0 · **Requires:** WordPress 6.7+ / PHP 8.0+ · **License:** GPL v2 or later
+**Version:** 1.4.1 · **Requires:** WordPress 6.7+ / PHP 8.1+ · **License:** GPL v2 or later
 
 [Download](https://github.com/deckerweb/post-author-taxonomy/releases/latest) · [User guide](https://github.com/deckerweb/post-author-taxonomy/wiki/English) · [Deutsch](README-de.md)
 
@@ -150,9 +150,9 @@ New: `pat/taxonomy/post-types`, `pat/shortcode/author-boxes-defaults`, `pat/shor
 
 ## Updates and deckerweb Library
 
-The embedded **deckerweb Updater 2.1.0** supplies stable GitHub releases through regular WordPress plugin updates. This public plugin needs no GitHub token. Package identity, offered version, requirements and local bootstrap includes are checked before replacement, including bulk updates.
+The embedded **deckerweb Updater 2.2.0** supplies stable GitHub releases through regular WordPress plugin updates. This public plugin needs no GitHub token. Package identity, offered version, requirements and local bootstrap includes are checked before replacement, including bulk updates.
 
-The bundled **deckerweb Library 0.9.0** adds the deckerweb tab to Plugins → Add New. Several hosts elect one compatible runtime. Settings → deckerweb Library controls discovery, the optional online catalog and optional settings deletion when the final host is removed. The online catalog starts disabled; an existing opt-in is retained. Installations use explicitly approved packages with verified SHA256 digests; prerequisites are not automatically installed.
+The bundled **deckerweb Library 1.1.0** adds the deckerweb tab to Plugins → Add New. Several hosts elect one compatible runtime. Settings → deckerweb Library controls discovery, the optional online catalog and optional settings deletion when the final host is removed. The online catalog starts disabled; an existing opt-in is retained. Installations use explicitly approved packages with verified SHA256 digests; prerequisites are not automatically installed.
 
 Author photos stay in the local media library. The updater requests release metadata from api.github.com; packages use GitHub and its download infrastructure. The optional catalog contacts only its approved deckerweb source. External servers receive normal connection information such as IP address and HTTP client identification; author content and credentials are not sent. No telemetry or external avatar requests.
 
@@ -166,7 +166,7 @@ The historical snippet exports of published [version 1.3.0](https://github.com/d
 
 ## Compatibility notes for 1.2.0 users
 
-The taxonomy key, shortcodes, primary CSS classes and translated archive slug remain. The duplicate `after` output is fixed; invalid authors now produce no box. Limited label HTML and approved tags replace unrestricted markup. Existing custom labels using other HTML may need adaptation. Singular author boxes remain explicit except on taxonomy archives. PHP 8.0 is now required.
+The taxonomy key, shortcodes, primary CSS classes and translated archive slug remain. The duplicate `after` output is fixed; invalid authors now produce no box. Limited label HTML and approved tags replace unrestricted markup. Existing custom labels using other HTML may need adaptation. Singular author boxes remain explicit except on taxonomy archives. PHP 8.1 is now required.
 
 <a name="multisite-and-data"></a>
 
@@ -208,7 +208,7 @@ Authors, assignments, profile metadata and settings remain. Uninstall removes te
 
 **Which WordPress and PHP versions are required?**
 
-WordPress 6.7+ and PHP 8.0+. The minimum PHP version increased from 7.4 in version 1.2.0 because the bundled Library requires PHP 8.0. Functional tests used WordPress 6.7 and 7.1.2 with PHP 8.4.5.
+WordPress 6.7+ and PHP 8.1+. The minimum PHP version increased from 7.4 in version 1.2.0 because the bundled Library requires PHP 8.1. Functional tests used WordPress 6.7 and 7.1.2 with PHP 8.4.5.
 
 [All questions by topic](https://github.com/deckerweb/post-author-taxonomy/wiki/FAQ%E2%80%90English)
 
@@ -216,15 +216,21 @@ WordPress 6.7+ and PHP 8.0+. The minimum PHP version increased from 7.4 in versi
 
 ## Changelog
 
+### 1.4.1 — 2026-10-21
+
+- **Improved:** deckerweb Library 1.1.0 and updater 2.2.0 with approved catalog update support and complete German translations.
+- **Fixed:** changelog dialogs remain closed until opened and retain native close and documentation fallbacks.
+- **Misc:** requires PHP 8.1 or later; WordPress 6.7 remains supported.
+
 ### 1.4.0 — 2026-10-10
 
-- **Improved:** admin notices appear below the complete page header, keeping title and slogan together.
 - **New:** shortcode configurator with real-post preview and copy; per-post author order and optional editorial roles.
 - **New:** profile overview and individual shortcode copying in author management, local archive diagnostics and optional Bricks dynamic-data tags.
+- **Improved:** admin notices appear below the complete page header, keeping title and slogan together.
 - **Improved:** current-photo selection, accessible copy/photo feedback, unsaved-settings notice and structured localized changelog.
 - **Improved:** deckerweb Library 0.9.0, updater 2.1.0, synchronized bilingual documentation and complete German/formal German translations.
-- **Fixed:** REST image permission validation before profile changes; partial forms retain omitted profile fields; native bulk-update package validation.
 - **Improved:** site/network lifecycle and data-preserving uninstall; scoped admin work and conditional rewrite refresh.
+- **Fixed:** REST image permission validation before profile changes; partial forms retain omitted profile fields; native bulk-update package validation.
 - **Misc:** new Collective artwork with centered icon, native vector sources and licensed Space Grotesk glyph paths; existing data and minimum requirements retained.
 
 ### 1.3.0 — 2026-10-01

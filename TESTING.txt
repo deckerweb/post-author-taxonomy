@@ -1,29 +1,8 @@
-Post Author Taxonomy 1.4.0 — validation dated October 10, 2026
-
-Target header 1.4.0; minimum WordPress 6.7 / PHP 8.0 retained. Canonical deckerweb Library 0.9.0 and updater 2.1.0.
-113 targeted host assertions (22 core, 17 integration, 30 maintenance, 44 new-feature checks) passed on WordPress 6.7 and 7.1.3, each with PHP 8.1.29 and 8.4.5.
-22 assertions passed in an actual disposable Multisite network, including activation/new sites/deactivation/uninstall and preservation of post-local author order/roles.
-Mixed old/new hosts passed in both load orders. An older shared updater loaded first remains owned by its host; this host safely pauses its update integration with a scoped notice.
-Native installation of the actual ZIP over 1.2.0 and 1.3.0 passed, retaining terms, assignments, metadata and settings and rendering the upgraded profile on a fresh bootstrap.
-The canonical updater's 69 regression checks passed on PHP 8.1 and 8.4.
-Six real Bricks 2.4.1 integration assertions passed: native name/mixed content/profile/image/link rendering and picker entries. The existing theme was referenced only in a disposable test clone; no Bricks code is bundled.
-
-New-feature coverage includes independent post ordering, stale/new assignments, optional role display/filtering, unknown role handling, per-post nonce/object permissions, invalid JSON, native metadata REST schema, native revision persistence/restore, read-only AJAX preview/refresh, arbitrary-tag rejection, table helpers and image/foreign-tag contracts.
-All 24 runtime PHP files parsed on PHP 8.1/8.4; admin JavaScript syntax passed. Eight host classes and 78 method documentation contracts checked. Existing public hook/shortcode identities retained.
-349 complete messages per German address form; English sources. Seven FAQs per readme, 35 per full language edition; common-source readmes/history/wiki/offline guides and glossary checked.
-Canonical component byte equality and Library manifest hashes checked. Actual 98-file ZIP matched sources and excluded tools/tests/wiki/alternative designs/internal reports/historical snippets.
-Approved Collective graphics: EN/DE GitHub 1280×640 and proportional WP crops 1544×500/772×250; native SVG shapes/gradient/glyph paths, Space Grotesk SIL OFL 1.1 license included. Icons 128/256/512, transparent rounded corners, foreground bounds centered at 256/256 in the 512 export. Earlier originals and all alternatives/revisions retained outside the runtime ZIP.
-
-Browser: EN/DE/formal plugin text, configurator current/fixed contexts and manual post ID, real-data preview and role filter, copy feedback, native editor row moves/role changes/refresh/save/reload, save-feedback reset, diagnostic repair/confirmation, photo helpers, changelog keyboard fallback, mobile width 390px without horizontal overflow. No JavaScript console errors observed. No screenshot of the open changelog modal.
-Frontend diagnostics: eight interleaved local samples per source; five SQL queries each and no admin assets. Configurator/table tools load only in admin; the Bricks adapter loads only with Bricks. Role maps are reused within group rendering rather than scanned per author. Measurements are diagnostic and do not guarantee production speed.
-Limits: disposable SQLite installations; no production MySQL/MariaDB or large-network load test, PHP 8.0 runtime unavailable, no FTP/SSH/future live release update or full commercial builder matrix. PHPCS/WPCS unavailable. ClassicPress not tested/supported.
-
-Run only on disposable sites with administrator ID 1 and a valid local test image:
-PAT_TEST_DISPOSABLE=yes PAT_TEST_ROOT=/absolute/site php tests/wordpress.php
-PAT_TEST_DISPOSABLE=yes PAT_TEST_ROOT=/absolute/site PAT_TEST_PHOTO_ID=IMAGE_ID php tests/integration.php
-PAT_TEST_DISPOSABLE=yes PAT_TEST_ROOT=/absolute/site PAT_TEST_PHOTO_ID=IMAGE_ID php tests/maintenance.php
-PAT_TEST_DISPOSABLE=yes PAT_TEST_ROOT=/absolute/site PAT_TEST_PHOTO_ID=IMAGE_ID php tests/features-140.php
-PAT_TEST_DISPOSABLE=yes PAT_TEST_ROOT=/absolute/network/site php tests/multisite.php
-Locale fixtures must enable German/formal German for Core. Tests create/change disposable posts/terms/settings/network data; never run them against production.
-
-Header notice placement: own and third-party notices below the complete title/slogan block; browser verified.
+Post Author Taxonomy 1.4.1 — local validation, October 21, 2026
+WordPress minimum 6.7 retained; PHP minimum 8.1 confirmed for updater 2.2.0. Canonical Library 1.1.0 and updater 2.2.0, unchanged source hashes.
+113 host assertions passed in four combinations: WordPress 6.7 and 7.1.3, each with PHP 8.1.29 and 8.4.5. 22 additional Multisite assertions passed. Mixed legacy/current hosts passed in both load orders. The updater's 84 regression/security/provider checks passed under PHP 8.1 and 8.4.
+Actual native bulk update from 1.4.0 to the prepared ZIP retained author terms, assignments, local photo and website metadata, per-post roles/order and settings; fresh-bootstrap rendering passed.
+Official Plugin Check 2.1.0: complete stable static checks plus five actual runtime checks, no global exclusions. Static directory/channel and manually reviewed notices remain documented individually in the internal release review; this is not a claim of zero PCP findings. Runtime checks passed. No WordPress.org submission is planned.
+Closed-dialog styling, native close, keyboard/Escape/focus return, duplicate script loading, overridden instance methods, missing controller and failed-open documentation fallback were checked locally. No open-modal screenshots.
+Frontend diagnostic samples retained five SQL queries, no plugin admin assets or external HTTP calls; local timings are not a production speed guarantee.
+Test limits: disposable SQLite, no production MySQL/MariaDB or large-network load, no FTP/SSH update, live GitHub download/update was not part of this validation run. ClassicPress is not supported or tested.

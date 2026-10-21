@@ -4,7 +4,7 @@
 
 **Autoren wie Tags. Gestalte mit deinem Builder.** Ein kleines WordPress-Plugin für mehrere Autorenangaben über die öffentliche Taxonomie `pat-author`. Autoren benötigen kein WordPress-Benutzerkonto.
 
-**Version:** 1.4.0 · **Voraussetzungen:** WordPress 6.7+ / PHP 8.0+ · **Lizenz:** GPL v2 or later
+**Version:** 1.4.1 · **Voraussetzungen:** WordPress 6.7+ / PHP 8.1+ · **Lizenz:** GPL v2 or later
 
 [Download](https://github.com/deckerweb/post-author-taxonomy/releases/latest) · [Anleitung](https://github.com/deckerweb/post-author-taxonomy/wiki/Deutsch) · [English](README.md)
 
@@ -150,9 +150,9 @@ Neu: `pat/taxonomy/post-types`, `pat/shortcode/author-boxes-defaults`, `pat/shor
 
 ## Updates und deckerweb Library
 
-Der integrierte **deckerweb Updater 2.1.0** liefert stabile GitHub-Versionen über reguläre WordPress-Plugin-Updates. Das Plugin benötigt keinen GitHub-Token. Paketidentität, Angebotsversion, Voraussetzungen und lokale Bootstrap-Dateien werden vor dem Austausch geprüft, auch bei Sammelupdates.
+Der integrierte **deckerweb Updater 2.2.0** liefert stabile GitHub-Versionen über reguläre WordPress-Plugin-Updates. Das Plugin benötigt keinen GitHub-Token. Paketidentität, Angebotsversion, Voraussetzungen und lokale Bootstrap-Dateien werden vor dem Austausch geprüft, auch bei Sammelupdates.
 
-Die eingebundene **deckerweb Library 0.9.0** ergänzt den deckerweb-Tab unter Plugins → Installieren. Mehrere Hosts verwenden eine gemeinsame kompatible Laufzeit. Einstellungen → deckerweb Library verwaltet Anzeige, freiwilligen Online-Katalog und die optionale Löschung ihrer Einstellungen beim letzten Host. Der Online-Katalog ist zunächst ausgeschaltet. Ein bestehender Online-Katalog-Schalter bleibt erhalten. Installationen verwenden ausdrücklich freigegebene Pakete und geprüfte SHA256-Prüfsummen; Voraussetzungen werden nicht automatisch installiert.
+Die eingebundene **deckerweb Library 1.1.0** ergänzt den deckerweb-Tab unter Plugins → Installieren. Mehrere Hosts verwenden eine gemeinsame kompatible Laufzeit. Einstellungen → deckerweb Library verwaltet Anzeige, freiwilligen Online-Katalog und die optionale Löschung ihrer Einstellungen beim letzten Host. Der Online-Katalog ist zunächst ausgeschaltet. Ein bestehender Online-Katalog-Schalter bleibt erhalten. Installationen verwenden ausdrücklich freigegebene Pakete und geprüfte SHA256-Prüfsummen; Voraussetzungen werden nicht automatisch installiert.
 
 Autorenfotos liegen lokal in der Mediathek. Der Updater fragt api.github.com nach Release-Metadaten; Downloads erfolgen über GitHub und dessen Download-Infrastruktur. Der freiwillige Katalog fragt nur die freigegebene deckerweb-Quelle ab. Externe Server erhalten die üblichen Verbindungsdaten, etwa IP-Adresse und HTTP-Clientkennung; Autoreninhalte und Zugangsdaten werden nicht übertragen. Keine Telemetrie und keine externen Avatar-Anfragen.
 
@@ -166,7 +166,7 @@ Die historischen Snippet-Dateien der veröffentlichten [Version 1.3.0](https://g
 
 ## Hinweise beim Wechsel von 1.2.0
 
-Taxonomie-Key, Shortcodes, zentrale CSS-Klassen und übersetzter Archiv-Slug bleiben erhalten. Doppelte `after`-Ausgabe ist korrigiert; ungültige Autoren erzeugen keine Box. Begrenztes Label-HTML und erlaubte Elemente ersetzen uneingeschränktes Markup. Bisherige Labels mit anderem HTML müssen gegebenenfalls angepasst werden. Einzelne Boxen bleiben explizit, außer auf Taxonomie-Archiven. PHP 8.0 wird jetzt benötigt.
+Taxonomie-Key, Shortcodes, zentrale CSS-Klassen und übersetzter Archiv-Slug bleiben erhalten. Doppelte `after`-Ausgabe ist korrigiert; ungültige Autoren erzeugen keine Box. Begrenztes Label-HTML und erlaubte Elemente ersetzen uneingeschränktes Markup. Bisherige Labels mit anderem HTML müssen gegebenenfalls angepasst werden. Einzelne Boxen bleiben explizit, außer auf Taxonomie-Archiven. PHP 8.1 wird jetzt benötigt.
 
 <a name="multisite-und-datenhaltung"></a>
 
@@ -208,7 +208,7 @@ Autoren, Zuweisungen, Profilinformationen und Einstellungen bleiben erhalten. Te
 
 **Welche WordPress- und PHP-Versionen sind nötig?**
 
-WordPress 6.7+ und PHP 8.0+. Die PHP-Mindestversion steigt gegenüber 1.2.0 von 7.4 auf 8.0, weil die Library PHP 8.0 benötigt. Funktionstests liefen mit WordPress 6.7 und 7.1.2 unter PHP 8.4.5.
+WordPress 6.7+ und PHP 8.1+. Die PHP-Mindestversion steigt gegenüber 1.2.0 von 7.4 auf 8.0, weil die Library PHP 8.1 benötigt. Funktionstests liefen mit WordPress 6.7 und 7.1.2 unter PHP 8.4.5.
 
 [Alle Fragen nach Themen](https://github.com/deckerweb/post-author-taxonomy/wiki/FAQ%E2%80%90Deutsch)
 
@@ -216,15 +216,21 @@ WordPress 6.7+ und PHP 8.0+. Die PHP-Mindestversion steigt gegenüber 1.2.0 von 
 
 ## Änderungsverlauf
 
+### 1.4.1 — 2026-10-21
+
+- **Verbessert:** deckerweb Library 1.1.0 und Updater 2.2.0 mit freigegebenen Katalog-Updates und vollständigen deutschen Übersetzungen.
+- **Behoben:** Changelog-Dialoge bleiben bis zum Öffnen geschlossen; natives Schließen und Dokumentationslinks bleiben als Rückfall verfügbar.
+- **Sonstiges:** benötigt PHP 8.1 oder höher; WordPress 6.7 wird weiterhin unterstützt.
+
 ### 1.4.0 — 2026-10-10
 
-- **Verbessert:** Admin-Meldungen erscheinen unter dem vollständigen Seitenkopf; Titel und Slogan bleiben zusammen.
 - **Neu:** Shortcode-Konfigurator mit echter Beitragsvorschau und Kopieren; Autorenreihenfolge je Beitrag und optionale redaktionelle Rollen.
 - **Neu:** Profilübersicht und individuelles Shortcode-Kopieren in der Autorenverwaltung, lokale Archivdiagnose und optionale dynamische Bricks-Tags.
+- **Verbessert:** Admin-Meldungen erscheinen unter dem vollständigen Seitenkopf; Titel und Slogan bleiben zusammen.
 - **Verbessert:** Vorauswahl des aktuellen Fotos, zugängliche Kopier-/Fotomeldungen, Hinweis auf ungespeicherte Einstellungen und strukturierter übersetzter Changelog.
 - **Verbessert:** deckerweb Library 0.9.0, Updater 2.1.0, synchronisierte zweisprachige Dokumentation und vollständige deutsche Du-/Sie-Übersetzungen.
-- **Behoben:** Bildrechteprüfung über REST vor Profiländerungen; teilweise übermittelte Formulare erhalten fehlende Profilfelder; Paketprüfung bei nativen Stapel-Updates.
 - **Verbessert:** Site-/Netzwerk-Lebenszyklus und datenbewahrende Deinstallation; gezielte Admin-Arbeit und bedarfsgerechte Archivregeln.
+- **Behoben:** Bildrechteprüfung über REST vor Profiländerungen; teilweise übermittelte Formulare erhalten fehlende Profilfelder; Paketprüfung bei nativen Stapel-Updates.
 - **Sonstiges:** neue Collective-Grafiken mit zentriertem Icon, nativen Vektorquellen und lizenzierten Schriftpfaden aus Space Grotesk; Daten und Mindestanforderungen erhalten.
 
 ### 1.3.0 — 2026-10-01

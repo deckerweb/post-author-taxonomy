@@ -2,6 +2,10 @@
 
 ![Post Author Taxonomy](https://github.com/deckerweb/post-author-taxonomy/raw/master/assets-github/banner.png)
 
+**Authors as tags. Designed in your builder. / Autoren wie Tags. Gestalte mit deinem Builder.**
+
+Multiple authors without user accounts, with flexible profiles and shortcodes. / Mehrere Autoren ohne Benutzerkonten, mit flexiblen Profilen und Shortcodes.
+
 | English | Deutsch |
 | --- | --- |
 | [User guide](https://github.com/deckerweb/post-author-taxonomy/wiki/English) | [Anleitung](https://github.com/deckerweb/post-author-taxonomy/wiki/Deutsch) |

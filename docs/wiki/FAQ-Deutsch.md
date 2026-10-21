@@ -122,7 +122,7 @@ Autoren, Zuweisungen, Profilinformationen und Einstellungen bleiben erhalten. Te
 
 ### Welche WordPress- und PHP-Versionen sind nötig?
 
-WordPress 6.7+ und PHP 8.0+. Die PHP-Mindestversion steigt gegenüber 1.2.0 von 7.4 auf 8.0, weil die Library PHP 8.0 benötigt. Funktionstests liefen mit WordPress 6.7 und 7.1.2 unter PHP 8.4.5.
+WordPress 6.7+ und PHP 8.1+. Die PHP-Mindestversion steigt gegenüber 1.2.0 von 7.4 auf 8.0, weil die Library PHP 8.1 benötigt. Funktionstests liefen mit WordPress 6.7 und 7.1.2 unter PHP 8.4.5.
 
 ### Wird ClassicPress offiziell unterstützt?
 
@@ -130,7 +130,7 @@ Nein. Kompatibilität ist willkommen, aber ClassicPress wird nicht offiziell unt
 
 ### Was muss ich beim Update von 1.2.0 prüfen?
 
-Autorendaten, Taxonomie-Schlüssel und Erweiterungsfilter bleiben erhalten. Prüfe eigene HTML-Beschriftungen und Wrapper, da die Ausgabe jetzt begrenzt ist. Der after-Nachtext erscheint einmal. PHP 8.0 ist erforderlich.
+Autorendaten, Taxonomie-Schlüssel und Erweiterungsfilter bleiben erhalten. Prüfe eigene HTML-Beschriftungen und Wrapper, da die Ausgabe jetzt begrenzt ist. Der after-Nachtext erscheint einmal. PHP 8.1 ist erforderlich.
 
 ### Kann ich das Plugin im Netzwerk aktivieren?
 

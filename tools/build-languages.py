@@ -19,7 +19,7 @@ for key in component:
         parts=key.split('\x04',1);entries.setdefault(key,(parts[-1],parts[0] if len(parts)==2 else None,'includes/deckerweb-plugin-library/languages/de_DE.mo',1))
 for locale in ['de_DE','de_DE_formal','POT']:
     q=lambda s:json.dumps(s,ensure_ascii=False)
-    header='Project-Id-Version: Post Author Taxonomy 1.4.1\nPOT-Creation-Date: 2026-10-21 12:00+0200\nPO-Revision-Date: 2026-10-21 12:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: '+('' if locale=='POT' else locale)+'\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n'
+    header='Project-Id-Version: Post Author Taxonomy 1.4.2\nPOT-Creation-Date: 2026-10-22 12:00+0200\nPO-Revision-Date: 2026-10-22 12:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: '+('' if locale=='POT' else locale)+'\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n'
     lines=['msgid ""','msgstr '+q(header),''];messages={}
     for key,(message,context,file,line) in sorted(entries.items()):
         value='' if locale=='POT' else DICTIONARY[locale].get(key,'')

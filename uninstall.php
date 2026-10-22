@@ -40,14 +40,23 @@ defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 		$pat_clear_site();
 	}
 	// WordPress stores updater metadata as site transients: network-scoped on Multisite.
-	$pat_cache = 'ddw_ghru_' . substr( md5( 'https://github.com/deckerweb/post-author-taxonomy' ), 0, 24 );
-	if ( is_multisite() ) {
-		foreach ( get_networks( array( 'fields' => 'ids', 'number' => 0 ) ) as $pat_network_id ) {
-			delete_network_option( (int) $pat_network_id, '_site_transient_' . $pat_cache );
-			delete_network_option( (int) $pat_network_id, '_site_transient_timeout_' . $pat_cache );
+	$pat_updater_class = require __DIR__ . '/includes/deckerweb-github-release-updater-v2.php';
+	$pat_repository = 'https://github.com/deckerweb/post-author-taxonomy';
+	$pat_caches = array(
+		'ddw_ghru_' . substr( md5( $pat_repository ), 0, 24 ),
+		'ddw_ghru_' . substr( md5( $pat_repository . '|' . $pat_updater_class::IMPLEMENTATION_VERSION ), 0, 24 ),
+	);
+	foreach ( $pat_caches as $pat_cache_base ) {
+		foreach ( array( $pat_cache_base, $pat_cache_base . '_private' ) as $pat_cache ) {
+			if ( is_multisite() ) {
+				foreach ( get_networks( array( 'fields' => 'ids', 'number' => 0 ) ) as $pat_network_id ) {
+					delete_network_option( (int) $pat_network_id, '_site_transient_' . $pat_cache );
+					delete_network_option( (int) $pat_network_id, '_site_transient_timeout_' . $pat_cache );
+				}
+			} else {
+				delete_site_transient( $pat_cache );
+			}
 		}
-	} else {
-		delete_site_transient( $pat_cache );
 	}
 	require_once __DIR__ . '/includes/deckerweb-plugin-library/lifecycle.php';
 	deckerweb_library_uninstall_v3( __DIR__ . '/post-author-taxonomy.php' );

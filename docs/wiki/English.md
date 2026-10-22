@@ -4,7 +4,7 @@
 
 **Authors as tags. Designed in your builder.** A small WordPress plugin for multiple author attribution using the public `pat-author` taxonomy. Authors do not need WordPress user accounts.
 
-**Version:** 1.4.1 · **Requires:** WordPress 6.7+ / PHP 8.1+ · **License:** GPL v2 or later
+**Version:** 1.4.2 · **Requires:** WordPress 6.7+ / PHP 8.1+ · **License:** GPL v2 or later
 
 [Download](https://github.com/deckerweb/post-author-taxonomy/releases/latest) · [User guide](https://github.com/deckerweb/post-author-taxonomy/wiki/English) · [Deutsch](https://github.com/deckerweb/post-author-taxonomy/wiki/Deutsch)
 
@@ -215,6 +215,11 @@ WordPress 6.7+ and PHP 8.1+. The minimum PHP version increased from 7.4 in versi
 <a name="changelog"></a>
 
 ## Changelog
+
+### 1.4.2 — 2026-10-22
+
+- **Fixed:** the bundled updater 2.2.1 remains active when another plugin loads an older updater first.
+- **Improved:** release caches are isolated by updater version and repository access mode.
 
 ### 1.4.1 — 2026-10-21
 

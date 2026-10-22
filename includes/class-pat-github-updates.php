@@ -11,6 +11,9 @@ defined( 'ABSPATH' ) || exit;
 
 /** Configure shared update artwork and isolate plugin-specific safeguards. */
 final class GitHubUpdates {
+	/** Selected pinned class for local diagnostics; no network requests. @var string */
+	public static string $implementation_class = '';
+
 	/** Public release repository; never taken from user input. */
 	private const REPOSITORY = 'https://github.com/deckerweb/post-author-taxonomy';
 
@@ -22,20 +25,18 @@ final class GitHubUpdates {
 	/** Load the shared versioned class once, including beside other deckerweb plugins. @return void */
 	public function boot(): void {
 		if ( ! is_admin() && ! ( defined( 'DOING_CRON' ) && DOING_CRON ) && ! ( defined( 'WP_CLI' ) && WP_CLI ) ) { return; }
-		if ( ! class_exists( '\Deckerweb\GitHubReleaseUpdater\V2\Updater' ) ) {
-			require_once PAT_PLUGIN_DIR . 'includes/deckerweb-github-release-updater-v2.php';
-		}
-		if ( ! defined( '\\Deckerweb\\GitHubReleaseUpdater\\V2\\Updater::SUPPORTS_HOST_TRANSLATIONS' ) ) {
+		$updater_class = require PAT_PLUGIN_DIR . 'includes/deckerweb-github-release-updater-v2.php';
+		if ( ! is_string( $updater_class ) || ! class_exists( $updater_class, false ) || ! defined( $updater_class . '::SUPPORTS_HOST_TRANSLATIONS' ) || ! constant( $updater_class . '::SUPPORTS_HOST_TRANSLATIONS' ) ) {
 			add_action( 'admin_notices', array( $this, 'compatibility_notice' ) );
 			add_action( 'network_admin_notices', array( $this, 'compatibility_notice' ) );
 			return;
 		}
 		$options = array( 'translate' => array( $this, 'translate' ) );
-		if ( defined( '\\Deckerweb\\GitHubReleaseUpdater\\V2\\Updater::SUPPORTS_CATALOG_PROVIDER' ) && function_exists( 'deckerweb_library_updater_options_v1' ) ) {
+		if ( defined( $updater_class . '::SUPPORTS_CATALOG_PROVIDER' ) && constant( $updater_class . '::SUPPORTS_CATALOG_PROVIDER' ) && function_exists( 'deckerweb_library_updater_options_v1' ) ) {
 			$options = array_merge( $options, deckerweb_library_updater_options_v1( PAT_PLUGIN_FILE, self::REPOSITORY ) );
 		}
 		try {
-			$updater = new \Deckerweb\GitHubReleaseUpdater\V2\Updater(
+			$updater = new $updater_class(
 				PAT_PLUGIN_FILE,
 				self::REPOSITORY,
 				'Post Author Taxonomy',
@@ -47,6 +48,7 @@ final class GitHubUpdates {
 			// An unsupported directory must not break the plugin interface.
 			return;
 		}
+		self::$implementation_class = $updater_class;
 		$updater->register();
 		add_filter( 'http_request_args', array( $this, 'request_limits' ), 20, 2 );
 		add_filter( 'upgrader_source_selection', array( $this, 'validate_source' ), 30, 4 );

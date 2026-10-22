@@ -15,7 +15,8 @@ function pat_maintenance_check( $ok, $label ) { global $checks; if ( ! $ok ) { t
 wp_set_current_user( 1 );
 $runtime = $GLOBALS['deckerweb_library_runtime_v1'] ?? null;
 pat_maintenance_check( is_object( $runtime ) && str_contains( get_class( $runtime ), 'V1_1_0' ), 'Library 1.1.0 elected in the host' );
-pat_maintenance_check( '2.2.0' === \Deckerweb\GitHubReleaseUpdater\V2\Updater::IMPLEMENTATION_VERSION, 'Canonical updater 2.2.0 loaded' );
+$updater_class = \Deckerweb\PostAuthorTaxonomy\GitHubUpdates::$implementation_class;
+pat_maintenance_check( '2.2.1' === $updater_class::IMPLEMENTATION_VERSION, 'Canonical updater 2.2.1 loaded' );
 $updates = new \Deckerweb\PostAuthorTaxonomy\GitHubUpdates();
 foreach ( array( 'de_DE', 'de_DE_formal' ) as $test_locale ) {
 	$switched = switch_to_locale( $test_locale );
@@ -29,7 +30,7 @@ foreach ( array( 'de_DE', 'de_DE_formal' ) as $test_locale ) {
 }
 wp_set_current_user( 1 );
 $html = \Deckerweb\PostAuthorTaxonomy\Changelog::content();
-pat_maintenance_check( 5 === substr_count( $html, '<h3>' ), 'All five available historical releases retained' );
+pat_maintenance_check( 6 === substr_count( $html, '<h3>' ), 'All six available historical releases retained' );
 $old = get_option( 'pat_settings', array() );
 update_option( 'pat_settings', array( 'post_types' => array( 'post', 'page' ), 'link' => 'none' ) );
 $core = new DDW_Post_Author_Taxonomy( false );

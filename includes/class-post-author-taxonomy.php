@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) || exit;
 if ( ! class_exists( 'DDW_Post_Author_Taxonomy' ) ) {
 /** Small, standalone taxonomy and rendering core, without frontend assets. */
 class DDW_Post_Author_Taxonomy {
-	public const VERSION = '1.4.1';
+	public const VERSION = '1.4.2';
 	public const TAXONOMY = 'pat-author';
 	public const DOMAIN = 'post-author-taxonomy';
 	/**

@@ -3,7 +3,7 @@
  * Plugin Name: Post Author Taxonomy
  * Plugin URI: https://github.com/deckerweb/post-author-taxonomy
  * Description: Authors as a public taxonomy: multiple authors, local photos, profiles and flexible shortcodes for your builder or theme.
- * Version: 1.4.1
+ * Version: 1.4.2
  * Requires at least: 6.7
  * Requires PHP: 8.1
  * Author: David Decker – DECKERWEB

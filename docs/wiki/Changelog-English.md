@@ -1,5 +1,10 @@
 # Changelog · Post Author Taxonomy
 
+### 1.4.2 — 2026-10-22
+
+- **Fixed:** the bundled updater 2.2.1 remains active when another plugin loads an older updater first.
+- **Improved:** release caches are isolated by updater version and repository access mode.
+
 ### 1.4.1 — 2026-10-21
 
 - **Improved:** deckerweb Library 1.1.0 and updater 2.2.0 with approved catalog update support and complete German translations.

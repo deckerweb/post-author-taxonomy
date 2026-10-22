@@ -4,7 +4,7 @@ Tags: authors, taxonomy, multiple authors, guest authors
 Requires at least: 6.7
 Tested up to: 7.1.3
 Requires PHP: 8.1
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Autoren als öffentliche Taxonomie: mehrere Autoren, lokale Profile und flexible
 
 Autoren wie Tags. Gestalte mit deinem Builder. Ein kleines WordPress-Plugin für mehrere Autorenangaben über die öffentliche Taxonomie `pat-author`. Autoren benötigen kein WordPress-Benutzerkonto.
 
-Version: 1.4.1 · Voraussetzungen: WordPress 6.7+ / PHP 8.1+ · Lizenz: GPL v2 or later
+Version: 1.4.2 · Voraussetzungen: WordPress 6.7+ / PHP 8.1+ · Lizenz: GPL v2 or later
 
 Download (https://github.com/deckerweb/post-author-taxonomy/releases/latest) · Anleitung (https://github.com/deckerweb/post-author-taxonomy/wiki/Deutsch) · English (https://github.com/deckerweb/post-author-taxonomy/blob/master/README.md)
 
@@ -169,6 +169,9 @@ WordPress 6.7+ und PHP 8.1+. Die PHP-Mindestversion steigt gegenüber 1.2.0 von 
 Alle Fragen nach Themen (https://github.com/deckerweb/post-author-taxonomy/wiki/FAQ%E2%80%90Deutsch)
 
 == Changelog ==
+= 1.4.2 — 2026-10-22 =
+* Behoben: Der eingebettete Updater 2.2.1 bleibt aktiv, wenn ein anderes Plugin zuvor einen älteren Updater lädt.
+* Verbessert: Release-Caches sind nach Updater-Version und Repository-Zugriffsmodus getrennt.
 = 1.4.1 — 2026-10-21 =
 * Verbessert: deckerweb Library 1.1.0 und Updater 2.2.0 mit freigegebenen Katalog-Updates und vollständigen deutschen Übersetzungen.
 * Behoben: Changelog-Dialoge bleiben bis zum Öffnen geschlossen; natives Schließen und Dokumentationslinks bleiben als Rückfall verfügbar.

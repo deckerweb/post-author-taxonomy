@@ -4,7 +4,7 @@
 
 **Autoren wie Tags. Gestalte mit deinem Builder.** Ein kleines WordPress-Plugin für mehrere Autorenangaben über die öffentliche Taxonomie `pat-author`. Autoren benötigen kein WordPress-Benutzerkonto.
 
-**Version:** 1.4.1 · **Voraussetzungen:** WordPress 6.7+ / PHP 8.1+ · **Lizenz:** GPL v2 or later
+**Version:** 1.4.2 · **Voraussetzungen:** WordPress 6.7+ / PHP 8.1+ · **Lizenz:** GPL v2 or later
 
 [Download](https://github.com/deckerweb/post-author-taxonomy/releases/latest) · [Anleitung](https://github.com/deckerweb/post-author-taxonomy/wiki/Deutsch) · [English](README.md)
 
@@ -215,6 +215,11 @@ WordPress 6.7+ und PHP 8.1+. Die PHP-Mindestversion steigt gegenüber 1.2.0 von 
 <a name="aenderungsverlauf"></a>
 
 ## Änderungsverlauf
+
+### 1.4.2 — 2026-10-22
+
+- **Behoben:** Der eingebettete Updater 2.2.1 bleibt aktiv, wenn ein anderes Plugin zuvor einen älteren Updater lädt.
+- **Verbessert:** Release-Caches sind nach Updater-Version und Repository-Zugriffsmodus getrennt.
 
 ### 1.4.1 — 2026-10-21
 

@@ -1,5 +1,10 @@
 # Änderungsverlauf · Post Author Taxonomy
 
+### 1.4.2 — 2026-10-22
+
+- **Behoben:** Der eingebettete Updater 2.2.1 bleibt aktiv, wenn ein anderes Plugin zuvor einen älteren Updater lädt.
+- **Verbessert:** Release-Caches sind nach Updater-Version und Repository-Zugriffsmodus getrennt.
+
 ### 1.4.1 — 2026-10-21
 
 - **Verbessert:** deckerweb Library 1.1.0 und Updater 2.2.0 mit freigegebenen Katalog-Updates und vollständigen deutschen Übersetzungen.

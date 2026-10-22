@@ -120,7 +120,7 @@ final class DDW_PAT_Tools {
 	/** Render local version/archive information without network calls or personal author content. @return void */
 	public static function diagnostics(): void {
 		$tax = get_taxonomy( 'pat-author' );
-		$updater = '\Deckerweb\GitHubReleaseUpdater\V2\Updater';
+		$updater = \Deckerweb\PostAuthorTaxonomy\GitHubUpdates::$implementation_class;
 		$runtime = $GLOBALS['deckerweb_library_runtime_v1'] ?? null;
 		$library_version = is_object( $runtime ) && defined( get_class( $runtime ) . '::VERSION' ) ? constant( get_class( $runtime ) . '::VERSION' ) : __( 'Not loaded on this screen', 'post-author-taxonomy' );
 		$update_version = defined( $updater . '::IMPLEMENTATION_VERSION' ) ? constant( $updater . '::IMPLEMENTATION_VERSION' ) : __( 'Not loaded on this screen', 'post-author-taxonomy' );

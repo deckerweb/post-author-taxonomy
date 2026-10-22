@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Post Author Taxonomy 1.4.1\nPOT-Creation-Date: 2026-10-21 12:00+0200\nPO-Revision-Date: 2026-10-21 12:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: de_DE_formal\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: Post Author Taxonomy 1.4.2\nPOT-Creation-Date: 2026-10-22 12:00+0200\nPO-Revision-Date: 2026-10-22 12:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: de_DE_formal\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: includes/deckerweb-plugin-library/languages/de_DE.mo:1
 #, php-format
@@ -193,7 +193,7 @@ msgstr "Autoren-Shortcode"
 msgid "Author website"
 msgstr "Autorenwebsite"
 
-#: includes/class-pat-github-updates.php:42
+#: includes/class-pat-github-updates.php:43
 msgid "Authors as a public taxonomy: multiple authors, local photos, profiles and flexible shortcodes for your builder or theme."
 msgstr "Autoren als öffentliche Taxonomie: mehrere Autoren, lokale Fotos, Profile und flexible Shortcodes für Ihren Builder oder Ihr Theme."
 
@@ -333,15 +333,15 @@ msgstr "Kopieren"
 msgid "Copy diagnostic information"
 msgstr "Diagnoseinformationen kopieren"
 
-#: includes/class-pat-github-updates.php:181
+#: includes/class-pat-github-updates.php:183
 msgid "Could not access the update filesystem."
 msgstr "Auf das Dateisystem für das Update konnte nicht zugegriffen werden."
 
-#: includes/class-pat-github-updates.php:177
+#: includes/class-pat-github-updates.php:179
 msgid "Could not create the update download file."
 msgstr "Die Datei für den Update-Download konnte nicht erstellt werden."
 
-#: includes/class-pat-github-updates.php:185
+#: includes/class-pat-github-updates.php:187
 msgid "Could not prepare the GitHub release package."
 msgstr "Das GitHub-Release-Paket konnte nicht vorbereitet werden."
 
@@ -393,7 +393,7 @@ msgstr "Zufällig entdecken"
 msgid "Dismiss permanently"
 msgstr "Dauerhaft schließen"
 
-#: includes/class-pat-github-updates.php:193
+#: includes/class-pat-github-updates.php:195
 msgid "Dismiss this notice"
 msgstr "Diesen Hinweis ausblenden"
 
@@ -481,7 +481,7 @@ msgstr "Fr"
 msgid "Friday"
 msgstr "Freitag"
 
-#: includes/class-pat-github-updates.php:189
+#: includes/class-pat-github-updates.php:191
 msgid "Git Updater is active. If a deckerweb installation or update fails, temporarily deactivate Git Updater and retry. Reactivate it afterwards if other plugins or themes need it. Only leave it disabled when those extensions have another reliable update provider."
 msgstr "Git Updater ist aktiv. Wenn eine deckerweb-Installation oder ein Update fehlschlägt, deaktivieren Sie Git Updater vorübergehend und versuchen Sie es erneut. Aktivieren Sie ihn danach wieder, wenn andere Plugins oder Themes ihn benötigen. Lassen Sie ihn nur dauerhaft deaktiviert, wenn diese Erweiterungen einen anderen zuverlässigen Updateweg besitzen."
 
@@ -489,7 +489,7 @@ msgstr "Git Updater ist aktiv. Wenn eine deckerweb-Installation oder ein Update 
 msgid "GitHub Stars"
 msgstr "GitHub-Sterne"
 
-#: includes/class-pat-github-updates.php:183
+#: includes/class-pat-github-updates.php:185
 msgid "GitHub release does not contain the plugin main file."
 msgstr "Der GitHub-Release enthält nicht die Hauptdatei des Plugins."
 
@@ -541,7 +541,7 @@ msgstr "Installiert: "
 msgid "Installing…"
 msgstr "Wird installiert…"
 
-#: includes/class-pat-github-updates.php:173
+#: includes/class-pat-github-updates.php:175
 msgid "Invalid GitHub repository URL."
 msgstr "Ungültige GitHub-Repository-URL."
 
@@ -553,7 +553,7 @@ msgstr "Ungültiges ZIP-Archiv."
 msgid "Invalid approval flag."
 msgstr "Ungültige Freigabeangabe."
 
-#: includes/class-pat-github-updates.php:169
+#: includes/class-pat-github-updates.php:171
 msgid "Invalid authentication provider."
 msgstr "Ungültiger Authentifizierungsanbieter."
 
@@ -701,7 +701,7 @@ msgstr "Inhalte verwalten"
 msgid "Manage authors"
 msgstr "Autoren verwalten"
 
-#: includes/class-pat-github-updates.php:191
+#: includes/class-pat-github-updates.php:193
 msgid "Manage installed plugins"
 msgstr "Installierte Plugins verwalten"
 
@@ -909,7 +909,7 @@ msgstr "Übergeordneter Autor:"
 msgid "Permalinks"
 msgstr "Permalinks"
 
-#: includes/class-pat-github-updates.php:195
+#: includes/class-pat-github-updates.php:197
 msgid "Permission denied."
 msgstr "Zugriff verweigert."
 
@@ -961,7 +961,7 @@ msgstr "Plugin-Website"
 msgid "Popular Authors"
 msgstr "Beliebte Autoren"
 
-#: includes/class-pat-github-updates.php:211
+#: includes/class-pat-github-updates.php:213
 msgid "Post Author Taxonomy updates are paused because another plugin loaded an older deckerweb updater. Update the other deckerweb plugin to restore compatible updates."
 msgstr "Updates für Post Author Taxonomy pausieren, weil ein anderes Plugin einen älteren deckerweb Updater geladen hat. Aktualisieren Sie das andere deckerweb Plugin, um kompatible Updates wiederherzustellen."
 
@@ -977,7 +977,7 @@ msgstr "Beitragskontext"
 msgid "Preview post"
 msgstr "Beitrag für die Vorschau"
 
-#: includes/class-pat-github-updates.php:167
+#: includes/class-pat-github-updates.php:169
 msgid "Private mode must be boolean."
 msgstr "Der Private-Modus muss ein boolescher Wert sein."
 
@@ -989,7 +989,7 @@ msgstr "Produktwebsite"
 msgid "Profile overview"
 msgstr "Profilübersicht"
 
-#: includes/class-pat-github-updates.php:197
+#: includes/class-pat-github-updates.php:199
 msgid "Public catalog callbacks require both providers and cannot be used in private mode."
 msgstr "Öffentliche Katalog-Callbacks benötigen beide Anbieter und können nicht im Private-Modus verwendet werden."
 
@@ -1115,7 +1115,7 @@ msgstr "Autoren suchen"
 msgid "Search this catalog"
 msgstr "Diesen Katalog durchsuchen"
 
-#: includes/class-pat-github-updates.php:187
+#: includes/class-pat-github-updates.php:189
 msgid "See the release on GitHub."
 msgstr "Sehen Sie sich den Release auf GitHub an."
 
@@ -1237,11 +1237,11 @@ msgstr "Autor"
 msgid "Technical information"
 msgstr "Technische Informationen"
 
-#: includes/class-pat-github-updates.php:111
+#: includes/class-pat-github-updates.php:113
 msgid "The GitHub package could not be prepared. The installed version has been kept."
 msgstr "Das GitHub-Paket konnte nicht vorbereitet werden. Die installierte Version wurde beibehalten."
 
-#: includes/class-pat-github-updates.php:110
+#: includes/class-pat-github-updates.php:112
 msgid "The GitHub package does not contain the Post Author Taxonomy plugin file."
 msgstr "Das GitHub-Paket enthält die Plugin-Datei von Post Author Taxonomy nicht."
 
@@ -1257,11 +1257,11 @@ msgstr "Die Aktion läuft noch. Bitte den Status erneut prüfen."
 msgid "The approved package could not be verified."
 msgstr "Das freigegebene Paket konnte nicht geprüft werden."
 
-#: includes/class-pat-github-updates.php:201
+#: includes/class-pat-github-updates.php:203
 msgid "The approved release changed. Refresh updates first."
 msgstr "Die freigegebene Version hat sich geändert. Suchen Sie zuerst erneut nach Updates."
 
-#: includes/class-pat-github-updates.php:199
+#: includes/class-pat-github-updates.php:201
 msgid "The approved release could not be verified."
 msgstr "Die freigegebene Version konnte nicht geprüft werden."
 
@@ -1297,15 +1297,15 @@ msgstr "Der Online-Katalog ist nicht erreichbar. Angezeigt wird der gespeicherte
 msgid "The online catalog source is not trusted."
 msgstr "Die Online-Katalogquelle ist nicht vertrauenswürdig."
 
-#: includes/class-pat-github-updates.php:133
+#: includes/class-pat-github-updates.php:135
 msgid "The package identity or version does not match a newer Post Author Taxonomy release."
 msgstr "Die Paketidentität oder Version entspricht keiner neueren Version von Post Author Taxonomy."
 
-#: includes/class-pat-github-updates.php:138
+#: includes/class-pat-github-updates.php:140
 msgid "The package version differs from the offered update. Please check for updates again."
 msgstr "Die Paketversion weicht vom angebotenen Update ab. Bitte prüfen Sie erneut auf Updates."
 
-#: includes/class-pat-github-updates.php:171
+#: includes/class-pat-github-updates.php:173
 msgid "The plugin must be installed in a stable slug directory."
 msgstr "Das Plugin muss in einem Verzeichnis mit einem festen Slug installiert sein."
 
@@ -1313,11 +1313,11 @@ msgstr "Das Plugin muss in einem Verzeichnis mit einem festen Slug installiert s
 msgid "The preview uses your actual author data. Your theme or builder controls the final appearance. A current-archive author needs an author archive to render."
 msgstr "Die Vorschau nutzt Ihre tatsächlichen Autorendaten. Das endgültige Aussehen bestimmt Ihr Theme oder Builder. Der aktuelle Archivautor wird nur auf einem Autorenarchiv ausgegeben."
 
-#: includes/class-pat-github-updates.php:175
+#: includes/class-pat-github-updates.php:177
 msgid "The private update could not be authorized. Check the repository credentials and refresh updates."
 msgstr "Das private Update konnte nicht autorisiert werden. Prüfen Sie die Repository-Zugangsdaten und suchen Sie erneut nach Updates."
 
-#: includes/class-pat-github-updates.php:179
+#: includes/class-pat-github-updates.php:181
 msgid "The private update download failed. Check credentials and try again."
 msgstr "Der Download des privaten Updates ist fehlgeschlagen. Prüfen Sie die Zugangsdaten und versuchen Sie es erneut."
 
@@ -1337,7 +1337,7 @@ msgstr "Die Anfrage ist fehlgeschlagen. Bitte erneut versuchen."
 msgid "The requirements below describe the offered release."
 msgstr "Die folgenden Voraussetzungen beziehen sich auf den angebotenen Release."
 
-#: includes/class-pat-github-updates.php:109
+#: includes/class-pat-github-updates.php:111
 msgid "The update filesystem is unavailable. Please try again."
 msgstr "Das Dateisystem für das Update ist nicht verfügbar. Bitte versuchen Sie es erneut."
 
@@ -1345,15 +1345,15 @@ msgstr "Das Dateisystem für das Update ist nicht verfügbar. Bitte versuchen Si
 msgid "The update has not been confirmed. You can try again."
 msgstr "Die Aktualisierung wurde nicht bestätigt. Sie können es erneut versuchen."
 
-#: includes/class-pat-github-updates.php:126
+#: includes/class-pat-github-updates.php:128
 msgid "The update package could not be checked."
 msgstr "Das Update-Paket konnte nicht geprüft werden."
 
-#: includes/class-pat-github-updates.php:142
+#: includes/class-pat-github-updates.php:144
 msgid "The update package has missing or invalid WordPress/PHP requirements."
 msgstr "Die WordPress/PHP-Anforderungen im Update-Paket fehlen oder sind ungültig."
 
-#: includes/class-pat-github-updates.php:151
+#: includes/class-pat-github-updates.php:153
 msgid "The update package is incomplete. The installed plugin has been kept."
 msgstr "Das Update-Paket ist unvollständig. Das installierte Plugin wurde beibehalten."
 
@@ -1377,7 +1377,7 @@ msgstr "Dieses Release ist nicht mehr freigegeben."
 msgid "This release is not approved."
 msgstr "Dieses Release ist nicht freigegeben."
 
-#: includes/class-pat-github-updates.php:146
+#: includes/class-pat-github-updates.php:148
 msgid "This release requires a newer WordPress or PHP version. The installed version has been kept."
 msgstr "Diese Version benötigt eine neuere WordPress- oder PHP-Version. Die installierte Version wurde beibehalten."
 
